@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryLight2">#6fffe9</color>
+    <color name="colorPrimaryLight">#87C7BF</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+
+    <color name="colorBackground">#EEFFFA</color>
+
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccentBlue">#0abab5</color>
+
+    <color name="colorStarYellow">#FFD026</color>
+    <color name="colorStarYellowLight">#FFF4D3</color>
+
+    <color name="colorCardBackground">#FFFFFFFF</color>
+
+</resources>

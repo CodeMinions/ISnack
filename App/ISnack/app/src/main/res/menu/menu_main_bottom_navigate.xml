@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/ic_shop"
+        android:title="主页"
+        app:showAsAction="always" />
+
+    <item
+        android:icon="@drawable/ic_shop"
+        android:title="种类"
+        app:showAsAction="always" />
+
+    <item
+        android:icon="@drawable/ic_shop"
+        android:title="国家"
+        app:showAsAction="always" />
+
+    <item
+        android:icon="@drawable/ic_shop"
+        android:title="低卡"
+        app:showAsAction="always" />
+
+</menu>

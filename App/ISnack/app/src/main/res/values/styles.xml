@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Base.AppTheme">
+
+    </style>
+
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Light" />
+
+
+</resources>

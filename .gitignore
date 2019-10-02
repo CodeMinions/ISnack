@@ -1,0 +1,14 @@
+*.iml
+.gradle
+/local.properties
+/Web/ISnack/.idea/caches
+/Web/ISnack/.idea/libraries
+/Web/ISnack/.idea/modules.xml
+/Web/ISnack/.idea/workspace.xml
+/Web/ISnack/.idea/navEditor.xml
+/Web/ISnack/.idea/assetWizardSettings.xml
+/Web/ISnack/target/
+.DS_Store
+/build
+/captures
+.externalNativeBuild

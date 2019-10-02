@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="height_bottom_navigate" type="dimen">56dp</item>
+    <item name="actionBarSize" type="dimen">56dp</item>
+</resources>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorBackground"
+        android:orientation="vertical"
+        tools:context=".SnackDetailCommentFragment"
+        tools:targetApi="O">
+
+        <TextView
+            android:text="评论区"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#808080"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="280dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_snack_comment" />
+
+                <include layout="@layout/item_snack_comment" />
+                <include layout="@layout/item_snack_comment2" />
+                <include layout="@layout/item_snack_comment" />
+                <include layout="@layout/item_snack_comment" />
+                <include layout="@layout/item_snack_comment2" />
+                <include layout="@layout/item_snack_comment" />
+                <include layout="@layout/item_snack_comment2" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="318dp"
+            android:layout_marginHorizontal="20dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="@color/colorStarYellowLight"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="点击星星评分"
+                    android:textSize="10sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:numStars="5"
+                    android:progressTint="@color/colorStarYellow"
+                    app:mrb_fillBackgroundStars="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:background="@drawable/bg_frame_1"
+                android:layout_marginTop="65dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:hint="我的测评..."
+                    android:textSize="14sp"
+                    android:background="@color/colorCardBackground"
+                    android:backgroundTint="@color/colorStarYellowLight"
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+
+            </FrameLayout>
+
+            <Button
+                android:text="发布"
+                android:textSize="11sp"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_width="wrap_content"
+                android:background="@drawable/bg_round_5"
+                android:layout_height="15dp" />
+
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+</layout>
