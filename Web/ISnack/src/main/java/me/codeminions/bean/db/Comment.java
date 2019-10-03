@@ -7,7 +7,7 @@ public class Comment {    //对应表t_comment
     private int send_id;
     private int snack_id;
     private float star;
-    private int likecount;
+    private int likeCount;
     private String time;
 
 
@@ -52,11 +52,11 @@ public class Comment {    //对应表t_comment
     }
 
     public int getLikecount() {
-        return likecount;
+        return likeCount;
     }
 
-    public void setLikecount(int likecount) {
-        this.likecount = likecount;
+    public void setLikecount(int likeCount) {
+        this.likeCount = likeCount;
     }
 
     public String getTime() {

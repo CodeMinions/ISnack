@@ -23,11 +23,13 @@ class PhotoModel(val presenter: SnackPhotoContract.SnackPhotoPresenter) : IPhoto
                 if (!isCancel) {
                     callBack.onSuccess("Result have got", responseModel.result!!)
                     Log.i("result", responseModel.result.toString())
+                }else {
+                    callBack.onFail("You cancel the request")
                 }
             }
 
             override fun onError(error: String) {
-                callBack.onFail("You cancel the request")
+                callBack.onFail(error)
             }
         })
     }

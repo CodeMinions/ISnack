@@ -44,10 +44,10 @@ public class PicKnowService {
 
         //TODO: 2019/10/1  调用python代码使用机器学习模型得到识别内容
 
-        SqlSession sqlSession = MyBatisUtil.getSqlSession();
+//        SqlSession sqlSession = MyBatisUtil.getSqlSession();
         // TODO: 2019/10/1  使用识别内容在数据库中查找对应数据
-        Snack snack = new Snack();
-        MyBatisUtil.closeSqlSession();
+        Snack snack = new Snack("士力架");
+//        MyBatisUtil.closeSqlSession();
 
         if(snack == null) {
             return ResponseModel.buildParameterError();

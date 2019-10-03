@@ -3,7 +3,7 @@ package me.codeminions.bean.api.base;
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class ResponseModel<M> implements Serializable {
     // 成功
@@ -27,16 +27,12 @@ public class ResponseModel<M> implements Serializable {
     // 已存在该日期
     public static final int ERROR_DATEEXIT = 4005;
 
-    // 用户身份
-    @Expose
-    public int type = 0;
-
     @Expose
     private int code;
     @Expose
     private String message;
     @Expose
-    private LocalDateTime time = LocalDateTime.now();
+    private Date time = new Date();
     @Expose
     private M result;
 
@@ -81,11 +77,11 @@ public class ResponseModel<M> implements Serializable {
         this.message = message;
     }
 
-    public LocalDateTime getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
@@ -103,12 +99,6 @@ public class ResponseModel<M> implements Serializable {
 
     public static <M> ResponseModel<M> buildOk(M result) {
         return new ResponseModel<M>(result);
-    }
-
-    public static <M> ResponseModel<M> loginOk(M result, int type) {
-        ResponseModel<M> model = buildOk(result);
-        model.setType(type);
-        return model;
     }
 
     public static <M> ResponseModel<M> buildDateError() {
@@ -145,9 +135,5 @@ public class ResponseModel<M> implements Serializable {
 
     public static <M> ResponseModel<M> buildCreateError(int type) {
         return new ResponseModel<M>(type, "Create failed.");
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 }

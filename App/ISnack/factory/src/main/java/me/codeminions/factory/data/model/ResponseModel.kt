@@ -1,11 +1,12 @@
 package me.codeminions.factory.data.model
 
+import java.io.Serializable
 import java.util.*
 
 data class ResponseModel<M>(val code: Int,
                             val message: String,
                             val time: Date = Date(),
-                            val result: M?) {
+                            val result: M?) : Serializable {
 
 }
 

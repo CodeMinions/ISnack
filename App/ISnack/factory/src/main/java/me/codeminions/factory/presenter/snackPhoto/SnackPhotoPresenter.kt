@@ -39,7 +39,8 @@ class SnackPhotoPresenter(val view: SnackPhotoContract.SnackPhotoView<SnackPhoto
 
                     override fun onFail(info: String) {
                         handler.post {
-                            view.showTips(info)
+                            view.showProgress(false)
+                            view.showTips("怎么认不出来呢 ×_× :   $info")
                         }
                     }
                 })

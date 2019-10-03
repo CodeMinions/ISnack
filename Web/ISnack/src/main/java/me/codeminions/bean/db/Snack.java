@@ -1,19 +1,28 @@
 package me.codeminions.bean.db;
 
-import java.util.HashMap;
+import com.google.gson.annotations.Expose;
 
 /**
  * 访问路径 localhost:8080/isnack/api/
  */
 public class Snack {       //对应表t_snack
 
+    @Expose
     private String snackID;
+    @Expose
     private String name;
+    @Expose
     private String origin;
+    @Expose
     private String shelf;
+    @Expose
     private float mark;
+    @Expose
     private String img;   // 图片的url
 
+    public Snack(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;

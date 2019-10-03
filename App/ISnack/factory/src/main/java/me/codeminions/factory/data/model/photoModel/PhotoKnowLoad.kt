@@ -26,6 +26,7 @@ class PhotoKnowLoad {
             }
 
             override fun onFailure(call: Call<ResponseModel<Snack>>, t: Throwable) {
+                requestResult.onError("ServerError : ${t.message}")
                 Log.i("ffresult", t.message)
             }
         })
