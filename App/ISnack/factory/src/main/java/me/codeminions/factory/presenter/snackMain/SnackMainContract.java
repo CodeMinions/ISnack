@@ -1,5 +1,11 @@
 package me.codeminions.factory.presenter.snackMain;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
+
+import org.jetbrains.annotations.NotNull;
+
 import me.codeminions.common.mvp.BaseContract;
 
 public interface SnackMainContract {
@@ -29,9 +35,26 @@ public interface SnackMainContract {
          * TODO: 19-9-21 添加
          */
         public void addSomething();
+
+        public void jumpToMe(Context context);
+
+        /**
+         * 显示拍照按钮
+         */
+        public void showButton(int position);
+
+        /**
+         * 启动相机
+         */
+        public void startPhoto(Uri uri);
+
+
+        public void showPhotoResult(Bitmap bitmap);
     }
 
     public interface SnackMainPresenter extends BaseContract.BasePresenter {
+        public void jumpToMe(Context context);
 
+        public void startPhoto(@NotNull Context context);
     }
 }

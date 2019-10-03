@@ -1,4 +1,4 @@
-package me.codeminions.isnack.firstPager
+package me.codeminions.isnack.firstPage
 
 import android.os.Bundle
 import android.util.Log
@@ -6,17 +6,17 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.fragment_main.*
-import me.codeminions.common.widget.recycler.BindingRecyclerAdapter
-import me.codeminions.common.widget.recycler.OnItemClickListener
+import me.codeminions.common.widget.BindingRecyclerAdapter
+import me.codeminions.common.widget.OnItemClickListener
 import me.codeminions.factory.RecyclerFragment
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.data.netData.Constant
 import me.codeminions.factory.presenter.snackFirstPage.SnackFirstPageContract
 import me.codeminions.factory.presenter.snackFirstPage.SnackFirstPagePresenter
 import me.codeminions.isnack.R
-import me.codeminions.isnack.snackDetails.SnackDetailFragment
 import me.codeminions.isnack.databinding.FragmentMainBinding
 import me.codeminions.isnack.databinding.ItemMainSnacklistBinding
+import me.codeminions.isnack.snackDetails.SnackDetailFragment
 import java.util.*
 
 class FirstFragment :

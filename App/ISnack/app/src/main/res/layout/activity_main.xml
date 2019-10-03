@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="me.codeminions.isnack.MainActivity" />
 
+        <variable
+            name="handler"
+            type="MainActivity" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -28,6 +32,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
+                    android:onClick="@{handler::onClickPortrait}"
                     android:src="@drawable/default_portrait" />
 
 
@@ -63,6 +68,7 @@
         </androidx.viewpager.widget.ViewPager>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_main_photo"
             android:translationY="100dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

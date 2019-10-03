@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="user"
+            type="me.codeminions.factory.data.bean.User" />
 
+        <variable
+            name="imgResId"
+            type="int" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -12,13 +19,20 @@
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:background="@color/colorPrimaryLight">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:collapsedTitleGravity="center_horizontal"
+                app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+                app:contentScrim="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:title="半截拖鞋">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -30,28 +44,22 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@{imgResId}"
                         tools:src="@drawable/default_portrait" />
                 </FrameLayout>
 
                 <androidx.appcompat.widget.Toolbar
-                    android:layout_gravity="top"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/actionBarSize">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="12dp"
-                        android:textColor="@color/textColorAccent"
-                        android:textSize="20sp"
-                        tools:text="个人主页" />
+                    android:layout_height="@dimen/actionBarSize"
+                    android:layout_gravity="top"
+                    app:layout_collapseMode="pin">
 
                     <ImageView
-                        android:tint="@color/textColorAccent"
-                        android:src="@drawable/ic_back"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_back"
+                        android:tint="@color/colorBackground" />
 
                 </androidx.appcompat.widget.Toolbar>
 
@@ -60,36 +68,14 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
-            android:layout_marginTop="290dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="40dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        tools:text="半截旧拖鞋" />
-
-                    <TextView
-                        android:textSize="16sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        tools:text="关注： 286" />
-                </FrameLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -111,6 +97,14 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/bg_round_5"
+            android:backgroundTint="@color/colorPrimaryLight2"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="end|bottom" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

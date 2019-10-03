@@ -33,4 +33,11 @@ task clean(type: Delete) {
 ext{
     butterknifeVersion = '10.2.0'
     materialVersion = '1.0.0'
+
+    glideVersion = '3.7.0'
+
+    retrofitVersion='2.6.0'
+    gsonVersion='2.0.2'
+
+    okhttpVersion='3.9.1'
 }

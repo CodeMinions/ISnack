@@ -3,7 +3,7 @@ package me.codeminions.factory.presenter.snackFirstPage;
 import java.util.ArrayList;
 
 import me.codeminions.factory.data.bean.Snack;
-import me.codeminions.factory.data.model.snack.SnackModel;
+import me.codeminions.factory.data.model.snackModel.SnackModel;
 
 public class SnackFirstPagePresenter implements SnackFirstPageContract.SnackFirstPagePresenter {
 

@@ -6,6 +6,7 @@
     <color name="colorPrimaryDark">#00574B</color>
 
     <color name="colorBackground">#EEFFFA</color>
+    <color name="colorBackgroundBlack">#525252</color>
 
     <color name="colorAccent">#D81B60</color>
     <color name="colorAccentBlue">#0abab5</color>
@@ -14,5 +15,16 @@
     <color name="colorStarYellowLight">#FFF4D3</color>
 
     <color name="colorCardBackground">#FFFFFFFF</color>
+
+    <color name="blue_01">#82c2f7</color>
+    <color name="red_01">#f78282</color>
+    <color name="red_02">#f782f5</color>
+    <color name="yellow_01">#D5FDEF75</color>
+
+
+    <!--版本2-->
+    <color name="colorWPrimary">#FDFDFE</color>
+    <color name="colorWPrimaryDark">#F2F3F7</color>
+    <color name="colorWAccent">#90B6F1</color>
 
 </resources>

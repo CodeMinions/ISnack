@@ -9,23 +9,23 @@
         android:layout_gravity="center"
         android:backgroundTint="@color/colorBackground"
         android:orientation="vertical"
-        tools:context=".SnackDetailCommentFragment"
+        tools:context=".snackDetails.SnackDetailCommentFragment"
         tools:targetApi="O">
 
         <TextView
-            android:text="评论区"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#808080"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="评论区"
+            android:textColor="#808080"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <ScrollView
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
-            android:layout_height="280dp">
+            android:layout_height="280dp"
+            android:layout_marginTop="30dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,75 +35,86 @@
 
                 <include layout="@layout/item_snack_comment" />
                 <include layout="@layout/item_snack_comment2" />
+
                 <include layout="@layout/item_snack_comment" />
+
                 <include layout="@layout/item_snack_comment" />
-                <include layout="@layout/item_snack_comment2" />
-                <include layout="@layout/item_snack_comment" />
+
                 <include layout="@layout/item_snack_comment2" />
 
+                <include layout="@layout/item_snack_comment" />
             </LinearLayout>
         </ScrollView>
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="318dp"
-            android:layout_marginHorizontal="20dp"
-            app:cardCornerRadius="10dp"
-            android:layout_marginBottom="10dp"
-            app:cardBackgroundColor="@color/colorStarYellowLight"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="312dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:cardElevation="15dp"
+            app:cardBackgroundColor="@color/colorStarYellowLight"
+            app:cardCornerRadius="10dp">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="点击星星评分"
-                    android:textSize="10sp"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:text="点击星星评分"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"
+                    tools:text="4.5分" />
 
                 <me.zhanghai.android.materialratingbar.MaterialRatingBar
-                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
                     android:numStars="5"
                     android:progressTint="@color/colorStarYellow"
-                    app:mrb_fillBackgroundStars="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp" />
+                    app:mrb_fillBackgroundStars="true" />
             </FrameLayout>
 
             <FrameLayout
-                android:background="@drawable/bg_frame_1"
-                android:layout_marginTop="65dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginBottom="25dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/bg_frame_1">
 
                 <EditText
-                    android:hint="我的测评..."
-                    android:textSize="14sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
                     android:background="@color/colorCardBackground"
                     android:backgroundTint="@color/colorStarYellowLight"
-                    android:layout_margin="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp" />
-
+                    android:gravity="top"
+                    android:hint="我的测评..."
+                    android:textSize="14sp" />
             </FrameLayout>
 
             <Button
-                android:text="发布"
-                android:textSize="11sp"
-                android:textColor="#ffffff"
-                android:layout_marginBottom="5dp"
-                android:layout_gravity="bottom|center_horizontal"
                 android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/bg_round_5"
-                android:layout_height="15dp" />
+                android:text="发布"
+                android:textColor="#ffffff"
+                android:textSize="11sp" />
 
 
         </androidx.cardview.widget.CardView>

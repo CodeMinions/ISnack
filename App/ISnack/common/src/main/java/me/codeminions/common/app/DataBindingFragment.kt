@@ -1,23 +1,31 @@
 package me.codeminions.common.app
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.FragmentManager
 
 import butterknife.ButterKnife
 
-abstract class DataBindingFragment<T: ViewDataBinding> : androidx.fragment.app.Fragment() {
+abstract class DataBindingFragment<FragmentBinding: ViewDataBinding> : androidx.fragment.app.Fragment() {
 
-    private var mRoot: View? = null
-    private lateinit var dataBinding: T
+    protected var mRoot: View? = null
+    protected lateinit var dataBinding: FragmentBinding
+    lateinit var fm : FragmentManager
 
     @LayoutRes
     protected abstract fun getContentLayoutId(): Int
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        fm = (context as AppCompatActivity).supportFragmentManager
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -39,13 +47,5 @@ abstract class DataBindingFragment<T: ViewDataBinding> : androidx.fragment.app.F
 
     open fun initData() {
 
-    }
-
-    fun getRoot(): View? {
-        return mRoot
-    }
-
-    fun getDataBing(): T {
-        return dataBinding
     }
 }

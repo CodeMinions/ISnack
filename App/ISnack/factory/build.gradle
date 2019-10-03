@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -22,7 +23,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -36,6 +39,14 @@ dependencies {
     implementation "androidx.core:core-ktx:1.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(path: ':lang')
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    // 把json变成java中的实体类
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.gsonVersion"
+    // 日志拦截器
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.ext.materialVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
 }
 repositories {
     mavenCentral()

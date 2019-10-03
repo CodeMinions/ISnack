@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="textColorAccent">#2C2C2C</color>
+    <color name="textColorSecondary">#9C9C9C</color>
 </resources>

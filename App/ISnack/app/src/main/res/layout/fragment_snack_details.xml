@@ -9,7 +9,7 @@
         android:layout_gravity="center"
         android:backgroundTint="@color/colorBackground"
         android:orientation="vertical"
-        tools:context=".SnackDetailFragment"
+        tools:context=".snackDetails.SnackDetailFragment"
         tools:targetApi="O">
 
         <com.google.android.material.tabs.TabLayout

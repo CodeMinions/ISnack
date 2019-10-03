@@ -1,8 +1,9 @@
-package me.codeminions.isnack
+package me.codeminions.isnack.snackDetails
 
 import me.codeminions.common.app.DataBindingFragment
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.data.netData.Constant
+import me.codeminions.isnack.R
 import me.codeminions.isnack.databinding.FragmentSnackInfoBinding
 
 class SnackDetailInfoFragment : DataBindingFragment<FragmentSnackInfoBinding>() {
@@ -16,8 +17,7 @@ class SnackDetailInfoFragment : DataBindingFragment<FragmentSnackInfoBinding>() 
     override fun initData() {
         snack = arguments?.get("data") as Snack
 
-        getDataBing().snack = snack
-
-        getDataBing().imgResId = Constant.imgs[snack!!.tag]
+        dataBinding.snack = snack
+        dataBinding.imgResId = Constant.imgs[snack!!.tag]
     }
 }

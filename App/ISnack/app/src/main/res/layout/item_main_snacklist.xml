@@ -1,64 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="170dp"
-    android:layout_height="260dp"
-    android:layout_margin="10dp"
-    app:cardCornerRadius="15dp"
-    app:cardElevation="10dp"
-    tools:targetApi="O">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/img_item_snack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
+    <data>
+        <variable
+            name="snack"
+            type="me.codeminions.factory.data.bean.Snack" />
+
+        <variable
+            name="imgResId"
+            type="int" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="170dp"
+        android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:src="@drawable/default_snack_pic" />
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        tools:targetApi="O">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="15dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/txt_item_snack"
+        <ImageView
+            android:id="@+id/img_item_snack"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textStyle="bold"
-            tools:text="士力架" />
+            android:layout_height="120dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:src="@{imgResId}"
+            tools:src="@drawable/wang" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom">
-
-            <TextView
-                android:id="@+id/txt_item_mark"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="8.1"
-                android:textSize="14sp" />
+                android:layout_gravity="bottom"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
 
-            <me.zhanghai.android.materialratingbar.MaterialRatingBar
-                android:id="@+id/rating_item_mark"
-                android:layout_width="wrap_content"
-                android:layout_height="18dp"
-                android:layout_marginStart="6dp"
-                android:isIndicator="true"
-                android:progressTint="@color/colorStarYellow"
-                android:numStars="5"
-                android:rating="3"
-                android:stepSize="0.1"
-                app:mrb_fillBackgroundStars="true" />
+                <TextView
+                    android:id="@+id/txt_item_snack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:text="@{snack.name}"
+                    tools:text="士力架" />
 
-        </LinearLayout>
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+
+                    <TextView
+                        android:id="@+id/txt_item_mark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="8.1"
+                        android:text="@{String.valueOf(snack.mark)}"
+                        android:textSize="14sp" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:id="@+id/rating_item_mark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="6dp"
+                        android:isIndicator="true"
+                        android:progressTint="@color/colorStarYellow"
+                        android:numStars="5"
+                        android:rating="3"
+                        android:stepSize="0.1"
+                        app:mrb_fillBackgroundStars="true" />
+
+                </LinearLayout>
+            </LinearLayout>
 
 
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</layout>

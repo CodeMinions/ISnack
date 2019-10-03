@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import me.codeminions.common.app.Fragment
 import me.codeminions.common.mvp.BaseContract
+import androidx.databinding.ViewDataBinding
+import me.codeminions.common.app.DataBindingFragment
 
-abstract class PresenterFragment : Fragment() {
+abstract class PresenterFragment<FragmentBinding : ViewDataBinding> : DataBindingFragment<FragmentBinding>() {
 
     abstract fun initPresenter() : BaseContract.BasePresenter
 

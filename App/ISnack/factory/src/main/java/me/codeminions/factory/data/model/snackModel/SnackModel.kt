@@ -1,12 +1,12 @@
-package me.codeminions.factory.data.model.snack
+package me.codeminions.factory.data.model.snackModel
 
 import me.codeminions.factory.data.bean.Snack
-import me.codeminions.factory.data.model.OnDownLoadListener
+import me.codeminions.factory.data.model.ResponseCallBack
 import me.codeminions.factory.data.netData.Constant
 
 class SnackModel : ISnackModel {
 
-    lateinit var listener: OnDownLoadListener
+    lateinit var listener: ResponseCallBack<Snack>
 
     private val list = ArrayList<Snack>()
 
@@ -29,7 +29,7 @@ class SnackModel : ISnackModel {
         return list
     }
 
-    override fun loadByTag(tag: String, listener: OnDownLoadListener): List<Snack> {
+    override fun loadByTag(tag: String, listener: ResponseCallBack<Snack>): List<Snack> {
         return ArrayList()
     }
 

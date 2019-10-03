@@ -1,7 +1,7 @@
 package me.codeminions.factory.data.model
 
-interface CallBackListener {
-    fun onSuccess(info :String)
+interface ResponseCallBack<T> {
+    fun onSuccess(info :String, response: T)
 
     fun onFail(info: String)
 }

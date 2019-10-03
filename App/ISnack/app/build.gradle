@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -40,8 +41,15 @@ dependencies {
     implementation project(path: ':factory')
     implementation project(path: ':common')
 
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    // 把json变成java中的实体类
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.gsonVersion"
+    // 日志拦截器
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
+
     implementation "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
 
     implementation "com.google.android.material:material:$materialVersion"
     implementation 'de.hdodenhof:circleimageview:2.1.0'

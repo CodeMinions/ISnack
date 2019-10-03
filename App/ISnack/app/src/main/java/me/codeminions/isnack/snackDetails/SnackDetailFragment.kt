@@ -1,4 +1,4 @@
-package me.codeminions.isnack
+package me.codeminions.isnack.snackDetails
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.viewpager.widget.ViewPager
 import me.codeminions.common.widget.BaseViewPagerAdapter
 import me.codeminions.factory.data.bean.Snack
+import me.codeminions.isnack.R
 
 class SnackDetailFragment : DialogFragment() {
 
