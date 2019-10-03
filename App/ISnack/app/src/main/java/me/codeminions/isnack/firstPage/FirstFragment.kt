@@ -34,7 +34,7 @@ class FirstFragment :
 
         override fun onBindViewHolder(bing: ItemMainSnacklistBinding, data: Snack) {
             bing.snack = data
-            bing.imgResId = Constant.imgs[data.tag]
+//            bing.imgResId = Constant.imgs[data.tag]
         }
     }
 

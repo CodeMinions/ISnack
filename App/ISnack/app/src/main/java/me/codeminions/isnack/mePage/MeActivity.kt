@@ -2,12 +2,21 @@ package me.codeminions.isnack.mePage
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import kotlinx.android.synthetic.main.activity_homepage.*
 import me.codeminions.common.app.DataBindingActivity
+import me.codeminions.common.utils.getLoginStatus
+import me.codeminions.common.widget.BaseViewPagerAdapter
 import me.codeminions.factory.data.bean.User
 import me.codeminions.isnack.R
+import me.codeminions.isnack.mePage.accountPage.AccountLoginFragment
+import me.codeminions.isnack.mePage.accountPage.AccountRegisterFragment
 import me.codeminions.isnack.databinding.ActivityHomepageBinding
+import me.codeminions.isnack.mePage.accountPage.AccountTrigger
 
-class MeActivity : DataBindingActivity<ActivityHomepageBinding>() {
+class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
+        AccountTrigger {
 
     companion object {
         fun startAction(context: Context) {
@@ -16,6 +25,9 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>() {
         }
     }
 
+    lateinit var accountLoginFragment: AccountLoginFragment
+    lateinit var accountRegisterFragment: AccountRegisterFragment
+
     override fun getLayoutResId(): Int {
         return R.layout.activity_homepage
     }
@@ -23,11 +35,29 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>() {
     override fun initWidget() {
         super.initWidget()
 
-        val user = User("半截拖鞋", R.drawable.default_portrait, 286)
-
-        binding.user = user
-        binding.imgResId = user.portrait
+        if (!getLoginStatus(this)) {
+            initAccount()
+        } else {
+            initMe()
+        }
     }
 
+    override fun onTrigger() {
+        initMe()
+    }
+    private fun initAccount() {
+        frag_account.visibility = View.VISIBLE
 
+        accountLoginFragment = AccountLoginFragment()
+        accountRegisterFragment = AccountRegisterFragment()
+        vp_account.adapter = object : BaseViewPagerAdapter(null, supportFragmentManager,
+                accountLoginFragment, accountRegisterFragment) {
+        }
+    }
+    private fun initMe() {
+        frag_account.visibility = View.INVISIBLE
+
+        val user = User("半截拖鞋", "", "286")
+        binding.user = user
+    }
 }

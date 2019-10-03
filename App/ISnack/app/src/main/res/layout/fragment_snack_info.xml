@@ -83,13 +83,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/txt_snack_price" />
+                        android:text="@string/txt_snack_star" />
 
                     <TextView
                         android:id="@+id/card_snack_detail_txt_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{snack.price}"
+                        android:text="@{String.valueOf(snack.mark)}"
                         tools:text="￥ 8.00" />
                 </LinearLayout>
 

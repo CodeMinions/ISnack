@@ -15,17 +15,6 @@ class SnackModel : ISnackModel {
 //        listener.onSuccess("获取本地信息")
         list.addAll(Constant.list)
 
-        list.forEachIndexed { index, snack ->
-            run {
-                snack.tag = index
-                snack.infos["热量"] = "500kg"
-                snack.infos["蛋白质"] = "5.80kg"
-                snack.infos["脂肪"] = "31.0kg"
-                snack.infos["碳水化合物"] = "56kg"
-                snack.infos["膳食纤维"] = "5kg"
-                snack.infos["钠"] = "2kg"
-            }
-        }
         return list
     }
 

@@ -1,121 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@color/colorBackgroundBlack"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <EditText
-        android:id="@+id/edit_register_userId"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_log_act_phone"
-        android:inputType="text" />
+    <data>
 
-    <EditText
-        android:id="@+id/edit_register_userName"
-        android:layout_marginTop="35dp"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_register_act_name"
-        android:inputType="text" />
-
-    <FrameLayout
-        android:layout_width="200dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="40dp">
-
-        <EditText
-            android:id="@+id/edit_register_pwd1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:hint="@string/hint_log_act_pwd1"
-            android:inputType="textPassword" />
-
-        <ImageView
-            android:id="@+id/btn_register_visible1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|top"
-            android:layout_margin="5dp"
-            android:src="@drawable/ic_visible"
-            android:tint="@color/colorCardBackground" />
-
-        <EditText
-            android:id="@+id/edit_register_pwd2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:hint="@string/hint_log_act_pwd2"
-            android:inputType="textPassword" />
-
-        <ImageView
-            android:id="@+id/btn_register_visible2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="7dp"
-            android:src="@drawable/ic_visible"
-            android:tint="@color/colorCardBackground" />
-    </FrameLayout>
-
+    </data>
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        tools:ignore="SmallSp" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/colorBackgroundBlack"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/edit_register_userId"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="start|center"
-            android:text="@string/txt_register_act_sex"
-            android:textColor="@color/textColorSecondary"
-            android:textSize="15sp" />
+            android:hint="@string/hint_log_act_phone"
+            android:inputType="text" />
 
-        <Button
-            android:id="@+id/btn_res_changeMale"
-            android:text="男"
-            android:textSize="8sp"
-            android:layout_width="45dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="18dp"
-            android:backgroundTint="@color/sex_selector" />
+        <EditText
+            android:id="@+id/edit_register_userName"
+            android:layout_marginTop="35dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_register_act_name"
+            android:inputType="text" />
 
-        <Button
-            android:id="@+id/btn_res_changeFamale"
-            android:text="女"
-            android:textSize="8sp"
-            android:layout_width="45dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="13dp"
-            android:backgroundTint="@color/sex_selector" />
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="115dp"
+            android:layout_marginTop="40dp">
 
+            <EditText
+                android:id="@+id/edit_register_pwd1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:hint="@string/hint_log_act_pwd1"
+                android:inputType="textPassword" />
+
+            <ImageView
+                android:id="@+id/btn_register_visible1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|top"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_visible"
+                android:tint="@color/colorCardBackground" />
+
+            <EditText
+                android:id="@+id/edit_register_pwd2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:hint="@string/hint_log_act_pwd2"
+                android:inputType="textPassword" />
+
+            <ImageView
+                android:id="@+id/btn_register_visible2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="7dp"
+                android:src="@drawable/ic_visible"
+                android:tint="@color/colorCardBackground" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            tools:ignore="SmallSp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:text="@string/txt_register_act_sex"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btn_res_changeMale"
+                android:text="男"
+                android:textSize="8sp"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="18dp"
+                android:backgroundTint="@color/sex_selector" />
+
+            <Button
+                android:id="@+id/btn_res_changeFamale"
+                android:text="女"
+                android:textSize="8sp"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="13dp"
+                android:backgroundTint="@color/sex_selector" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <Button
+                android:id="@+id/btn_register_r"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:text="@string/btn_log_act_register" />
+
+            <Button
+                android:id="@+id/btn_register_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:text="@string/txt_cancel" />
+
+        </FrameLayout>
     </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp">
-
-        <Button
-            android:id="@+id/btn_register_r"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="start"
-            android:text="@string/btn_log_act_register" />
-
-        <Button
-            android:id="@+id/btn_register_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:text="@string/txt_cancel" />
-
-    </FrameLayout>
-</LinearLayout>
+</layout>

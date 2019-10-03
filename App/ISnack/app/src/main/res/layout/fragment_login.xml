@@ -1,97 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackgroundBlack"
-    android:gravity="center"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditText
-        android:id="@+id/edit_login_userId"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_log_act_phone"
-        android:inputType="text" />
-
-    <FrameLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
-
-        <EditText
-            android:id="@+id/edit_login_pwd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_log_act_pwd1"
-            android:inputType="textPassword" />
-
-        <ImageView
-            android:id="@+id/btn_log_visible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center"
-            android:src="@drawable/ic_visible"
-            android:tint="@color/colorCardBackground" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp">
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="start"
-            android:text="@string/btn_log_act_login" />
-
-        <Button
-            android:id="@+id/btn_register"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:text="@string/btn_log_act_register" />
-
-    </FrameLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="@string/txt_log_act_other"
-        android:textColor="@color/textColorSecondary" />
+    <data>
+        <import type="me.codeminions.isnack.mePage.accountPage.AccountLoginFragment" />
+        <variable
+            name="handler"
+            type="AccountLoginFragment" />
+    </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundBlack"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <View
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/bg_oval"
-            android:backgroundTint="@color/blue_01" />
+        <EditText
+            android:id="@+id/edit_login_userId"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_log_act_phone"
+            android:inputType="text" />
 
-        <View
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/bg_oval"
-            android:backgroundTint="@color/red_01" />
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
 
-        <View
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/bg_oval"
-            android:backgroundTint="@color/red_02" />
+            <EditText
+                android:id="@+id/edit_login_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_log_act_pwd1"
+                android:inputType="textPassword" />
 
-        <View
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/bg_oval"
-            android:backgroundTint="@color/yellow_01" />
+            <ImageView
+                android:id="@+id/btn_log_visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:src="@drawable/ic_visible"
+                android:tint="@color/colorCardBackground" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:onClick="@{handler::onClickLogin}"
+                android:text="@string/btn_log_act_login" />
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:text="@string/btn_log_act_register" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/txt_log_act_other"
+            android:textColor="@color/textColorSecondary" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_oval"
+                android:backgroundTint="@color/blue_01" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_oval"
+                android:backgroundTint="@color/red_01" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_oval"
+                android:backgroundTint="@color/red_02" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_oval"
+                android:backgroundTint="@color/yellow_01" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>
