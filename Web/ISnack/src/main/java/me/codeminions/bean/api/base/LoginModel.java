@@ -5,30 +5,30 @@ import com.google.gson.annotations.Expose;
 
 public class LoginModel {
     @Expose
-    private int userID;
+    private Long userID;
 
     @Expose
     private String pwd;
 
     public static boolean check(LoginModel model){
         return model != null
-                && !model.getUserID().toString().isEmpty()
-                && !model.getPwd().isEmpty();
+                && !model.getPwd().isEmpty()
+                && !model.getUserID().toString().isEmpty();
     }
 
     @Override
     public String toString() {
         return "{\n" +
-                "        \"userID\":" + userID.toString() + ",\n" +
+                "        \"userID\":" + userID.toString()+ ",\n" +
                 "        \"password\":" + pwd + "\n" +
                 "        }";
     }
 
-    public int getUserID() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
     }
 
