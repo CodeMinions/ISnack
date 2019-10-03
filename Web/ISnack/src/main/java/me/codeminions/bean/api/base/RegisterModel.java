@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 // TODO: 19-6-11 Model类中的所有构造方法都是用于测试 
 public class RegisterModel {
     @Expose
-    private int id;
+    private Long userID;
 
     @Expose
     private String name;
@@ -13,36 +13,55 @@ public class RegisterModel {
     @Expose
     private String pwd;
 
+    @Expose
+    private String sex;
+
+    @Expose
+    private String birth;
+
+    @Expose
+    private String portrait;
+
     public static boolean check(RegisterModel model) {
         return model != null
-                && !model.getPassword().isEmpty();
+                && !model.getUserID().toString().isEmpty()
+                && !model.getName().isEmpty()
+                && (model.getSex() == "女" || model.getSex() == "男")
+                && !model.getPwd().isEmpty()
+                && !model.getBirth().isEmpty();
     }
 
     @Override
     public String toString() {
-        return "{\n" +
-                "        \"id\":" + id + ",\n" +
-                "        \"name\":" + name + ",\n" +
-                "        \"password\":" + pwd + "\n";
-//                "        }";
+        return "User{" +
+                "id='" + userID.toString() + '\'' +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", sex=" + sex +'\''+
+                ", birth=" + birth +'\''+
+                ", portrait=" + portrait +'\''+
+                '}';
     }
 
     // 测试使用
 
     public RegisterModel() {
     }
-    public RegisterModel(int id, String name, String pwd) {
-        this.id = id;
-        this.name = name;
-        this.pwd = pwd;
+    public RegisterModel(Long userID, String name, String pwd, String sex, String birth, String portrait) {
+        this.userID=userID;
+        this.name=name;
+        this.pwd=pwd;
+        this.sex=sex;
+        this.birth=birth;
+        this.portrait=portrait;
     }
 
-    public int getId() {
-        return id;
+    public Long getUserID() {
+        return userID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 
     public String getName() {
@@ -53,12 +72,35 @@ public class RegisterModel {
         this.name = name;
     }
 
-    public String getPassword() {
+    public String getPwd() {
         return pwd;
     }
 
-    public void setPassword(String password) {
-        this.pwd = password;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
+    }
 }
