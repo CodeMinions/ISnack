@@ -4,10 +4,23 @@ public class User {       //对应表t_user
 
     private int userID;
     private String name;
-    private String passward;
+    private String pwd;
     private String sex;
     private String birth;
     private String portrait;
+    private Account account;
+
+    public User() {
+    }
+
+    public User(int userID, String name, String pwd, String sex, String birth, String portrait) {
+        this.userID = userID;
+        this.name = name;
+        this.pwd = pwd;
+        this.sex = sex;
+        this.birth = birth;
+        this.portrait = portrait;
+    }
 
 
     public int getUserID() {
@@ -26,12 +39,12 @@ public class User {       //对应表t_user
         this.name = name;
     }
 
-    public String getPassward() {
-        return passward;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setPassward(String passward) {
-        this.passward = passward;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     public String getSex() {
@@ -56,5 +69,13 @@ public class User {       //对应表t_user
 
     public void setPortrait(String portrait) {
         this.portrait = portrait;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
