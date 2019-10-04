@@ -2,7 +2,7 @@ package me.codeminions.factory.data.bean
 
 import java.io.Serializable
 
-data class Snack(var snackID: String? = null,
+data class Snack(var snackID: Int? = null,
                  var name: String? = null,
                  var origin: String? = null,
                  var shelf: String? = null,

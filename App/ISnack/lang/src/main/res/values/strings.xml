@@ -7,7 +7,7 @@
     <string name="btn_log_act_register">注册</string>
     <string name="btn_log_act_login">登录</string>
     <string name="txt_log_act_other">其他登录方式</string>
-    <string name="hint_log_act_phone">请输入账号/手机号</string>
+    <string name="hint_log_act_phone">请输入账号/昵称</string>
     <string name="hint_register_act_name">请输入用户名/昵称</string>
     <string name="hint_log_act_pwd1">请输入密码</string>
     <string name="hint_log_act_pwd2">请重新校验密码</string>

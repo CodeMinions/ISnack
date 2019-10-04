@@ -2,13 +2,13 @@ package me.codeminions.isnack.mePage
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_homepage.*
 import me.codeminions.common.app.DataBindingActivity
-import me.codeminions.common.utils.getLoginStatus
+import me.codeminions.factory.utils.getLoginStatus
 import me.codeminions.common.widget.BaseViewPagerAdapter
 import me.codeminions.factory.data.bean.User
+import me.codeminions.factory.utils.getLoginInfo
 import me.codeminions.isnack.R
 import me.codeminions.isnack.mePage.accountPage.AccountLoginFragment
 import me.codeminions.isnack.mePage.accountPage.AccountRegisterFragment
@@ -43,7 +43,7 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
     }
 
     override fun onTrigger() {
-        initMe()
+        initWidget()
     }
     private fun initAccount() {
         frag_account.visibility = View.VISIBLE
@@ -57,7 +57,8 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
     private fun initMe() {
         frag_account.visibility = View.INVISIBLE
 
-        val user = User("半截拖鞋", "", "286")
+//        val user = User("半截拖鞋", "", "286")
+        val user = getLoginInfo(this)
         binding.user = user
     }
 }

@@ -21,6 +21,8 @@ interface AccountLoginContract {
          */
         fun showLogining()
         fun hideLogining()
+
+        fun showTip(info: String)
     }
 
     interface AccountLoginPresenter: BaseContract.BasePresenter {

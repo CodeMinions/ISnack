@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 // TODO: 19-6-11 Model类中的所有构造方法都是用于测试 
 public class RegisterModel {
     @Expose
-    private Long userID;
+    private int userID;
 
     @Expose
     private String name;
@@ -24,9 +24,9 @@ public class RegisterModel {
 
     public static boolean check(RegisterModel model) {
         return model != null
-                && !model.getUserID().toString().isEmpty()
+                && model.getUserID() != 0
                 && !model.getName().isEmpty()
-                && (model.getSex() == "女" || model.getSex() == "男")
+                && (model.getSex().equals("女") || model.getSex().equals("男"))
                 && !model.getPwd().isEmpty()
                 && !model.getBirth().isEmpty();
     }
@@ -34,12 +34,12 @@ public class RegisterModel {
     @Override
     public String toString() {
         return "User{" +
-                "id='" + userID.toString() + '\'' +
+                "id='" + userID + '\'' +
                 ", name='" + name + '\'' +
                 ", pwd='" + pwd + '\'' +
-                ", sex=" + sex +'\''+
-                ", birth=" + birth +'\''+
-                ", portrait=" + portrait +'\''+
+                ", sex=" + sex + '\'' +
+                ", birth=" + birth + '\'' +
+                ", portrait=" + portrait + '\'' +
                 '}';
     }
 
@@ -47,20 +47,21 @@ public class RegisterModel {
 
     public RegisterModel() {
     }
-    public RegisterModel(Long userID, String name, String pwd, String sex, String birth, String portrait) {
-        this.userID=userID;
-        this.name=name;
-        this.pwd=pwd;
-        this.sex=sex;
-        this.birth=birth;
-        this.portrait=portrait;
+
+    public RegisterModel(int userID, String name, String pwd, String sex, String birth, String portrait) {
+        this.userID = userID;
+        this.name = name;
+        this.pwd = pwd;
+        this.sex = sex;
+        this.birth = birth;
+        this.portrait = portrait;
     }
 
-    public Long getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(Long userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 

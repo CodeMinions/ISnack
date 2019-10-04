@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <import type="me.codeminions.isnack.mePage.accountPage.AccountLoginFragment" />
+
         <variable
             name="handler"
             type="AccountLoginFragment" />
@@ -43,32 +45,51 @@
                 android:tint="@color/colorCardBackground" />
         </FrameLayout>
 
+
         <FrameLayout
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp">
 
-            <Button
-                android:id="@+id/btn_login"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="start"
-                android:onClick="@{handler::onClickLogin}"
-                android:text="@string/btn_log_act_login" />
+            <ProgressBar
+                android:visibility="invisible"
+                android:id="@+id/load"
+                android:layout_width="172dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:progressTint="@color/red_01" />
 
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="end"
-                android:text="@string/btn_log_act_register" />
+            <FrameLayout
+                android:id="@+id/btn_landr"
+                android:visibility="visible"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="start"
+                    android:onClick="@{handler::onClickLogin}"
+                    android:text="@string/btn_log_act_login" />
+
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:text="@string/btn_log_act_register" />
+
+            </FrameLayout>
 
         </FrameLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="20dp"
             android:text="@string/txt_log_act_other"
             android:textColor="@color/textColorSecondary" />
 
@@ -104,5 +125,6 @@
                 android:background="@drawable/bg_oval"
                 android:backgroundTint="@color/yellow_01" />
         </LinearLayout>
+
     </LinearLayout>
 </layout>

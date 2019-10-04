@@ -11,4 +11,6 @@ interface ApiService {
     @Multipart
     @POST(value = "know/pic")
     fun getPicKnowRes(@Part file: MultipartBody.Part): Call<ResponseModel<Snack>>
+
+
 }
