@@ -1,14 +1,22 @@
 package me.codeminions.bean.db;
 
+import com.google.gson.annotations.Expose;
+
 public class SnackInfo {         //对应表t_snack_info
 
+    @Expose
     private int infoID;
-    private int snack_id;
+    @Expose
     private String salt;
+    @Expose
     private String sugar;
+    @Expose
     private String carbon_water;
+    @Expose
     private String heat_quantity;
+    @Expose
     private String protein;
+    @Expose
     private String fat;
 
 
@@ -66,13 +74,5 @@ public class SnackInfo {         //对应表t_snack_info
 
     public void setInfoID(int infoID) {
         this.infoID = infoID;
-    }
-
-    public int getSnack_id() {
-        return snack_id;
-    }
-
-    public void setSnack_id(int snack_id) {
-        this.snack_id = snack_id;
     }
 }

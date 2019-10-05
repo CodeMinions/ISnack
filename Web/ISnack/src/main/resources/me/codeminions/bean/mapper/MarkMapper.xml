@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.codeminions.bean.mapper.SnackMapper">
+
+    <resultMap id="snackMark" type="me.codeminions.bean.db.SnackMark">
+        <id column="id" property="markID" />
+        <result column="user_id" property="userID" />
+        <result column="snack_id" property="snackID" />
+        <result column="mark" property="mark" />
+        <result column="time" property="time" />
+    </resultMap>
+
+    <insert id="setMark" parameterType="snackMark">
+        INSERT INTO t_snack_mark VALUE (,#(user_id),#(snack_id),#(mark),#(time));
+    </insert>
+
+    <select id="getSnackMark" parameterType="int" resultType="snackMark">
+        SELECT mark FROM t_snack_mark WHERE snack_id = #(id);
+    </select>
+
+</mapper>

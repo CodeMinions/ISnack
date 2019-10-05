@@ -2,9 +2,6 @@ package me.codeminions.bean.db;
 
 import com.google.gson.annotations.Expose;
 
-/**
- * 访问路径 localhost:8080/isnack/api/
- */
 public class Snack {       //对应表t_snack
 
     @Expose

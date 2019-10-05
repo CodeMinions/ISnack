@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.codeminions.bean.mapper.SnackMapper">
+
+    <resultMap id="snackInfo" type="me.codeminions.bean.db.SnackInfo">
+        <id column="id" property="infoID"/>
+        <result column="salt" property="salt"/>
+        <result column="sugar" property="sugar"/>
+        <result column="carbon_water" property="carbon_water"/>
+        <result column="heat_quantity" property="heat_quantity"/>
+        <result column="protein" property="protein"/>
+        <result column="fat" property="fat"/>
+    </resultMap>
+
+    <select id="findSnackInfoById" parameterType="int" resultType="snackInfo">
+        SELECT * FROM t_snack_info WHERE id = #(id);
+    </select>
+
+</mapper>

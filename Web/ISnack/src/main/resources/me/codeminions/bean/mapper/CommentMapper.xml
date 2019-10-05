@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.codeminions.bean.mapper.CommentMapper">
+
+    <resultMap id="comment" type="me.codeminions.bean.db.Comment">
+        <id column="id" property="commentID" />
+        <result column="content" property="comment" />
+        <result column="send_id" property="send_id" />
+        <result column="snack_id" property="snack_id" />
+        <result column="star" property="star" />
+        <result column="likecount" property="likeCount" />
+        <result column="time" property="time" />
+    </resultMap>
+
+    <insert id="setComment" parameterType="comment">
+        INSERT INTO t_comment VALUE (,#(content),#(send_id),#(snack_id),#(star),#(likecount),#(time));
+    </insert>
+    <update id="updateLike" parameterType="int">
+        UPDATE TABLE t_comment set likecount = likecount+1 WHERE snack_id = #(id);
+    </update>
+    <select id="getCommentByUser" parameterType="int" resultType="comment">
+        SELECT * FROM t_comment WHERE user_id = #(id);
+    </select>
+    <select id="getCommentBySnack" parameterType="int" resultType="comment">
+        SELECT * FROM t_comment WHERE snack_id = #(id);
+    </select>
+
+</mapper>
