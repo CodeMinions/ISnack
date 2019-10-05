@@ -5,6 +5,8 @@ import com.google.gson.annotations.Expose;
 /**
  * 用户登录model，使用用户昵称和密码登录（故用户名不得重复，注册时检验）
  */
+
+//没用
 public class LoginModel {
     @Expose
     private String userName;

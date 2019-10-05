@@ -15,11 +15,11 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <select id="getSnackByName" parameterType="String" resultMap="snack">
-        SELECT * FROM t_snack WHERE name = #(name);
+        SELECT * FROM t_snack WHERE name = #{name};
     </select>
 
     <select id="getSnackIdByName" parameterType="String" resultType="int">
-        SELECT id FROM t_snack WHERE name = #(name);
+        SELECT id FROM t_snack WHERE name = #{name};
     </select>
 
 </mapper>

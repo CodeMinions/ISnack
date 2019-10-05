@@ -9,7 +9,7 @@ public class ChangeModel {
     @Expose
     private String name;
 
-    public static  boolean check(ChangeModel model){
+    public static boolean check(ChangeModel model){
         return model.name != null
                 && model.name.length() <= 20;
     }

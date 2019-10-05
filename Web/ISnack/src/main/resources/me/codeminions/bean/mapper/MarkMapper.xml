@@ -3,7 +3,7 @@
 PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="me.codeminions.bean.mapper.SnackMapper">
+<mapper namespace="me.codeminions.bean.mapper.MarkMapper">
 
     <resultMap id="snackMark" type="me.codeminions.bean.db.SnackMark">
         <id column="id" property="markID" />
@@ -14,11 +14,11 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <insert id="setMark" parameterType="me.codeminions.bean.db.SnackMark">
-        INSERT INTO t_snack_mark VALUE (,#(user_id),#(snack_id),#(mark),#(time));
+        INSERT INTO t_snack_mark(user_id, snack_id, mark, time) VALUE (#{userID},#{snackID},#{mark},#{time});
     </insert>
 
     <select id="getSnackMark" parameterType="int" resultMap="snackMark">
-        SELECT mark FROM t_snack_mark WHERE snack_id = #(id);
+        SELECT mark FROM t_snack_mark WHERE snack_id = #{id};
     </select>
 
 </mapper>

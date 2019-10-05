@@ -3,7 +3,7 @@
         PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="me.codeminions.bean.mapper.SnackMapper">
+<mapper namespace="me.codeminions.bean.mapper.SnackInfoMapper">
 
     <resultMap id="snackInfo" type="me.codeminions.bean.db.SnackInfo">
         <id column="id" property="infoID"/>
@@ -13,10 +13,15 @@
         <result column="heat_quantity" property="heat_quantity"/>
         <result column="protein" property="protein"/>
         <result column="fat" property="fat"/>
+        <result column="dietary_fiber" property="dietary_fiber"/>
+        <result column="Na" property="Na"/>
+        <result column="vitaminD" property="vitaminD"/>
+        <result column="Ca" property="Ca"/>
     </resultMap>
 
-    <select id="findSnackInfoById" parameterType="int" resultMap="snackInfo">
-        SELECT * FROM t_snack_info WHERE id = #(id);
+
+    <select id="getSnackInfoById" parameterType="int" resultMap="snackInfo">
+        SELECT * FROM t_snack_info WHERE id = #{id};
     </select>
 
 </mapper>

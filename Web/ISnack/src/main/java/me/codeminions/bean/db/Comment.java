@@ -16,13 +16,13 @@ public class Comment {    //对应表t_comment
     @Expose
     private int snack_id;
     @Expose
-    private float star;
+    private int star;
     @Expose
     private int likeCount;
     @Expose
     private String time;
 
-    public Comment(String comment, int send_id, int snack_id, float star) {
+    public Comment(int send_id, int snack_id, String comment, int star) {
         this();
         this.comment = comment;
         this.send_id = send_id;
@@ -32,6 +32,7 @@ public class Comment {    //对应表t_comment
     }
 
     public Comment() {
+        this.likeCount = 0;
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.time = df.format(new Date());
     }
@@ -69,11 +70,11 @@ public class Comment {    //对应表t_comment
         this.snack_id = snack_id;
     }
 
-    public float getStar() {
+    public int getStar() {
         return star;
     }
 
-    public void setStar(float star) {
+    public void setStar(int star) {
         this.star = star;
     }
 

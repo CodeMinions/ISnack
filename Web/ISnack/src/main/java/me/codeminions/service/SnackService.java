@@ -12,12 +12,15 @@ import me.codeminions.bean.mapper.MarkMapper;
 import me.codeminions.bean.mapper.SnackInfoMapper;
 import me.codeminions.bean.mapper.SnackMapper;
 import me.codeminions.util.MyBatisUtil;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -65,14 +68,27 @@ public class SnackService {
 
 
     @GET
-    @Path("/getComment/{id}")
-    public ResponseModel<List<Comment>> getComment(@PathParam("id") @DefaultValue("0") int id) {
+    @Path("/getCommentBySnack/{id}")
+    public ResponseModel<List<Comment>> getCommentBySnack(@PathParam("id") @DefaultValue("0") int id) {
         if (id == 0) {
             return ResponseModel.buildParameterError();
         }
 
         CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
-        List<Comment> comments = commentMapper.getComment(id);
+        List<Comment> comments = commentMapper.getCommentBySnack(id);
+
+        return new ResponseModel<>(comments);
+    }
+
+    @GET
+    @Path("/getCommentByUser/{id}")
+    public ResponseModel<List<Comment>> getCommentByUser(@PathParam("id") @DefaultValue("0") int id) {
+        if (id == 0) {
+            return ResponseModel.buildParameterError();
+        }
+
+        CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+        List<Comment> comments = commentMapper.getCommentByUser(id);
 
         return new ResponseModel<>(comments);
     }
@@ -88,80 +104,73 @@ public class SnackService {
             return ResponseModel.buildParameterError();
         }
 
+        //setComment
         CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
-//        Comment comment = commentMapper.setComment(model.getContent(),model.getSend_id(),model.getSnack_id(),model.getStar());
-
-        Comment comment = new Comment(model.getContent(), model.getSend_id(), model.getSnack_id(), model.getStar());
+        Comment comment = new Comment(model.getSend_id(), model.getSnack_id(), model.getContent(), model.getStar());
         commentMapper.setComment(comment);
+        sqlSession.commit();
+
+        //setMark
+        MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
+        SnackMark mark = new SnackMark(model.getSend_id(),model.getSnack_id(),model.getStar());
+        markMapper.setMark(mark);
+        sqlSession.commit();
 
         return new ResponseModel<>(comment);
     }
 
-    //TODO  点赞功能！！！！
-
-    @POST
-    @Path("/setMark")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public ResponseModel<SnackMark> setMark(MarkModel model) {
-        logger.info(model.toString());
-        if (!MarkModel.check(model)) {
+    @GET
+    @Path("/updateLike/{id}")
+    public ResponseModel updateLike(@PathParam("id") @DefaultValue("0") int id)
+    {
+        if (id == 0)
+        {
             return ResponseModel.buildParameterError();
         }
 
-        MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
-//        SnackMark mark = markMapper.setMark(model.getUser_id(), model.getSnack_id(), model.getMark());
-        SnackMark mark = new SnackMark(model.getUser_id(),model.getSnack_id(),model.getMark());
-        markMapper.setMark(mark);
+        CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+        commentMapper.updateLike(id);
+        sqlSession.commit();
 
-
-        return new ResponseModel<>(mark);
+        return ResponseModel.buildOk();
     }
-
 
     @GET
     @Path("/getMark/{id}")
-    public ResponseModel<ArrayList<Float>> getMark(@PathParam("id") @DefaultValue("0") int id) {
+    public ResponseModel<Map> getMark(@PathParam("id") @DefaultValue("0") int id) {
         if (id == 0) {
             return ResponseModel.buildParameterError();
         }
 
         MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
         ArrayList<SnackMark> marks = markMapper.getSnackMark(id);
-        float mark = 0;
-        int markNumber[] = new int[6];
-        for (SnackMark m : marks) {
-            mark += m.getMark();
-            switch ((int) m.getMark()) {
-                case 0:
-                    markNumber[0] += 1;
-                    break;
-                case 1:
-                    markNumber[1] += 1;
-                    break;
-                case 2:
-                    markNumber[2] += 1;
-                    break;
-                case 3:
-                    markNumber[3] += 1;
-                    break;
-                case 4:
-                    markNumber[4] += 1;
-                    break;
-                case 5:
-                    markNumber[5] += 1;
-                    break;
+        float aver = 0;
+        int[] markcount = new int[10];
+        for( SnackMark mark: marks)
+        {
+            aver += mark.getMark();
+            switch (mark.getMark())
+            {
+                case 0:markcount[0] += 1;break;
+                case 1:markcount[1] += 1;break;
+                case 2:markcount[2] += 1;break;
+                case 3:markcount[3] += 1;break;
+                case 4:markcount[4] += 1;break;
+                case 5:markcount[5] += 1;break;
+                case 6:markcount[6] += 1;break;
+                case 7:markcount[7] += 1;break;
+                case 8:markcount[8] += 1;break;
+                case 9:markcount[9] += 1;break;
             }
         }
-        mark /= marks.size();
+        aver /= marks.size();
 
-        ArrayList<Float> markRecord = new ArrayList<>(7);
-
-        for (int i = 0; i < 6; i++) {
-            markRecord.add(i, (float) markNumber[i]);
+        HashMap markRecord = new HashMap();
+        for(int i=0 ; i<10 ; i++)                   //前十位做记录，最后一位为平均值
+        {
+            markRecord.put(i,markcount[i]);
         }
-
-        markRecord.add(6, mark);
+        markRecord.put("aver",aver);
 
         return new ResponseModel<>(markRecord);
     }

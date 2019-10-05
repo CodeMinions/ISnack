@@ -14,7 +14,7 @@ public class CommentModel {
     private String content;
 
     @Expose
-    private float star;
+    private int star;
 
     public static boolean check(CommentModel model) {
         return model != null
@@ -27,7 +27,7 @@ public class CommentModel {
     public CommentModel() {
     }
 
-    public CommentModel(int send_id, int snack_id, String content, float star) {
+    public CommentModel(int send_id, int snack_id, String content, int star) {
         this.send_id = send_id;
         this.snack_id = snack_id;
         this.content = content;
@@ -43,6 +43,7 @@ public class CommentModel {
                 ", star=" + star +
                 '}';
     }
+
 
     public int getSend_id() {
         return send_id;
@@ -68,11 +69,11 @@ public class CommentModel {
         this.content = content;
     }
 
-    public float getStar() {
+    public int getStar() {
         return star;
     }
 
-    public void setStar(float star) {
+    public void setStar(int star) {
         this.star = star;
     }
 }
