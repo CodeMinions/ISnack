@@ -74,7 +74,7 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
 
         viewPager.setAdapter(
                 new BaseViewPagerAdapter(
-                        new String[]{"个人", "主页", "分类"},
+                        new String[]{"推荐", "主页", "关注社区"},
                         getSupportFragmentManager(),
                         firstFragment, firstFragment1, firstFragment2) {
                 });

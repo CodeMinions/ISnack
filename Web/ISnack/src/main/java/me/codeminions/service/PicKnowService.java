@@ -22,8 +22,8 @@ public class PicKnowService {
 
     // 因为我们的工程目录不一样所以每次都要修改一下这个路径，目标是保存到工程下的/web/www文件夹
     private final static String DIR_PATH_LWX = "/media/codeminions/File/CodeMoky/AndroidStudioProjects/MyProject/ISnack/Web/ISnack/web/www/";
-    private final static String DIR_PATH_AW = ".../ISnack/Web/ISnack";
-    private final static String DIR_PATH_SQM = ".../ISnack/Web/ISnack";
+    private final static String DIR_PATH_AW = ".../ISnack/Web/ISnack/web/www/";
+    private final static String DIR_PATH_SQM = ".../ISnack/Web/ISnack/web/www/";
 
     private Logger logger = Logger.getLogger(PicKnowService.class.getName());
 

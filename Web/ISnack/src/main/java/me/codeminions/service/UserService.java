@@ -1,6 +1,6 @@
 package me.codeminions.service;
 
-import me.codeminions.bean.api.base.ChangeModel;
+import me.codeminions.bean.api.ChangeModel;
 import me.codeminions.bean.api.base.ResponseModel;
 import me.codeminions.bean.db.User;
 import me.codeminions.bean.mapper.UserMapper;
@@ -52,7 +52,7 @@ public class UserService {
             return ResponseModel.buildParameterError();
 
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        List<User> list = mapper.getUserByName(name);
+        List<User> list = mapper.findUserByName(name);
 
         return new ResponseModel<>(list);
     }

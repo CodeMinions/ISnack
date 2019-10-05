@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient_blue_dark"
+        android:orientation="vertical"
+        tools:context=".snackDetails.SnackDetailActivity"
+        tools:targetApi="O">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/actionBarSize"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:src="@drawable/ic_back"
+                    android:tint="#ffffff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="零食"
+                    android:textColor="#ffffff"
+                    android:textSize="19sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/ic_shop"
+                    android:tint="#ffffff" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                    <ImageView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/default_snack_pic" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|start"
+                            android:text="士力架（SNICKERS）"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|start"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            tools:text="产地： 中国" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginBottom="25dp"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            tools:text="一般可存放时间： 3个月" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            tools:text="热量: 384 KJ" />
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="20dp"
+                    android:backgroundTint="#20000000"
+                    app:cardCornerRadius="20dp">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="45dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20dp"
+                            android:gravity="center"
+                            android:text="7.2"
+                            android:textColor="#ffffff"
+                            android:textSize="40sp" />
+
+                        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                            android:layout_width="60dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="bottom"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:progressTint="@color/colorStarYellow"
+                            android:rating="3.6"
+                            android:stepSize="0.1" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="205dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="30dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center_vertical"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="5"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="4"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="3"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="2"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="1"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|center_vertical"
+                            android:orientation="vertical">
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="25"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="75"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="65"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="15"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="4"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="#50ffffff"
+                        tools:text="122062人评分" />
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/item_snack_details_info" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="30dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp">
+
+                            <TextView
+                                android:id="@+id/item_snack_detailsInfo_part"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:text="热量"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:id="@+id/item_snack_detailsInfo_weight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="500kg"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:id="@+id/item_snack_detailsInfo_day"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:text="..."
+                                android:textColor="#ffffff" />
+                        </FrameLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="bottom"
+                            android:background="#808080" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="30dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:text="蛋白质"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="5.80kg"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:text="..."
+                                android:textColor="#ffffff" />
+                        </FrameLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="bottom"
+                            android:background="#808080" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="30dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:text="脂肪"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="31.0g"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:text="..."
+                                android:textColor="#ffffff" />
+                        </FrameLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="bottom"
+                            android:background="#808080" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="30dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:text="碳水化合物"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="56kg"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:text="..."
+                                android:textColor="#ffffff" />
+                        </FrameLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="bottom"
+                            android:background="#808080" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="30dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:text="钠"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="2kg"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:text="..."
+                                android:textColor="#ffffff" />
+                        </FrameLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="bottom"
+                            android:background="#808080" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:backgroundTint="#20000000"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:paddingTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/item_snack_comment2" />
+
+                        <View
+                            android:background="@color/backgroundGradient1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp" />
+
+                        <include layout="@layout/item_snack_comment" />
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

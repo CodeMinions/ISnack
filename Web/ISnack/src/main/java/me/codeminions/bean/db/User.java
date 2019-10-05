@@ -1,12 +1,20 @@
 package me.codeminions.bean.db;
 
+import com.google.gson.annotations.Expose;
+
 public class User {       //对应表t_user
 
+    @Expose
     private int userID;
+    @Expose
     private String name;
+    @Expose
     private String pwd;
+    @Expose
     private String sex;
+    @Expose
     private String birth;
+    @Expose
     private String portrait;
     private Account account;
 
@@ -22,6 +30,12 @@ public class User {       //对应表t_user
         this.portrait = portrait;
     }
 
+    public User(String name, String pwd, String sex, String birth) {
+        this.name = name;
+        this.pwd = pwd;
+        this.sex = sex;
+        this.birth = birth;
+    }
 
     public int getUserID() {
         return userID;

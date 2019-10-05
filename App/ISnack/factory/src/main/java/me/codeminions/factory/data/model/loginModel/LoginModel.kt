@@ -6,6 +6,11 @@ import android.os.SystemClock
 import android.util.Log
 import me.codeminions.factory.data.bean.User
 import me.codeminions.factory.data.model.ResponseCallBack
+import me.codeminions.factory.data.model.ResponseModel
+import me.codeminions.factory.net.RetrofitService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.ref.WeakReference
 
 class LoginModel : ILoginModel {
@@ -16,8 +21,23 @@ class LoginModel : ILoginModel {
 
     override fun login(model: me.codeminions.factory.data.model.LoginModel, callback: ResponseCallBack<User>) {
         this.callback = callback
-        val task = MyTask(this)
-        task.execute()
+//        val task = MyTask(this)
+//        task.execute()
+
+        RetrofitService.getApiService().loginAccount(model).enqueue(object : Callback<ResponseModel<User>> {
+            override fun onResponse(call: Call<ResponseModel<User>>, response: Response<ResponseModel<User>>) {
+                if (response.isSuccessful){
+                    val responseModel = response.body() as ResponseModel<User>
+                    callback.onSuccess("ok", response = responseModel.result!!)
+                }else {
+                    callback.onFail(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseModel<User>>, t: Throwable) {
+                callback.onFail("Server Error : ${t.message}")
+            }
+        })
     }
 
     class MyTask(model: LoginModel): AsyncTask<User, Int, String>(){

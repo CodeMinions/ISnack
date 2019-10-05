@@ -4,34 +4,42 @@
 
     <data>
 
+        <import type="me.codeminions.isnack.mePage.accountPage.AccountRegisterFragment" />
+
+        <variable
+            name="handler"
+            type="AccountRegisterFragment" />
+
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:background="@color/colorBackgroundBlack"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="me.codeminions.isnack.mePage.accountPage.AccountRegisterFragment">
 
-        <EditText
-            android:id="@+id/edit_register_userId"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_log_act_phone"
-            android:inputType="text" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:onClick="@{handler::onClickPortrait}"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/img_portrait"
+            android:src="@color/colorWPrimaryDark" />
 
         <EditText
             android:id="@+id/edit_register_userName"
-            android:layout_marginTop="35dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:hint="@string/hint_register_act_name"
+            android:text="猎户星座"
             android:inputType="text" />
 
         <FrameLayout
             android:layout_width="200dp"
             android:layout_height="115dp"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="35dp">
 
             <EditText
                 android:id="@+id/edit_register_pwd1"
@@ -39,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:hint="@string/hint_log_act_pwd1"
+                android:text="12345"
                 android:inputType="textPassword" />
 
             <ImageView
@@ -48,13 +57,14 @@
                 android:layout_gravity="end|top"
                 android:layout_margin="5dp"
                 android:src="@drawable/ic_visible"
-                android:tint="@color/colorCardBackground" />
+                android:tint="@color/pwd_edit" />
 
             <EditText
                 android:id="@+id/edit_register_pwd2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:text="12345"
                 android:hint="@string/hint_log_act_pwd2"
                 android:inputType="textPassword" />
 
@@ -65,15 +75,52 @@
                 android:layout_gravity="end|bottom"
                 android:layout_margin="7dp"
                 android:src="@drawable/ic_visible"
-                android:tint="@color/colorCardBackground" />
+                android:tint="@color/pwd_edit" />
         </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:gravity="center_vertical"
+            tools:ignore="SmallSp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:text="@string/txt_register_act_birth"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/ed_res_year"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:gravity="center"
+                android:hint="年"
+                android:text="2000"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/ed_res_mou"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:gravity="center"
+                android:hint="月"
+                android:text="9"
+                android:textSize="14sp" />
+
+        </LinearLayout>
 
 
         <LinearLayout
-            android:gravity="center_vertical"
             android:layout_width="195dp"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
+            android:layout_marginTop="35dp"
+            android:gravity="center_vertical"
             tools:ignore="SmallSp">
 
             <TextView
@@ -86,43 +133,50 @@
 
             <Button
                 android:id="@+id/btn_res_changeMale"
-                android:text="男"
-                android:textSize="8sp"
                 android:layout_width="45dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="18dp"
-                android:backgroundTint="@color/sex_selector" />
+                android:backgroundTint="@color/sex_selector"
+                android:text="男"
+                android:onClick="@{handler::onClickMale}"
+                android:textSize="8sp" />
 
             <Button
                 android:id="@+id/btn_res_changeFamale"
-                android:text="女"
-                android:textSize="8sp"
                 android:layout_width="45dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="13dp"
-                android:backgroundTint="@color/sex_selector" />
+                android:backgroundTint="@color/sex_selector"
+                android:onClick="@{handler::onClickFamale}"
+                android:text="女"
+                android:textSize="8sp" />
 
         </LinearLayout>
 
         <FrameLayout
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp">
+            android:layout_marginTop="100dp">
+
+            <ProgressBar
+                android:id="@+id/load"
+                android:layout_width="172dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:visibility="visible" />
 
             <Button
                 android:id="@+id/btn_register_r"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="40dp"
-                android:layout_gravity="start"
-                android:text="@string/btn_log_act_register" />
-
-            <Button
-                android:id="@+id/btn_register_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="end"
-                android:text="@string/txt_cancel" />
+                android:layout_gravity="center"
+                android:background="@drawable/bg_round_15"
+                android:backgroundTint="@color/colorWPrimaryDark"
+                android:text="@string/btn_log_act_register"
+                android:onClick="@{handler::onClickRegister}"
+                android:visibility="visible" />
 
         </FrameLayout>
+
     </LinearLayout>
 </layout>

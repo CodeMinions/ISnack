@@ -35,6 +35,7 @@ class AccountLoginPresenter(val view: AccountLoginContract.AccountLoginView) : A
             view.showTip("请输入..")
             view.hideLogining()
         }
+
     }
 
     override fun clean() {

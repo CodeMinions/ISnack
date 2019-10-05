@@ -13,6 +13,7 @@
     <string name="hint_log_act_pwd2">请重新校验密码</string>
 
     <string name="txt_register_act_sex">性别</string>
+    <string name="txt_register_act_birth">生日</string>
 
     <string name="txt_cancel">取消</string>
 

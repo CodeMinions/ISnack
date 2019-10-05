@@ -27,7 +27,8 @@
     </environments>
 
     <mappers>
-
+        <mapper resource="me/codeminions/bean/mapper/AccountMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/UserMapper.xml"/>
     </mappers>
 
 </configuration>

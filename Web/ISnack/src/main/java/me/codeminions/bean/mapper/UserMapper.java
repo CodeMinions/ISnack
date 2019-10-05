@@ -12,8 +12,12 @@ public interface UserMapper {
 
     public void deleteUserById(int userID);
 
-    public List<User> getUserByName(@Param("name") String name);
+    public User getUserByName(@Param("name") String name);
+
+    public List<User> findUserByName(@Param("name") String name);
 
     public void setNameById(@Param("id") int userID, @Param("name") String name);
+
+    public void setPortraitById(@Param("id") int userId, @Param("uri")String image);
 
 }

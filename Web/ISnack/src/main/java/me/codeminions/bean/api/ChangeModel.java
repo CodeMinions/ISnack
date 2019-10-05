@@ -1,4 +1,4 @@
-package me.codeminions.bean.api.base;
+package me.codeminions.bean.api;
 
 import com.google.gson.annotations.Expose;
 
