@@ -13,11 +13,11 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="time" property="time" />
     </resultMap>
 
-    <insert id="setMark" parameterType="snackMark">
+    <insert id="setMark" parameterType="me.codeminions.bean.db.SnackMark">
         INSERT INTO t_snack_mark VALUE (,#(user_id),#(snack_id),#(mark),#(time));
     </insert>
 
-    <select id="getSnackMark" parameterType="int" resultType="snackMark">
+    <select id="getSnackMark" parameterType="int" resultMap="snackMark">
         SELECT mark FROM t_snack_mark WHERE snack_id = #(id);
     </select>
 

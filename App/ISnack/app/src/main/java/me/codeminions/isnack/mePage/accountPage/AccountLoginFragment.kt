@@ -9,6 +9,7 @@ import me.codeminions.factory.PresenterFragment
 import me.codeminions.factory.data.bean.User
 import me.codeminions.factory.presenter.account.AccountLoginContract
 import me.codeminions.factory.presenter.account.AccountLoginPresenter
+import me.codeminions.factory.utils.saveLocalJson
 import me.codeminions.isnack.R
 import me.codeminions.isnack.databinding.FragmentLoginBinding
 
@@ -45,6 +46,7 @@ class AccountLoginFragment : PresenterFragment<FragmentLoginBinding>(),
 
     override fun onLoginSuccess(user: User) {
         saveAccountData(context!!, user.userID!!, user.name!!, "")
+        saveLocalJson(context!!, user)
         trigger.onTrigger()
     }
 

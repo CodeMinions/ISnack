@@ -30,6 +30,6 @@ interface ApiService {
     // 头像上传
     @Multipart
     @POST(value = "account/port")
-    fun postPortrait(@Query("id") userId: String, @Part file: MultipartBody.Part): Call<ResponseModel<String>>
+    fun postPortrait(@Part("id") id: Int, @Part file: MultipartBody.Part): Call<ResponseModel<String>>
 
 }

@@ -15,7 +15,7 @@
         <result column="fat" property="fat"/>
     </resultMap>
 
-    <select id="findSnackInfoById" parameterType="int" resultType="snackInfo">
+    <select id="findSnackInfoById" parameterType="int" resultMap="snackInfo">
         SELECT * FROM t_snack_info WHERE id = #(id);
     </select>
 

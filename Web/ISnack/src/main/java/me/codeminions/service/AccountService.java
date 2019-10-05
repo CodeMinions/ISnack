@@ -116,8 +116,8 @@ public class AccountService {
     @Produces(MediaType.APPLICATION_JSON)
     public ResponseModel<String> postPortrait(@FormDataParam("file") InputStream inputStream,
                                                  @FormDataParam("file") FormDataContentDisposition disposition,
-                                                 @FormDataParam("id") int userId) {
-        logger.info(userId +"");
+                                              @FormDataParam("id") int userId) {
+        logger.info(userId + " type:  ");
         String imageName = Calendar.getInstance().getTimeInMillis()
                 + disposition.getFileName();
         // 保存到磁盘

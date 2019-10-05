@@ -16,6 +16,7 @@ import me.codeminions.factory.presenter.snackFirstPage.SnackFirstPagePresenter
 import me.codeminions.isnack.R
 import me.codeminions.isnack.databinding.FragmentMainBinding
 import me.codeminions.isnack.databinding.ItemMainSnacklistBinding
+import me.codeminions.isnack.snackDetails.SnackDetailActivity
 import me.codeminions.isnack.snackDetails.SnackDetailFragment
 import java.util.*
 
@@ -64,12 +65,14 @@ class FirstFragment :
     }
 
     override fun lookSnack(snack: Snack?) {
-        val fragment = SnackDetailFragment()
-        val bundle = Bundle()
-        bundle.putSerializable("data", snack)
+//        val fragment = SnackDetailFragment()
+//        val bundle = Bundle()
+//        bundle.putSerializable("data", snack)
+//
+//        fragment.arguments = bundle
+//        fragment.show(fm, "DialogFragment")
 
-        fragment.arguments = bundle
-        fragment.show(fm, "DialogFragment")
+        SnackDetailActivity.startAction(context!!, snack?.snackID!!)
     }
 
     override fun addSnack() {

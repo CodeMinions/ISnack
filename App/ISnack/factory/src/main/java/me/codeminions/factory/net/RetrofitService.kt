@@ -60,7 +60,8 @@ class RetrofitService private constructor() {
 
 }
 
-private const val URL_BASE = "http://192.168.115.47:8080/isnack/api/"
+public const val URL_BASE = "http://192.168.115.47:8080/isnack/api/"
+public const val URL_PIC = "http://192.168.115.47:8080/www"
 
 private const val DEFAULT_TIME_OUT = 30000L
 private const val DEFAULT_READ_TIME_OUT = 30000L

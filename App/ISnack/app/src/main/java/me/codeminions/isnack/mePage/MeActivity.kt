@@ -3,12 +3,20 @@ package me.codeminions.isnack.mePage
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import android.widget.ImageView
+import butterknife.BindView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.StringSignature
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_homepage.*
 import me.codeminions.common.app.DataBindingActivity
 import me.codeminions.factory.utils.getLoginStatus
 import me.codeminions.common.widget.BaseViewPagerAdapter
 import me.codeminions.factory.data.bean.User
+import me.codeminions.factory.net.URL_PIC
+import me.codeminions.factory.utils.getLocalJson
 import me.codeminions.factory.utils.getLoginInfo
+import me.codeminions.factory.utils.setLoginOut
 import me.codeminions.isnack.R
 import me.codeminions.isnack.mePage.accountPage.AccountLoginFragment
 import me.codeminions.isnack.mePage.accountPage.AccountRegisterFragment
@@ -34,6 +42,10 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
 
     override fun initWidget() {
         super.initWidget()
+        binding.handler = this
+    }
+
+    override fun initData() {
 
         if (!getLoginStatus(this)) {
             initAccount()
@@ -42,9 +54,13 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
         }
     }
 
+    /**
+     * TODO: 19-10-6 注册后的回调可能还有点问题
+     */
     override fun onTrigger() {
-        initWidget()
+        initData()
     }
+
     private fun initAccount() {
         frag_account.visibility = View.VISIBLE
 
@@ -54,11 +70,22 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
                 accountLoginFragment, accountRegisterFragment) {
         }
     }
+
     private fun initMe() {
         frag_account.visibility = View.INVISIBLE
 
-//        val user = User("半截拖鞋", "", "286")
-        val user = getLoginInfo(this)
+        val user = getLocalJson(this)
         binding.user = user
+
+        binding.imgResId = URL_PIC + user?.portrait
+    }
+
+    fun onClickBack(v: View) {
+        finish()
+    }
+
+    fun onClickLoginOut(v: View) {
+        setLoginOut(this)
+        finish()
     }
 }

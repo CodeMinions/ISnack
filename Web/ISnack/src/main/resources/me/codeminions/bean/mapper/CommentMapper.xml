@@ -15,16 +15,16 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="time" property="time" />
     </resultMap>
 
-    <insert id="setComment" parameterType="comment">
+    <insert id="setComment" parameterType="me.codeminions.bean.db.Comment">
         INSERT INTO t_comment VALUE (,#(content),#(send_id),#(snack_id),#(star),#(likecount),#(time));
     </insert>
     <update id="updateLike" parameterType="int">
         UPDATE TABLE t_comment set likecount = likecount+1 WHERE snack_id = #(id);
     </update>
-    <select id="getCommentByUser" parameterType="int" resultType="comment">
+    <select id="getCommentByUser" parameterType="int" resultMap="comment">
         SELECT * FROM t_comment WHERE user_id = #(id);
     </select>
-    <select id="getCommentBySnack" parameterType="int" resultType="comment">
+    <select id="getCommentBySnack" parameterType="int" resultMap="comment">
         SELECT * FROM t_comment WHERE snack_id = #(id);
     </select>
 

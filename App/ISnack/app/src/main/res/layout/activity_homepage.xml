@@ -5,12 +5,15 @@
 
     <data>
         <variable
+            name="handler"
+            type="me.codeminions.isnack.mePage.MeActivity" />
+        <variable
             name="user"
             type="me.codeminions.factory.data.bean.User" />
 
         <variable
             name="imgResId"
-            type="int" />
+            type="String" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -32,7 +35,7 @@
                 app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
                 app:contentScrim="@color/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                app:title="半截拖鞋">
+                app:title="@{user.name}">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -41,6 +44,7 @@
                     android:background="@color/colorPrimaryLight">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/me_user_portrait"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_gravity="top|center_horizontal"
@@ -60,12 +64,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_back"
+                        android:onClick="@{handler::onClickBack}"
                         android:tint="@color/colorBackground" />
 
                     <ImageView
                         android:layout_gravity="end"
                         android:src="@drawable/ic_launcher_foreground"
                         android:tint="@color/colorBackground"
+                        android:onClick="@{handler::onClickLoginOut}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 

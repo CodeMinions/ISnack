@@ -14,8 +14,6 @@ class RegisterModel : IRegisterModel {
 
     private lateinit var callBack: ResponseCallBack<User>
 
-    private lateinit var callBackPort: ResponseCallBack<String>
-
     override fun register(model: RegisterModel, callBack: ResponseCallBack<User>) {
         this.callBack = callBack
 
@@ -23,7 +21,11 @@ class RegisterModel : IRegisterModel {
             override fun onResponse(call: Call<ResponseModel<User>>, response: Response<ResponseModel<User>>) {
                 if (response.isSuccessful){
                     val responseModel = response.body() as ResponseModel<User>
-                    callBack.onSuccess("ok", response = responseModel.result!!)
+                    if(responseModel.code == 1)
+                        callBack.onSuccess("ok", response = responseModel.result!!)
+                    else {
+                        callBack.onFail(response.message())
+                    }
                 }else {
                     callBack.onFail(response.message())
                 }
@@ -36,8 +38,10 @@ class RegisterModel : IRegisterModel {
     }
 
     override fun registerPort(id: String, pic: MultipartBody.Part, callBack: ResponseCallBack<String>) {
-
-        RetrofitService.getApiService().postPortrait(id, pic).enqueue(object : Callback<ResponseModel<String>> {
+//        val map = HashMap<String, String>()
+//        map["id"] = id
+//        map["type"] = "jpg"
+        RetrofitService.getApiService().postPortrait(id.toInt(), pic).enqueue(object : Callback<ResponseModel<String>> {
             override fun onResponse(call: Call<ResponseModel<String>>, response: Response<ResponseModel<String>>) {
                 if (response.isSuccessful) {
                     val responseModel = response.body() as ResponseModel<String>

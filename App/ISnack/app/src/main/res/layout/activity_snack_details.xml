@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="handler"
+            type="me.codeminions.isnack.snackDetails.SnackDetailActivity" />
 
+        <variable
+            name="snack"
+            type="me.codeminions.factory.data.bean.Snack" />
     </data>
 
     <LinearLayout
@@ -68,7 +74,7 @@
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
-                        android:src="@drawable/default_snack_pic" />
+                        tools:src="@drawable/default_snack_pic" />
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -79,7 +85,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="top|start"
-                            android:text="士力架（SNICKERS）"
+                            tools:text="士力架（SNICKERS）"
+                            android:text="@{snack.name}"
                             android:textColor="#ffffff"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -99,7 +106,8 @@
                             android:layout_marginBottom="25dp"
                             android:textColor="#ffffff"
                             android:textSize="16sp"
-                            tools:text="一般可存放时间： 3个月" />
+                            tools:text="一般可存放时间： 3个月"
+                            android:text="@{@string/txt_shelf(snack.shelf)}" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -131,7 +139,8 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="20dp"
                             android:gravity="center"
-                            android:text="7.2"
+                            android:text="@{String.valueOf(snack.mark)}"
+                            tools:text="7.2"
                             android:textColor="#ffffff"
                             android:textSize="40sp" />
 
