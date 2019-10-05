@@ -14,11 +14,16 @@ public class SnackMark {     //对应表t_snack_mark
     @Expose
     private int snackID;
     @Expose
-    private float mark;
+    private int mark;
     @Expose
     private String time;
 
-    public SnackMark(int userID, int snackID, float mark) {
+    public SnackMark() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  //设置系统日期
+        this.time = df.format(new Date());
+    }
+
+    public SnackMark(int userID, int snackID, int mark) {
         this.userID = userID;
         this.snackID = snackID;
         this.mark = mark;
@@ -50,11 +55,11 @@ public class SnackMark {     //对应表t_snack_mark
         this.snackID = snackID;
     }
 
-    public float getMark() {
+    public int getMark() {
         return mark;
     }
 
-    public void setMark(float mark) {
+    public void setMark(int mark) {
         this.mark = mark;
     }
 

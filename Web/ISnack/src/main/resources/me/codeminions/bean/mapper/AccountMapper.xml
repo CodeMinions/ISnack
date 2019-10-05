@@ -17,7 +17,7 @@
         SELECT name, pwd FROM t_user WHERE pwd = #{pwd} AND name = #{name};
     </select>
 
-    <select id="addAccount" parameterType="me.codeminions.bean.db.Account">
+    <select id="addAccount" parameterType="me.codeminions.bean.mapper.AccountMapper">
         INSERT INTO t_user(name, pwd) VALUE(#{name}, #{pwd});
     </select>
 

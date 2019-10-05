@@ -15,17 +15,17 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="time" property="time" />
     </resultMap>
 
-    <insert id="setComment" parameterType="comment">
-        INSERT INTO t_comment VALUE (,#(content),#(send_id),#(snack_id),#(star),#(likecount),#(time));
+    <insert id="setComment" parameterType="me.codeminions.bean.db.Comment">
+        INSERT INTO t_comment(content, send_id, snack_id, star,likecount, time) VALUE (#{comment},#{send_id},#{snack_id},#{star},0,#{time});
     </insert>
     <update id="updateLike" parameterType="int">
-        UPDATE TABLE t_comment set likecount = likecount+1 WHERE snack_id = #(id);
+        UPDATE t_comment SET likecount = likecount+1 WHERE id = #{commnetID};
     </update>
-    <select id="getCommentByUser" parameterType="int" resultType="comment">
-        SELECT * FROM t_comment WHERE user_id = #(id);
+    <select id="getCommentByUser" parameterType="int" resultMap="comment">
+        SELECT * FROM t_comment WHERE send_id = #{id};
     </select>
-    <select id="getCommentBySnack" parameterType="int" resultType="comment">
-        SELECT * FROM t_comment WHERE snack_id = #(id);
+    <select id="getCommentBySnack" parameterType="int" resultMap="comment">
+        SELECT * FROM t_comment WHERE snack_id = #{id};
     </select>
 
 </mapper>
