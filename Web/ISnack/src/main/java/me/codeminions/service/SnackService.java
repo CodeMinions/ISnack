@@ -66,7 +66,6 @@ public class SnackService {
         return new ResponseModel<>(snackInfo);
     }
 
-
     @GET
     @Path("/getCommentBySnack/{id}")
     public ResponseModel<List<Comment>> getCommentBySnack(@PathParam("id") @DefaultValue("0") int id) {
@@ -172,7 +171,21 @@ public class SnackService {
         }
         markRecord.put("aver",aver);
 
+        //将平均分存入t_snack表
+        SnackMapper snackMapper = sqlSession.getMapper(SnackMapper.class);
+        snackMapper.updateSnackMark(aver,id);
+        sqlSession.commit();
+
         return new ResponseModel<>(markRecord);
     }
 
+    @GET
+    @Path("/recommend")
+    public ResponseModel<List<Snack>> Recommend()
+    {
+        SnackMapper snackMapper = sqlSession.getMapper(SnackMapper.class);
+        ArrayList<Snack> snacks = snackMapper.recommend();
+
+        return new ResponseModel<>(snacks);
+    }
 }

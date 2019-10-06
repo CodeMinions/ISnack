@@ -22,4 +22,12 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT id FROM t_snack WHERE name = #{name};
     </select>
 
+    <update id="updateSnackMark" parameterType="map">
+        UPDATE t_snack SET mark = #{mark} WHERE id = #{id};
+    </update>
+
+    <select id="recommend" resultMap="snack">
+        SELECT * FROM t_snack ORDER BY mark desc;
+    </select>
+
 </mapper>
