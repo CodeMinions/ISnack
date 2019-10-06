@@ -3,24 +3,18 @@ package me.codeminions.isnack.mePage
 import android.content.Context
 import android.content.Intent
 import android.view.View
-import android.widget.ImageView
-import butterknife.BindView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.signature.StringSignature
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_homepage.*
 import me.codeminions.common.app.DataBindingActivity
-import me.codeminions.factory.utils.getLoginStatus
 import me.codeminions.common.widget.BaseViewPagerAdapter
-import me.codeminions.factory.data.bean.User
 import me.codeminions.factory.net.URL_PIC
 import me.codeminions.factory.utils.getLocalJson
-import me.codeminions.factory.utils.getLoginInfo
+import me.codeminions.factory.utils.getLoginStatus
 import me.codeminions.factory.utils.setLoginOut
 import me.codeminions.isnack.R
+import me.codeminions.isnack.databinding.ActivityHomepageBinding
 import me.codeminions.isnack.mePage.accountPage.AccountLoginFragment
 import me.codeminions.isnack.mePage.accountPage.AccountRegisterFragment
-import me.codeminions.isnack.databinding.ActivityHomepageBinding
 import me.codeminions.isnack.mePage.accountPage.AccountTrigger
 
 class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
@@ -77,7 +71,11 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
         val user = getLocalJson(this)
         binding.user = user
 
-        binding.imgResId = URL_PIC + user?.portrait
+        binding.imgResUrl = URL_PIC + user?.portrait
+
+//        Glide.with(this)
+//                .load(URL_PIC + user?.portrait)
+//                .into(me_user_portrait)
     }
 
     fun onClickBack(v: View) {

@@ -1,6 +1,7 @@
 package me.codeminions.factory.net
 
 import me.codeminions.factory.data.bean.Snack
+import me.codeminions.factory.data.bean.SnackInfo
 import me.codeminions.factory.data.bean.User
 import me.codeminions.factory.data.model.LoginModel
 import me.codeminions.factory.data.model.RegisterModel
@@ -30,6 +31,15 @@ interface ApiService {
     // 头像上传
     @Multipart
     @POST(value = "account/port")
-    fun postPortrait(@Part("id") id: Int, @Part file: MultipartBody.Part): Call<ResponseModel<String>>
+    fun postPortrait(@Part("id") id: Int,
+                     @Part file: MultipartBody.Part): Call<ResponseModel<String>>
 
+    /**
+     * 零食模块
+     */
+    @GET(value = "snack/all")
+    fun getAllSnack() :Call<ResponseModel<List<Snack>>>
+
+    @GET(value = "snack/getSnackInfo/{id}")
+    fun getSnackInfoById(@Part("id")id: Int) : Call<ResponseModel<SnackInfo>>
 }

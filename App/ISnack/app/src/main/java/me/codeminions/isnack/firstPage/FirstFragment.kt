@@ -1,8 +1,8 @@
 package me.codeminions.isnack.firstPage
 
-import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -10,14 +10,13 @@ import me.codeminions.common.widget.BindingRecyclerAdapter
 import me.codeminions.common.widget.OnItemClickListener
 import me.codeminions.factory.RecyclerFragment
 import me.codeminions.factory.data.bean.Snack
-import me.codeminions.factory.data.netData.Constant
+import me.codeminions.factory.net.URL_PIC
 import me.codeminions.factory.presenter.snackFirstPage.SnackFirstPageContract
 import me.codeminions.factory.presenter.snackFirstPage.SnackFirstPagePresenter
 import me.codeminions.isnack.R
 import me.codeminions.isnack.databinding.FragmentMainBinding
 import me.codeminions.isnack.databinding.ItemMainSnacklistBinding
 import me.codeminions.isnack.snackDetails.SnackDetailActivity
-import me.codeminions.isnack.snackDetails.SnackDetailFragment
 import java.util.*
 
 class FirstFragment :
@@ -36,6 +35,7 @@ class FirstFragment :
         override fun onBindViewHolder(bing: ItemMainSnacklistBinding, data: Snack) {
             bing.snack = data
 //            bing.imgResId = Constant.imgs[data.tag]
+            bing.imgResUrl = URL_PIC + data.img
         }
     }
 
@@ -72,7 +72,11 @@ class FirstFragment :
 //        fragment.arguments = bundle
 //        fragment.show(fm, "DialogFragment")
 
-        SnackDetailActivity.startAction(context!!, snack?.snackID!!)
+        SnackDetailActivity.startAction(context!!, snack!!)
+    }
+
+    override fun showTip(info: String?) {
+        Toast.makeText(context, info, Toast.LENGTH_SHORT).show()
     }
 
     override fun addSnack() {

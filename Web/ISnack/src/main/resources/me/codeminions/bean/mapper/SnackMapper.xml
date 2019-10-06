@@ -22,4 +22,7 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT id FROM t_snack WHERE name = #{name};
     </select>
 
+    <select id="getAllSnack" resultMap="snack">
+        SELECT * FROM t_snack ;
+    </select>
 </mapper>

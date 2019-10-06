@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
@@ -88,6 +89,11 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
     @Override
     public void initData() {
 
+    }
+
+    @Override
+    public void showTip(String info) {
+        Toast.makeText(MainActivity.this, info, Toast.LENGTH_SHORT).show();
     }
 
     @Override

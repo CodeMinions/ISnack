@@ -51,6 +51,17 @@ public class SnackService {
         return new ResponseModel<>(snack);
     }
 
+    /**
+     * 获取所有零食基本信息
+     * 后期可进行分页
+     */
+    @GET
+    @Path("/all")
+    public ResponseModel<List<Snack>> getAllSnack() {
+        SnackMapper snackMapper = sqlSession.getMapper(SnackMapper.class);
+        List<Snack> snacks = snackMapper.getAllSnack();
+        return ResponseModel.buildOk(snacks);
+    }
 
     @GET
     @Path("/getSnackInfo/{id}")

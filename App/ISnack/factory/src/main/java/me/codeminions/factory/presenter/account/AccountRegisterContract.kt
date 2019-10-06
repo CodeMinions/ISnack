@@ -32,8 +32,6 @@ interface AccountRegisterContract {
         fun onRegisterSuccess(user: User)
         fun onRegisterFail(info: String)
 
-        fun showTip(info: String)
-
         /**
          * 头像
          */

@@ -4,5 +4,4 @@
         android:angle="270"
         android:startColor="@color/backgroundGradient1"
         android:endColor="@color/backgroundGradient2" />
-
 </shape>

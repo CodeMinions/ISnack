@@ -12,7 +12,7 @@
             type="me.codeminions.factory.data.bean.User" />
 
         <variable
-            name="imgResId"
+            name="imgResUrl"
             type="String" />
     </data>
 
@@ -35,7 +35,8 @@
                 app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
                 app:contentScrim="@color/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                app:title="@{user.name}">
+                app:title="@{user.name}"
+                tools:title="猎户星座">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -50,7 +51,7 @@
                         android:layout_gravity="top|center_horizontal"
                         android:layout_marginTop="20dp"
                         android:scaleType="centerCrop"
-                        android:src="@{imgResId}"
+                        app:imageFromUrl="@{imgResUrl}"
                         tools:src="@drawable/default_portrait" />
                 </FrameLayout>
 
