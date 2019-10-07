@@ -14,4 +14,6 @@ public interface SnackMapper {
     public void updateSnackMark(@Param("mark") float mark,@Param("id") int id);     //通过零食id修改对零食的打分
 
     public List<Snack> recommend();     //按评分推荐
+
+    public Snack getSnackById(int id);
 }

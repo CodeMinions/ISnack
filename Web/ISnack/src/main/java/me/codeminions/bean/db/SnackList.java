@@ -1,13 +1,22 @@
 package me.codeminions.bean.db;
 
+import com.google.gson.annotations.Expose;
+
 public class SnackList {     //对应表t_snack_list
 
+    @Expose
     private int listID;
+    @Expose
     private int list_id;
+    @Expose
     private int user_id;
+    @Expose
     private int snack_id;
+    @Expose
     private String title;
+    @Expose
     private String content;
+    @Expose
     private String time;
 
     public int getListID() {

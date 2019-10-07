@@ -14,6 +14,10 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="pic" property="img" />
     </resultMap>
 
+    <select id="getSnackById" resultMap="snack">
+        SELECT * FROM t_snack WHERE id = #{id}
+    </select>
+
     <select id="getSnackByName" parameterType="String" resultMap="snack">
         SELECT * FROM t_snack WHERE name = #{name};
     </select>
