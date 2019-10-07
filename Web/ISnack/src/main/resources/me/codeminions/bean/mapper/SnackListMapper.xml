@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.codeminions.bean.mapper.SnackListMapper">
+
+    <resultMap id="snackList" type="me.codeminions.bean.db.SnackList">
+        <id column="id" property="listID"/>
+        <result column="list_id" property="list_id"/>
+        <result column="user_id" property="user_id"/>
+        <result column="snack_id" property="snack_id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="time" property="time"/>
+    </resultMap>
+
+    <insert id="setSnackList" parameterType="me.codeminions.bean.db.SnackList">
+        INSERT INTO t_snack_list(snack_id, title, content, time) VALUE (#{snack_id},#{title},#{content},#{time});
+    </insert>
+
+</mapper>
