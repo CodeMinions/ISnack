@@ -19,4 +19,8 @@
         INSERT INTO t_snack_list(user_id, title, content, time) VALUE (#{user_id},#{title},#{content},#{time});
     </insert>
 
+    <select id="getSnackListByUser" resultMap="snackList">
+        SELECT * FROM t_snack_list WHERE user_id= #{id}
+    </select>
+
 </mapper>

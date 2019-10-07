@@ -2,15 +2,10 @@ package me.codeminions.service;
 
 import me.codeminions.bean.api.CommentModel;
 import me.codeminions.bean.api.MarkModel;
+import me.codeminions.bean.api.SnackListModel;
 import me.codeminions.bean.api.base.ResponseModel;
-import me.codeminions.bean.db.Comment;
-import me.codeminions.bean.db.Snack;
-import me.codeminions.bean.db.SnackInfo;
-import me.codeminions.bean.db.SnackMark;
-import me.codeminions.bean.mapper.CommentMapper;
-import me.codeminions.bean.mapper.MarkMapper;
-import me.codeminions.bean.mapper.SnackInfoMapper;
-import me.codeminions.bean.mapper.SnackMapper;
+import me.codeminions.bean.db.*;
+import me.codeminions.bean.mapper.*;
 import me.codeminions.util.MyBatisUtil;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
@@ -130,6 +125,16 @@ public class SnackService {
     }
 
     @GET
+    @Path("/allRecommend")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseModel<List<Comment>> getAllComment() {
+        CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+        List<Comment> list = commentMapper.getAllComment();
+        return ResponseModel.buildOk(list);
+    }
+
+    @GET
     @Path("/updateLike/{id}")
     public ResponseModel updateLike(@PathParam("id") @DefaultValue("0") int id)
     {
@@ -199,5 +204,51 @@ public class SnackService {
         List<Snack> snacks = snackMapper.recommend();
 
         return ResponseModel.buildOk(snacks);
+    }
+
+    @GET
+    @Path("/getSnackList")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseModel<List<SnackListModel>> getSnackListByUser(@QueryParam("id")int userId) {
+        SnackListMapper snackListMapper = sqlSession.getMapper(SnackListMapper.class);
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        SnackMapper snackMapper = sqlSession.getMapper(SnackMapper.class);
+        List<SnackList> oList = snackListMapper.getSnackListByUser(userId);
+
+        List<SnackListModel> result = new ArrayList<>();
+        SnackListModel model;
+
+        String title = oList.get(0).getTitle();
+        String content = oList.get(0).getContent();
+        String time = oList.get(0).getTime();
+        User user = userMapper.getUserById(oList.get(0).getUser_id());
+        List<Snack> snacks = new ArrayList<>();
+
+        int currentList = oList.get(0).getList_id();
+        for(SnackList list: oList) {
+            if (currentList != list.getList_id()) {
+                // 当前数据段与上一数据段不是同一清单，提交当前数据到结果集中
+                model = new SnackListModel( user, title, snacks, content, time);
+                result.add(model);
+                // 标记当前清单id
+                currentList = list.getList_id();
+                // 初始化基本字段
+                title = list.getTitle();
+                content = list.getContent();
+                time = list.getTime();
+                user = userMapper.getUserById(list.getUser_id());
+                snacks = new ArrayList<>();
+
+                // 放入当前数据段值
+                Snack snack = snackMapper.getSnackById(list.getList_id());
+                snacks.add(snack);
+            }else {
+                // 当前数据段与上一数据段仍在同一清单，仅存放当前数据段
+                Snack snack = snackMapper.getSnackById(list.getList_id());
+                snacks.add(snack);
+            }
+        }
+        return ResponseModel.buildOk(result);
     }
 }
