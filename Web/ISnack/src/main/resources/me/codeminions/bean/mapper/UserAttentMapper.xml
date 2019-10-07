@@ -6,7 +6,7 @@
 <mapper namespace="me.codeminions.bean.mapper.UserAttentMapper">
 
     <resultMap id="userAttent" type="me.codeminions.bean.db.UserAttent">
-        <id column="id" property="accountID" />
+        <id column="id" property="accountId" />
         <result column="user_id" property="user_id" />
         <result column="attent_id" property="attent_id" />
         <result column="time" property="time" />
