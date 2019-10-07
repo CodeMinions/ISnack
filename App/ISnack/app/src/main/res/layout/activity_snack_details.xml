@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="handler"
             type="me.codeminions.isnack.snackDetails.SnackDetailActivity" />
@@ -11,6 +12,10 @@
         <variable
             name="snack"
             type="me.codeminions.factory.data.bean.Snack" />
+
+        <variable
+            name="imgUrl"
+            type="String" />
     </data>
 
     <LinearLayout
@@ -24,7 +29,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/actionBarSize"
-            android:orientation="horizontal">
+            android:background="@null">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -74,6 +79,7 @@
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
+                        app:imageFromUrl="@{imgUrl}"
                         tools:src="@drawable/default_snack_pic" />
 
                     <FrameLayout
@@ -85,16 +91,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="top|start"
-                            tools:text="士力架（SNICKERS）"
                             android:text="@{snack.name}"
                             android:textColor="#ffffff"
                             android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:text="士力架（SNICKERS）" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|start"
+                            android:text="@{@string/txt_origin + snack.origin}"
                             android:textColor="#ffffff"
                             android:textSize="16sp"
                             tools:text="产地： 中国" />
@@ -104,10 +111,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|start"
                             android:layout_marginBottom="25dp"
+                            android:text="@{@string/txt_shelf  +  snack.shelf}"
                             android:textColor="#ffffff"
                             android:textSize="16sp"
-                            tools:text="一般可存放时间： 3个月"
-                            android:text="@{@string/txt_shelf(snack.shelf)}" />
+                            tools:text="一般可存放时间： 3个月" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -130,8 +137,8 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="45dp">
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="240dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -140,9 +147,9 @@
                             android:layout_marginBottom="20dp"
                             android:gravity="center"
                             android:text="@{String.valueOf(snack.mark)}"
-                            tools:text="7.2"
                             android:textColor="#ffffff"
-                            android:textSize="40sp" />
+                            android:textSize="40sp"
+                            tools:text="7.2" />
 
                         <me.zhanghai.android.materialratingbar.MaterialRatingBar
                             android:layout_width="60dp"
@@ -151,15 +158,16 @@
                             android:isIndicator="true"
                             android:numStars="5"
                             android:progressTint="@color/colorStarYellow"
-                            android:rating="3.6"
-                            android:stepSize="0.1" />
+                            android:rating="@{snack.mark/2}"
+                            android:stepSize="0.1"
+                            tools:rating="3.6" />
                     </FrameLayout>
 
                     <FrameLayout
                         android:layout_width="205dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_marginEnd="30dp">
+                        android:layout_marginEnd="20dp">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -275,221 +283,15 @@
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
+                    android:id="@+id/list_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="30dp"
-                    android:orientation="vertical">
-
-                    <include layout="@layout/item_snack_details_info" />
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="30dp">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp">
-
-                            <TextView
-                                android:id="@+id/item_snack_detailsInfo_part"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="start"
-                                android:text="热量"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:id="@+id/item_snack_detailsInfo_weight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="500kg"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:id="@+id/item_snack_detailsInfo_day"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:text="..."
-                                android:textColor="#ffffff" />
-                        </FrameLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_gravity="bottom"
-                            android:background="#808080" />
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="30dp">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="start"
-                                android:text="蛋白质"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="5.80kg"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:text="..."
-                                android:textColor="#ffffff" />
-                        </FrameLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_gravity="bottom"
-                            android:background="#808080" />
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="30dp">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="start"
-                                android:text="脂肪"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="31.0g"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:text="..."
-                                android:textColor="#ffffff" />
-                        </FrameLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_gravity="bottom"
-                            android:background="#808080" />
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="30dp">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="start"
-                                android:text="碳水化合物"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="56kg"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:text="..."
-                                android:textColor="#ffffff" />
-                        </FrameLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_gravity="bottom"
-                            android:background="#808080" />
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="30dp">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="start"
-                                android:text="钠"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="2kg"
-                                android:textColor="#ffffff" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:text="..."
-                                android:textColor="#ffffff" />
-                        </FrameLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_gravity="bottom"
-                            android:background="#808080" />
-
-                    </FrameLayout>
+                    android:orientation="vertical"
+                    android:paddingHorizontal="30dp"
+                    tools:background="#80ffffff"
+                    tools:layout_height="130dp">
 
                 </LinearLayout>
 
@@ -500,24 +302,27 @@
                     android:backgroundTint="#20000000"
                     app:cardCornerRadius="20dp">
 
-                    <LinearLayout
-                        android:paddingTop="10dp"
+                    <!--<LinearLayout-->
+                    <!--android:paddingTop="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
+                    <!--<include layout="@layout/item_snack_comment2" />-->
+                    <!--<View-->
+                    <!--android:background="@color/backgroundGradient1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_margin="10dp" />-->
+                    <!--<include layout="@layout/item_snack_comment" />-->
+                    <!--</LinearLayout>-->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
 
-                        <include layout="@layout/item_snack_comment2" />
-
-                        <View
-                            android:background="@color/backgroundGradient1"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_margin="10dp" />
-
-                        <include layout="@layout/item_snack_comment" />
-
-
-                    </LinearLayout>
+                    </androidx.recyclerview.widget.RecyclerView>
 
                 </androidx.cardview.widget.CardView>
 

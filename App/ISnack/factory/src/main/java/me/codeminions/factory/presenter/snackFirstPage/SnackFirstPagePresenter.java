@@ -1,8 +1,12 @@
 package me.codeminions.factory.presenter.snackFirstPage;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import me.codeminions.factory.data.bean.Snack;
+import me.codeminions.factory.data.model.ResponseCallBack;
 import me.codeminions.factory.data.model.snackModel.SnackModel;
 
 public class SnackFirstPagePresenter implements SnackFirstPageContract.SnackFirstPagePresenter {
@@ -22,8 +26,32 @@ public class SnackFirstPagePresenter implements SnackFirstPageContract.SnackFirs
 
     @Override
     public void getSnackList() {
-        ArrayList<Snack> list = model.loadAll();
-        view.refreshSnackList(list);
+        model.loadAll(new ResponseCallBack<List<Snack>>() {
+            @Override
+            public void onSuccess(@NotNull String info, List<Snack> response) {
+                view.refreshSnackList(new ArrayList<>(response));
+            }
+
+            @Override
+            public void onFail(@NotNull String info) {
+                view.showTip(info);
+            }
+        });
+    }
+
+    @Override
+    public void getRecommendList() {
+        model.loadRecommend(new ResponseCallBack<List<Snack>>() {
+            @Override
+            public void onSuccess(@NotNull String info, List<Snack> response) {
+                view.refreshSnackList(new ArrayList<>(response));
+            }
+
+            @Override
+            public void onFail(@NotNull String info) {
+                view.showTip(info);
+            }
+        });
     }
 
     @Override

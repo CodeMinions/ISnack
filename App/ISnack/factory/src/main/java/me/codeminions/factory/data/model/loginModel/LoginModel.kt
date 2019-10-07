@@ -28,7 +28,11 @@ class LoginModel : ILoginModel {
             override fun onResponse(call: Call<ResponseModel<User>>, response: Response<ResponseModel<User>>) {
                 if (response.isSuccessful){
                     val responseModel = response.body() as ResponseModel<User>
-                    callback.onSuccess("ok", response = responseModel.result!!)
+                    if(responseModel.code == 1)
+                        callback.onSuccess("ok", response = responseModel.result!!)
+                    else {
+                        callback.onFail(response.message())
+                    }
                 }else {
                     callback.onFail(response.message())
                 }

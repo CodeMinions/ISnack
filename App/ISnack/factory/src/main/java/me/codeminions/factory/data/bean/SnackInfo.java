@@ -1,15 +1,30 @@
 package me.codeminions.factory.data.bean;
 
-public class SnackInfo {         //对应表t_snack_info
+import java.io.Serializable;
+
+public class SnackInfo implements Serializable {         //对应表t_snack_info
 
     private int infoID;
-    private int snack_id;
+
     private String salt;
+
     private String sugar;
+
     private String carbon_water;
+
     private String heat_quantity;
+
     private String protein;
+
     private String fat;
+
+    private String dietary_fiber;
+
+    private String Na;
+
+    private String vitaminD;
+
+    private String Ca;
 
 
     public String getSalt() {
@@ -68,11 +83,35 @@ public class SnackInfo {         //对应表t_snack_info
         this.infoID = infoID;
     }
 
-    public int getSnack_id() {
-        return snack_id;
+    public String getDietary_fiber() {
+        return dietary_fiber;
     }
 
-    public void setSnack_id(int snack_id) {
-        this.snack_id = snack_id;
+    public void setDietary_fiber(String dietary_fiber) {
+        this.dietary_fiber = dietary_fiber;
+    }
+
+    public String getNa() {
+        return Na;
+    }
+
+    public void setNa(String na) {
+        Na = na;
+    }
+
+    public String getVitaminD() {
+        return vitaminD;
+    }
+
+    public void setVitaminD(String vitaminD) {
+        this.vitaminD = vitaminD;
+    }
+
+    public String getCa() {
+        return Ca;
+    }
+
+    public void setCa(String ca) {
+        Ca = ca;
     }
 }

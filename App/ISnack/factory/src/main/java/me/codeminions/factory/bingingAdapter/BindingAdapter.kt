@@ -1,6 +1,7 @@
 package me.codeminions.factory.bingingAdapter
 
 import android.graphics.Bitmap
+import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -16,11 +17,14 @@ fun setImgResId(view: ImageView, bitmap: Bitmap) {
     view.setImageBitmap(bitmap)
 }
 
-@BindingAdapter("android:src")
-fun setImgResUrl(view: ImageView, url: String) {
-    if(url.isNotEmpty()){
+@BindingAdapter("imageFromUrl")
+fun setImgResUrl(view: ImageView, url: String?) {
+    if(!url.isNullOrEmpty()){
+
+        Log.i("ImageUrl", url)
         Glide.with(view.context)
                 .load(url)
+                .placeholder(R.drawable.bg_oval)
                 .error(R.drawable.bg_oval)
                 .into(view)
     }

@@ -24,6 +24,21 @@ public class UserService {
 
     private Logger logger = Logger.getLogger(UserService.class.getName());
 
+    @GET
+    @Path("/get")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseModel<User> getUserById(@QueryParam("id")int id){
+
+        logger.info(String.valueOf(id));
+
+        // 开始获取数据
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = mapper.getUserById(id);
+
+        return ResponseModel.buildOk(user);
+    }
+
     @POST
     @Path("/change")
     @Consumes(MediaType.APPLICATION_JSON)

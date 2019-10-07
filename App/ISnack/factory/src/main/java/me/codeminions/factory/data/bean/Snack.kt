@@ -14,4 +14,10 @@ data class Snack(var snackID: Int? = null,
         this.name = name
         this.mark = mark
     }
+
+    constructor(id: Int, name: String, mark: Float) : this() {
+        this.snackID = id
+        this.name = name
+        this.mark = mark
+    }
 }

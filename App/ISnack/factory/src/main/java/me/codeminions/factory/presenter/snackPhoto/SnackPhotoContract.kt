@@ -15,8 +15,6 @@ interface SnackPhotoContract {
         fun onClickDetails()
 
         fun showProgress(isShow: Boolean)
-
-        fun showTips(info: String)
     }
 
     interface SnackPhotoPresenter: BaseContract.BasePresenter {

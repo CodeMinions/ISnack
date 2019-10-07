@@ -3,25 +3,31 @@ package me.codeminions.isnack.mePage
 import android.content.Context
 import android.content.Intent
 import android.view.View
-import android.widget.ImageView
-import butterknife.BindView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.signature.StringSignature
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_homepage.*
+import kotlinx.android.synthetic.main.activity_snack_details.*
 import me.codeminions.common.app.DataBindingActivity
-import me.codeminions.factory.utils.getLoginStatus
 import me.codeminions.common.widget.BaseViewPagerAdapter
+import me.codeminions.common.widget.BindingRecyclerAdapter
+import me.codeminions.factory.data.bean.Comment
 import me.codeminions.factory.data.bean.User
+import me.codeminions.factory.data.model.ResponseModel
+import me.codeminions.factory.net.RetrofitService
 import me.codeminions.factory.net.URL_PIC
 import me.codeminions.factory.utils.getLocalJson
-import me.codeminions.factory.utils.getLoginInfo
+import me.codeminions.factory.utils.getLoginStatus
 import me.codeminions.factory.utils.setLoginOut
 import me.codeminions.isnack.R
+import me.codeminions.isnack.databinding.ActivityHomepageBinding
+import me.codeminions.isnack.databinding.ItemMyPostBinding
+import me.codeminions.isnack.databinding.ItemSnackCommentBinding
 import me.codeminions.isnack.mePage.accountPage.AccountLoginFragment
 import me.codeminions.isnack.mePage.accountPage.AccountRegisterFragment
-import me.codeminions.isnack.databinding.ActivityHomepageBinding
 import me.codeminions.isnack.mePage.accountPage.AccountTrigger
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
         AccountTrigger {
@@ -35,6 +41,11 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
 
     lateinit var accountLoginFragment: AccountLoginFragment
     lateinit var accountRegisterFragment: AccountRegisterFragment
+
+    private lateinit var commentAdapter: BindingRecyclerAdapter<Comment, ItemMyPostBinding>
+
+    private lateinit var currentUser: User
+    private var commentList: ArrayList<Comment>? = null
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_homepage
@@ -51,7 +62,60 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
             initAccount()
         } else {
             initMe()
+            // 初始化个人信息页
+            initRecycler()
+            getMyComment()
         }
+    }
+
+    fun getMyComment() {
+        RetrofitService.getApiService().getCommentByUser(currentUser.userID!!.toInt()).enqueue(object: Callback<ResponseModel<List<Comment>>> {
+            override fun onResponse(call: Call<ResponseModel<List<Comment>>>, response: Response<ResponseModel<List<Comment>>>) {
+                if(response.isSuccessful) {
+                    val list = response.body()?.result as List<Comment>
+                    refreshList(list)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseModel<List<Comment>>>, t: Throwable) {
+
+            }
+        })
+    }
+
+    fun initRecycler() {
+        user_recycler_comment.layoutManager = LinearLayoutManager(this)
+        commentAdapter = object : BindingRecyclerAdapter<Comment, ItemMyPostBinding>() {
+            override fun getItemViewType(position: Int): Int {
+                return R.layout.item_my_post
+            }
+            override fun onBindViewHolder(bing: ItemMyPostBinding, data: Comment) {
+                bing.comment = data
+                // 获取账号对应信息
+                RetrofitService.getApiService().getUserById(data.send_id).enqueue(object: Callback<ResponseModel<User>> {
+                    override fun onResponse(call: Call<ResponseModel<User>>, response: Response<ResponseModel<User>>) {
+                        if(response.isSuccessful) {
+                            val user = response.body()?.result as User
+                            bing.user = user
+                            bing.imgUrl = URL_PIC + user.portrait
+                        }
+                    }
+                    override fun onFailure(call: Call<ResponseModel<User>>, t: Throwable) {
+
+                    }
+                })
+            }
+        }
+        user_recycler_comment.adapter = commentAdapter
+    }
+
+    fun refreshList(list: List<Comment>) {
+        if(commentList != null)
+            commentList!!.addAll(list)
+        else
+            commentList = list as ArrayList<Comment>
+        commentAdapter.list = list
+        commentAdapter.notifyDataSetChanged()
     }
 
     /**
@@ -76,8 +140,13 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
 
         val user = getLocalJson(this)
         binding.user = user
+        currentUser = user!!
 
-        binding.imgResId = URL_PIC + user?.portrait
+        binding.imgResUrl = URL_PIC + user.portrait
+
+//        Glide.with(this)
+//                .load(URL_PIC + user?.portrait)
+//                .into(me_user_portrait)
     }
 
     fun onClickBack(v: View) {
