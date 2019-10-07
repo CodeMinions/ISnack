@@ -7,7 +7,7 @@
 
     <resultMap id="message" type="me.codeminions.bean.db.Message">
         <id column="id" property="messageID"/>
-        <result column="content" property="message"/>
+        <result column="content" property="content"/>
         <result column="send_id" property="send_id"/>
         <result column="receive_id" property="receive_id"/>
         <result column="isLook" property="isLook"/>
@@ -23,7 +23,7 @@
     </select>
 
     <select id="getMessageByUnlook" parameterType="int" resultMap="message">
-        SELECT * FROM t_message WHERE isLook = #{isLook},;
+        SELECT * FROM t_message WHERE isLook = #{isLook};
     </select>
 
 </mapper>
