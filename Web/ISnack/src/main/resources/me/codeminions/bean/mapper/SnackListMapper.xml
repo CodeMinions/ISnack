@@ -16,7 +16,7 @@
     </resultMap>
 
     <insert id="setSnackList" parameterType="me.codeminions.bean.db.SnackList">
-        INSERT INTO t_snack_list(snack_id, title, content, time) VALUE (#{snack_id},#{title},#{content},#{time});
+        INSERT INTO t_snack_list(user_id, title, content, time) VALUE (#{user_id},#{title},#{content},#{time});
     </insert>
 
 </mapper>
