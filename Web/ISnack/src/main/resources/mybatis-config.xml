@@ -35,6 +35,7 @@
         <mapper resource="me/codeminions/bean/mapper/SnackMapper.xml"/>
         <mapper resource="me/codeminions/bean/mapper/SnackListMapper.xml"/>
         <mapper resource="me/codeminions/bean/mapper/UserAttentMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/MessageMapper.xml"/>
 
     </mappers>
 
