@@ -20,4 +20,5 @@
     <string name="txt_attent">关注: %d</string>
     <string name="txt_shelf">一般可存放时间: </string>
     <string name="txt_pow">热量: %d</string>
+    <string name="txt_origin">产地： </string>
 </resources>

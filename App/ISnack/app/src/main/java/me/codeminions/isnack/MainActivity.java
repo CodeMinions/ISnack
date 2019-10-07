@@ -27,6 +27,7 @@ import me.codeminions.isnack.databinding.ActivityMainBinding;
 import me.codeminions.isnack.firstPage.FirstFragment;
 import me.codeminions.isnack.mePage.MeActivity;
 import me.codeminions.isnack.photoResult.PhotoResultFragment;
+import me.codeminions.isnack.recommendPage.RecommendFragment;
 
 public class MainActivity extends DataBindingActivity<ActivityMainBinding>
         implements SnackMainContract.SnackMainView<SnackMainContract.SnackMainPresenter>,
@@ -54,7 +55,7 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
 
 
     FirstFragment firstFragment;
-    FirstFragment firstFragment1;
+    RecommendFragment recommendFragment;
     FirstFragment firstFragment2;
 
     @Override
@@ -70,20 +71,21 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
         binding.setHandler(this);
 
         firstFragment = new FirstFragment();
-        firstFragment1 = new FirstFragment();
+        recommendFragment = new RecommendFragment();
         firstFragment2 = new FirstFragment();
 
         viewPager.setAdapter(
                 new BaseViewPagerAdapter(
                         new String[]{"推荐", "主页", "关注社区"},
                         getSupportFragmentManager(),
-                        firstFragment, firstFragment1, firstFragment2) {
+                        recommendFragment, firstFragment, firstFragment2) {
                 });
 
         viewPager.addOnPageChangeListener(this);
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.setOffscreenPageLimit(2);
 
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(0);
     }
 
     @Override

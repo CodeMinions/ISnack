@@ -64,8 +64,8 @@ public class SnackService {
     }
 
     @GET
-    @Path("/getSnackInfo/{id}")
-    public ResponseModel<SnackInfo> getSnackInfo(@PathParam("id") @DefaultValue("0") int id) {
+    @Path("/getSnackInfo")
+    public ResponseModel<SnackInfo> getSnackInfo(@QueryParam("id") @DefaultValue("0") int id) {
         if (id == 0) {
             return ResponseModel.buildParameterError();
         }
@@ -74,12 +74,12 @@ public class SnackService {
 
         SnackInfo snackInfo = snackInfoMapper.getSnackInfoById(id);
 
-        return new ResponseModel<>(snackInfo);
+        return ResponseModel.buildOk(snackInfo);
     }
 
     @GET
-    @Path("/getCommentBySnack/{id}")
-    public ResponseModel<List<Comment>> getCommentBySnack(@PathParam("id") @DefaultValue("0") int id) {
+    @Path("/getCommentBySnack")
+    public ResponseModel<List<Comment>> getCommentBySnack(@QueryParam("id") @DefaultValue("0") int id) {
         if (id == 0) {
             return ResponseModel.buildParameterError();
         }
@@ -87,12 +87,12 @@ public class SnackService {
         CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
         List<Comment> comments = commentMapper.getCommentBySnack(id);
 
-        return new ResponseModel<>(comments);
+        return ResponseModel.buildOk(comments);
     }
 
     @GET
-    @Path("/getCommentByUser/{id}")
-    public ResponseModel<List<Comment>> getCommentByUser(@PathParam("id") @DefaultValue("0") int id) {
+    @Path("/getCommentByUser")
+    public ResponseModel<List<Comment>> getCommentByUser(@QueryParam("id") @DefaultValue("0") int id) {
         if (id == 0) {
             return ResponseModel.buildParameterError();
         }
@@ -100,7 +100,7 @@ public class SnackService {
         CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
         List<Comment> comments = commentMapper.getCommentByUser(id);
 
-        return new ResponseModel<>(comments);
+        return ResponseModel.buildOk(comments);
     }
 
     @POST
@@ -126,7 +126,7 @@ public class SnackService {
         markMapper.setMark(mark);
         sqlSession.commit();
 
-        return new ResponseModel<>(comment);
+        return ResponseModel.buildOk(comment);
     }
 
     @GET
@@ -192,11 +192,12 @@ public class SnackService {
 
     @GET
     @Path("/recommend")
-    public ResponseModel<List<Snack>> Recommend()
-    {
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseModel<List<Snack>> Recommend() {
         SnackMapper snackMapper = sqlSession.getMapper(SnackMapper.class);
-        ArrayList<Snack> snacks = snackMapper.recommend();
+        List<Snack> snacks = snackMapper.recommend();
 
-        return new ResponseModel<>(snacks);
+        return ResponseModel.buildOk(snacks);
     }
 }

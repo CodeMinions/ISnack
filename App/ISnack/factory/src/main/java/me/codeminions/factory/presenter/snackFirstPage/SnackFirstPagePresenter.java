@@ -37,7 +37,21 @@ public class SnackFirstPagePresenter implements SnackFirstPageContract.SnackFirs
                 view.showTip(info);
             }
         });
+    }
 
+    @Override
+    public void getRecommendList() {
+        model.loadRecommend(new ResponseCallBack<List<Snack>>() {
+            @Override
+            public void onSuccess(@NotNull String info, List<Snack> response) {
+                view.refreshSnackList(new ArrayList<>(response));
+            }
+
+            @Override
+            public void onFail(@NotNull String info) {
+                view.showTip(info);
+            }
+        });
     }
 
     @Override

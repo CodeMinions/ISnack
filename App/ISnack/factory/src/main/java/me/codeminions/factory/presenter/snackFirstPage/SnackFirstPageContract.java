@@ -41,5 +41,10 @@ public interface SnackFirstPageContract {
          * 向后台获取零食列表
          */
         public void getSnackList();
+
+        /**
+         * 向后台获取高分推荐
+         */
+        public void getRecommendList();
     }
 }

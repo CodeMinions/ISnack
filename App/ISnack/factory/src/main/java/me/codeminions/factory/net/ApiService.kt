@@ -1,5 +1,6 @@
 package me.codeminions.factory.net
 
+import me.codeminions.factory.data.bean.Comment
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.data.bean.SnackInfo
 import me.codeminions.factory.data.bean.User
@@ -40,6 +41,21 @@ interface ApiService {
     @GET(value = "snack/all")
     fun getAllSnack() :Call<ResponseModel<List<Snack>>>
 
-    @GET(value = "snack/getSnackInfo/{id}")
-    fun getSnackInfoById(@Part("id")id: Int) : Call<ResponseModel<SnackInfo>>
+    @GET(value = "snack/recommend")
+    fun getRecommend(): Call<ResponseModel<List<Snack>>>
+
+    @GET(value = "snack/getSnackInfo")
+    fun getSnackInfoById(@Query("id")id: Int) : Call<ResponseModel<SnackInfo>>
+
+    @GET(value = "snack/getCommentBySnack")
+    fun getCommentBySnack(@Query("id")id: Int) : Call<ResponseModel<List<Comment>>>
+
+    /**
+     * 用户模块
+     */
+    @GET(value = "user/get")
+    fun getUserById(@Query("id")id: Int): Call<ResponseModel<User>>
+
+    @GET(value = "snack/getCommentByUser")
+    fun getCommentByUser(@Query("id")id: Int) :Call<ResponseModel<List<Comment>>>
 }

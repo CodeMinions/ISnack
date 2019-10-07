@@ -92,23 +92,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/user_recycler_comment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
-                    <include layout="@layout/item_my_post" />
-
-                    <include layout="@layout/item_my_post" />
-
-                    <include layout="@layout/item_my_post" />
-
-                    <include layout="@layout/item_my_post" />
-
-                    <include layout="@layout/item_my_post" />
-
-                </LinearLayout>
-
+                </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
