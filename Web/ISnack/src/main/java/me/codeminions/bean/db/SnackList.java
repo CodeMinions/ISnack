@@ -28,11 +28,8 @@ public class SnackList {     //对应表t_snack_list
     @Expose
     private String time;
 
-    public SnackList(int listID,int list_id,int user_id,int snack_id,String title,String content){
-        this.listID=listID;
-        this.list_id=list_id;
+    public SnackList(int user_id,String title,String content){
         this.user_id=user_id;
-        this.snack_id=snack_id;
         this.title=title;
         this.content=content;
     }
