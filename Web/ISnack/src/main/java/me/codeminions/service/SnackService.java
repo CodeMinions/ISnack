@@ -130,6 +130,16 @@ public class SnackService {
     }
 
     @GET
+    @Path("/allRecommend")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseModel<List<Comment>> getAllComment() {
+        CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+        List<Comment> list = commentMapper.getAllComment();
+        return ResponseModel.buildOk(list);
+    }
+
+    @GET
     @Path("/updateLike/{id}")
     public ResponseModel updateLike(@PathParam("id") @DefaultValue("0") int id)
     {

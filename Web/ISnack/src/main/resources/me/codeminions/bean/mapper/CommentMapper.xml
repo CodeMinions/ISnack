@@ -31,4 +31,8 @@
         SELECT * FROM t_comment WHERE snack_id = #{id};
     </select>
 
+    <select id="getAllComment" resultMap="comment">
+        SELECT * FROM t_comment;
+    </select>
+
 </mapper>

@@ -12,4 +12,6 @@ public interface CommentMapper {
     public void setComment(Comment comment);     //对零食进行评价
 
     public void updateLike(int ID);      //通过评论ID，改变该条的likeCount
+
+    public List<Comment> getAllComment();       // 获取所有人的评论
 }
