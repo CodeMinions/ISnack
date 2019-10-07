@@ -92,9 +92,9 @@ public class UserService {
         if (isLook != 0 && isLook != 1) {
             return ResponseModel.buildParameterError();
         }
-//        if (isLook == 1){
-//            return null;
-//        }
+        if (isLook == 1){
+            return null;
+        }
         MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
         List<Message> messages = messageMapper.getMessageByUnlook(isLook);
 
@@ -142,6 +142,7 @@ public class UserService {
     public ResponseModel<List<UserAttent>> getUserAttent() {
         UserAttentMapper userAttentMapper = sqlSession.getMapper(UserAttentMapper.class);
         List<UserAttent> userAttents = userAttentMapper.getUserAttent();
+
         return ResponseModel.buildOk(userAttents);
     }
 }
