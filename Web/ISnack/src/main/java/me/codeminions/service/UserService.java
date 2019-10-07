@@ -92,9 +92,9 @@ public class UserService {
         if (isLook != 0 && isLook != 1) {
             return ResponseModel.buildParameterError();
         }
-        if (isLook == 1){
-            return null;
-        }
+//        if (isLook == 1){
+//            return null;
+//        }
         MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
         List<Message> messages = messageMapper.getMessageByUnlook(isLook);
 
