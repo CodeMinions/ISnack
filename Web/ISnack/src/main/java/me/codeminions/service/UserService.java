@@ -2,7 +2,10 @@ package me.codeminions.service;
 
 import me.codeminions.bean.api.ChangeModel;
 import me.codeminions.bean.api.base.ResponseModel;
+import me.codeminions.bean.db.Comment;
+import me.codeminions.bean.db.Message;
 import me.codeminions.bean.db.User;
+import me.codeminions.bean.mapper.MessageMapper;
 import me.codeminions.bean.mapper.UserMapper;
 import me.codeminions.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
@@ -72,5 +75,47 @@ public class UserService {
         return new ResponseModel<>(list);
     }
 
+    @GET
+    @Path("/getMessageById/{id}")
+    public ResponseModel<List<Message>> getMessageById(@PathParam("id") @DefaultValue("0") int id) {
+        if (id == 0) {
+            return ResponseModel.buildParameterError();
+        }
 
+        MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
+        List<Message> messages = messageMapper.getMessageById(id);
+
+        return new ResponseModel<>(messages);
+    }
+
+    @GET
+    @Path("/getMessageByUnlook/{isLook}")
+    public ResponseModel<List<Message>> getMessageByUnlook(@PathParam("isLook") @DefaultValue("0") int isLook) {
+        if (isLook != 0 && isLook != 1) {
+            return ResponseModel.buildParameterError();
+        }
+        if (isLook == 1){
+            return null;
+        }
+        MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
+        List<Message> messages = messageMapper.getMessageByUnlook(isLook);
+
+        return new ResponseModel<>(messages);
+    }
+
+    @GET
+    @Path("/updateIsLook/{id}")
+    public ResponseModel updateIsLook(@PathParam("id") @DefaultValue("0") int id)
+    {
+        if (id == 0)
+        {
+            return ResponseModel.buildParameterError();
+        }
+
+        MessageMapper messageMapper = sqlSession.getMapper(MessageMapper.class);
+        messageMapper.updateIsLook(id);
+        sqlSession.commit();
+
+        return ResponseModel.buildOk();
+    }
 }

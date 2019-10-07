@@ -1,13 +1,44 @@
 package me.codeminions.bean.db;
 
+import com.google.gson.annotations.Expose;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Message {      //对应表t_message
 
+    @Expose
     private int messageID;
+
+    @Expose
     private String content;
+
+    @Expose
     private int send_id;
+
+    @Expose
     private int receive_id;
+
+    @Expose
     private int isLook;
+
+    @Expose
     private String time;
+
+
+    public Message(int messageID,String content,int send_id,int receive_id){
+        this.messageID=messageID;
+        this.content=content;
+        this.send_id=send_id;
+        this.receive_id=receive_id;
+        this.isLook=0;
+    }
+
+    public Message(){
+        this.isLook= 0;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.time = df.format(new Date());
+    }
 
 
     public int getMessageID() {
