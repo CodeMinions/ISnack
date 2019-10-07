@@ -9,7 +9,6 @@ import java.util.List;
 // 单条零食清单的bean
 public class SnackListModel {
 
-
     @Expose
     private User user;
     @Expose
@@ -21,21 +20,12 @@ public class SnackListModel {
     @Expose
     private String time;
 
-    public SnackListModel(int listId, User user, String title, List<Snack> list, String content, String time) {
-        this.listId = listId;
+    public SnackListModel(User user, String title, List<Snack> list, String content, String time) {
         this.user = user;
         this.title = title;
         this.list = list;
         this.content = content;
         this.time = time;
-    }
-
-    public int getListId() {
-        return listId;
-    }
-
-    public void setListId(int listId) {
-        this.listId = listId;
     }
 
     public User getUser() {

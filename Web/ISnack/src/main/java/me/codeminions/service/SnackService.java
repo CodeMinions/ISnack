@@ -219,7 +219,6 @@ public class SnackService {
         List<SnackListModel> result = new ArrayList<>();
         SnackListModel model;
 
-        int id = oList.get(0).getListID();
         String title = oList.get(0).getTitle();
         String content = oList.get(0).getContent();
         String time = oList.get(0).getTime();
@@ -230,12 +229,11 @@ public class SnackService {
         for(SnackList list: oList) {
             if (currentList != list.getList_id()) {
                 // 当前数据段与上一数据段不是同一清单，提交当前数据到结果集中
-                model = new SnackListModel(id, user, title, snacks, content, time);
+                model = new SnackListModel( user, title, snacks, content, time);
                 result.add(model);
                 // 标记当前清单id
                 currentList = list.getList_id();
                 // 初始化基本字段
-                id = list.getListID();
                 title = list.getTitle();
                 content = list.getContent();
                 time = list.getTime();

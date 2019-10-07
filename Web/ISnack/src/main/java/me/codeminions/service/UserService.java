@@ -1,10 +1,15 @@
 package me.codeminions.service;
 
 import me.codeminions.bean.api.ChangeModel;
+import me.codeminions.bean.api.SnackListModel;
 import me.codeminions.bean.api.base.ResponseModel;
 import me.codeminions.bean.db.Message;
+import me.codeminions.bean.db.SnackList;
 import me.codeminions.bean.db.User;
+import me.codeminions.bean.db.UserAttent;
 import me.codeminions.bean.mapper.MessageMapper;
+import me.codeminions.bean.mapper.SnackListMapper;
+import me.codeminions.bean.mapper.UserAttentMapper;
 import me.codeminions.bean.mapper.UserMapper;
 import me.codeminions.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
@@ -116,5 +121,33 @@ public class UserService {
         sqlSession.commit();
 
         return ResponseModel.buildOk();
+    }
+
+//    @POST
+//    @Path("/setSnackList")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public ResponseModel<SnackList> setSnackList(SnackListModel model) {
+//        logger.info(model.toString());
+//        if (!SnackListModel.check(model))    //参数异常
+//        {
+//            return ResponseModel.buildParameterError();
+//        }
+//
+//        //setSnackList
+//        SnackListMapper snackListMapper = sqlSession.getMapper(SnackListMapper.class);
+//        SnackList snackList = new SnackList(model.getUser_id(),model.getTitle(), model.getContent());
+//        snackListMapper.setSnackList(snackList);
+//        sqlSession.commit();
+//
+//        return ResponseModel.buildOk(snackList);
+//    }
+
+    @GET
+    @Path("/getUserAttent")
+    public ResponseModel<List<UserAttent>> getUserAttent() {
+        UserAttentMapper userAttentMapper = sqlSession.getMapper(UserAttentMapper.class);
+        List<UserAttent> userAttents = userAttentMapper.getUserAttent();
+        return ResponseModel.buildOk(userAttents);
     }
 }
