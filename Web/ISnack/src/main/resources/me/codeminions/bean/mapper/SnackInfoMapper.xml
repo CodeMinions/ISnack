@@ -20,7 +20,7 @@
     </resultMap>
 
 
-    <select id="getSnackListByUser" parameterType="int" resultMap="snackList">
+    <select id="getSnackListByUser" parameterType="int" resultMap="snackInfo">
         SELECT * FROM t_snack_list WHERE id = #{id};
     </select>
 
