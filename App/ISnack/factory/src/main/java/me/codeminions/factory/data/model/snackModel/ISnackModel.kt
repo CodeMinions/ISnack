@@ -17,5 +17,7 @@ interface ISnackModel {
 
     fun getCommentById(id: Int, callback: ResponseCallBack<List<Comment>>)
 
+    fun getMarkInfo(snackId: Int, callback: ResponseCallBack<IntArray>)
+
     fun cancel(id : String)
 }

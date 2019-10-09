@@ -53,9 +53,7 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
         }
     }
 
-    override fun getLayoutResId(): Int {
-        return R.layout.activity_snack_details
-    }
+    override fun getLayoutResId(): Int = R.layout.activity_snack_details
 
 
     override fun initData() {
@@ -68,6 +66,8 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
 
         presenter.getSnackMore(snackID = snack.snackID!!)
         presenter.getComment(snackId = snack.snackID!!)
+
+        presenter.getMark(snackId = snack.snackID!!)
 
         recycler_comment.layoutManager = LinearLayoutManager(this)
         commentAdapter = object : BindingRecyclerAdapter<Comment, ItemSnackCommentBinding>() {
@@ -92,6 +92,13 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
             }
         }
         recycler_comment.adapter = commentAdapter
+    }
+
+    override fun showMarkInfo(data: IntArray) {
+        for(it in data.indices) {
+            data[it] = data[it]*100/data[5]
+        }
+        binding.stars = data
     }
 
     override fun lookComment() {

@@ -23,7 +23,9 @@ import me.codeminions.common.app.DataBindingActivity;
 import me.codeminions.common.widget.BaseViewPagerAdapter;
 import me.codeminions.factory.presenter.snackMain.SnackMainContract;
 import me.codeminions.factory.presenter.snackMain.SnackMainPresenter;
+import me.codeminions.isnack.commentPager.CommentFragment;
 import me.codeminions.isnack.databinding.ActivityMainBinding;
+import me.codeminions.isnack.editListPage.EditListActivity;
 import me.codeminions.isnack.firstPage.FirstFragment;
 import me.codeminions.isnack.mePage.MeActivity;
 import me.codeminions.isnack.photoResult.PhotoResultFragment;
@@ -56,7 +58,7 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
 
     FirstFragment firstFragment;
     RecommendFragment recommendFragment;
-    FirstFragment firstFragment2;
+    CommentFragment commentFragment;
 
     @Override
     public int getLayoutResId() {
@@ -72,20 +74,21 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
 
         firstFragment = new FirstFragment();
         recommendFragment = new RecommendFragment();
-        firstFragment2 = new FirstFragment();
+        commentFragment = new CommentFragment();
 
         viewPager.setAdapter(
                 new BaseViewPagerAdapter(
                         new String[]{"推荐", "主页", "关注社区"},
                         getSupportFragmentManager(),
-                        recommendFragment, firstFragment, firstFragment2) {
+                        recommendFragment, firstFragment, commentFragment) {
                 });
 
         viewPager.addOnPageChangeListener(this);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setOffscreenPageLimit(2);
 
-        viewPager.setCurrentItem(0);
+        viewPager.setCurrentItem(1);
+        binding.setPosition(1);
     }
 
     @Override
@@ -136,17 +139,31 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
         presenter.startPhoto(this);
     }
 
+    public void onClickEdit(View v) {
+        // 启动编辑页
+        EditListActivity.Companion.startAction(this);
+    }
+
     @Override
     public void showButton(int position) {
-        float translationY;
-        float rotation;
+        float translationY = 0;
+        float rotation = 0;
 
-        if(position == 1) {
-            translationY = 0;
-            rotation = -360;
-        }else {
-            translationY = 300;
-            rotation = 360;
+        switch(position) {
+            case 0:
+                translationY = 300;
+                rotation = 360;
+                break;
+            case 1:
+                translationY = 0;
+                rotation = -360;
+                btnPhoto.setImageResource(R.drawable.ic_dashboard_black_24dp);
+                break;
+            case 2:
+                translationY = 0;
+                rotation = 0;
+                btnPhoto.setImageResource(R.drawable.ic_add);
+                break;
         }
 
         btnPhoto.animate()
@@ -195,6 +212,7 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
     @Override
     public void onPageSelected(int position) {
         showButton(position);
+        binding.setPosition(position);
     }
 
     @Override

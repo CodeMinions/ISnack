@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="me.codeminions.isnack.editListPage.EditListActivity" />
+
+        <variable
+            name="handler"
+            type="EditListActivity" />
+    </data>
+
+    <FrameLayout
+        android:background="@color/colorWPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:targetApi="O">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/actionBarSize">
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_round_5"
+                android:backgroundTint="@color/colorStarYellowLight"
+                android:onClick="@{handler::onClickBack}"
+                android:text="取消"
+                android:textColor="#808080" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_snack_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="@dimen/actionBarSize">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <FrameLayout
+            android:id="@+id/edit_list_editor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/bg_frame_3"
+            android:backgroundTint="@color/colorCardBackground"
+            android:translationY="260dp">
+
+            <ImageView
+                android:id="@+id/comment_up"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{handler::openEditor}"
+                android:src="@drawable/ic_up" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:background="#808080" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="60dp"
+                android:background="@drawable/bg_round_10"
+                android:backgroundTint="@color/colorStarYellowLight"
+                android:padding="20dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="安利一下清单吧~~" />
+
+            </FrameLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="255dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_round_5"
+                android:text="发送我的清单"
+                android:textColor="#ffffff" />
+        </FrameLayout>
+    </FrameLayout>
+</layout>

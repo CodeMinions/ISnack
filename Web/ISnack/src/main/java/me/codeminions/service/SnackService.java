@@ -12,10 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -117,7 +114,7 @@ public class SnackService {
 
         //setMark
         MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
-        SnackMark mark = new SnackMark(model.getSend_id(),model.getSnack_id(),model.getStar());
+        SnackMark mark = new SnackMark(model.getSend_id(), model.getSnack_id(), model.getStar());
         markMapper.setMark(mark);
         sqlSession.commit();
 
@@ -136,10 +133,8 @@ public class SnackService {
 
     @GET
     @Path("/updateLike/{id}")
-    public ResponseModel updateLike(@PathParam("id") @DefaultValue("0") int id)
-    {
-        if (id == 0)
-        {
+    public ResponseModel updateLike(@PathParam("id") @DefaultValue("0") int id) {
+        if (id == 0) {
             return ResponseModel.buildParameterError();
         }
 
@@ -151,8 +146,8 @@ public class SnackService {
     }
 
     @GET
-    @Path("/getMark/{id}")
-    public ResponseModel<Map> getMark(@PathParam("id") @DefaultValue("0") int id) {
+    @Path("/getMark")
+    public ResponseModel<int[]> getMark(@QueryParam("id") @DefaultValue("0") int id) {
         if (id == 0) {
             return ResponseModel.buildParameterError();
         }
@@ -160,39 +155,39 @@ public class SnackService {
         MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
         ArrayList<SnackMark> marks = markMapper.getSnackMark(id);
         float aver = 0;
-        int[] markcount = new int[10];
-        for( SnackMark mark: marks)
-        {
+        int[] markCount = new int[6];
+        for (SnackMark mark : marks) {
             aver += mark.getMark();
-            switch (mark.getMark())
-            {
-                case 0:markcount[0] += 1;break;
-                case 1:markcount[1] += 1;break;
-                case 2:markcount[2] += 1;break;
-                case 3:markcount[3] += 1;break;
-                case 4:markcount[4] += 1;break;
-                case 5:markcount[5] += 1;break;
-                case 6:markcount[6] += 1;break;
-                case 7:markcount[7] += 1;break;
-                case 8:markcount[8] += 1;break;
-                case 9:markcount[9] += 1;break;
+            switch (mark.getMark()/2) {
+                case 0:
+                    markCount[0] += 1;
+                    break;
+                case 1:
+                    markCount[1] += 1;
+                    break;
+                case 2:
+                    markCount[2] += 1;
+                    break;
+                case 3:
+                    markCount[3] += 1;
+                    break;
+                case 4:
+                    markCount[4] += 1;
+                    break;
             }
         }
-        aver /= marks.size();
+        markCount[5] = marks.size();
+        if(marks.size() == 0)
+            return ResponseModel.buildNotInfo();
 
-        HashMap markRecord = new HashMap();
-        for(int i=0 ; i<10 ; i++)                   //前十位做记录，最后一位为平均值
-        {
-            markRecord.put(i,markcount[i]);
-        }
-        markRecord.put("aver",aver);
+        aver /= marks.size();
 
         //将平均分存入t_snack表
         SnackMapper snackMapper = sqlSession.getMapper(SnackMapper.class);
-        snackMapper.updateSnackMark(aver,id);
+        snackMapper.updateSnackMark(aver, id);
         sqlSession.commit();
 
-        return new ResponseModel<>(markRecord);
+        return ResponseModel.buildOk(Arrays.copyOf(markCount, 6));
     }
 
     @GET
@@ -210,11 +205,15 @@ public class SnackService {
     @Path("/getSnackList")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponseModel<List<SnackListModel>> getSnackListByUser(@QueryParam("id")int userId) {
+    public ResponseModel<List<SnackListModel>> getSnackListByUser(@QueryParam("id") int userId) {
         SnackListMapper snackListMapper = sqlSession.getMapper(SnackListMapper.class);
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         SnackMapper snackMapper = sqlSession.getMapper(SnackMapper.class);
         List<SnackList> oList = snackListMapper.getSnackListByUser(userId);
+
+        if(oList.isEmpty()) {
+            return ResponseModel.buildNotInfo();
+        }
 
         List<SnackListModel> result = new ArrayList<>();
         SnackListModel model;
@@ -226,10 +225,10 @@ public class SnackService {
         List<Snack> snacks = new ArrayList<>();
 
         int currentList = oList.get(0).getList_id();
-        for(SnackList list: oList) {
+        for (SnackList list : oList) {
             if (currentList != list.getList_id()) {
                 // 当前数据段与上一数据段不是同一清单，提交当前数据到结果集中
-                model = new SnackListModel( user, title, snacks, content, time);
+                model = new SnackListModel(user, title, snacks, content, time);
                 result.add(model);
                 // 标记当前清单id
                 currentList = list.getList_id();
@@ -241,14 +240,17 @@ public class SnackService {
                 snacks = new ArrayList<>();
 
                 // 放入当前数据段值
-                Snack snack = snackMapper.getSnackById(list.getList_id());
+                Snack snack = snackMapper.getSnackById(list.getSnack_id());
                 snacks.add(snack);
-            }else {
+            } else {
                 // 当前数据段与上一数据段仍在同一清单，仅存放当前数据段
-                Snack snack = snackMapper.getSnackById(list.getList_id());
+                Snack snack = snackMapper.getSnackById(list.getSnack_id());
                 snacks.add(snack);
             }
         }
+        // 提交最后一条数据到结果集中
+        model = new SnackListModel(user, title, snacks, content, time);
+        result.add(model);
         return ResponseModel.buildOk(result);
     }
 }

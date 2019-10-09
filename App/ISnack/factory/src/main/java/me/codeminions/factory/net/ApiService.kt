@@ -7,6 +7,7 @@ import me.codeminions.factory.data.bean.User
 import me.codeminions.factory.data.model.LoginModel
 import me.codeminions.factory.data.model.RegisterModel
 import me.codeminions.factory.data.model.ResponseModel
+import me.codeminions.factory.data.model.SnackListModel
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -58,4 +59,15 @@ interface ApiService {
 
     @GET(value = "snack/getCommentByUser")
     fun getCommentByUser(@Query("id")id: Int) :Call<ResponseModel<List<Comment>>>
+
+    // 获取所有人的评价
+    @GET(value = "snack/allRecommend")
+    fun getAllComment(): Call<ResponseModel<List<Comment>>>
+
+    @GET(value = "snack/getMark")
+    fun getMarkInfo(@Query("id")id: Int): Call<ResponseModel<IntArray>>
+
+    // 根据用户获取用户清单
+    @GET(value = "snack/getSnackList")
+    fun getSnackListByUser(@Query("id")userId: Int): Call<ResponseModel<List<SnackListModel>>>
 }

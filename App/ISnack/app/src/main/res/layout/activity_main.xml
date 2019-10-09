@@ -9,6 +9,9 @@
         <variable
             name="handler"
             type="MainActivity" />
+        <variable
+            name="position"
+            type="int" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -69,15 +72,17 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_main_photo"
-            android:translationY="100dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="30dp"
             android:backgroundTint="@color/colorAccentBlue"
-            android:scaleType="center"
-            android:src="@drawable/ic_dashboard_black_24dp"
-            android:onClick="@{handler::onClickPhoto}"
+            android:src="@drawable/ic_add"
+            android:onClick="@{(position == 1)?(handler::onClickPhoto):(handler::onClickEdit)}"
+
+            app:borderWidth="0.0dip"
+            android:scaleType="fitCenter"
+
             app:fabSize="normal" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

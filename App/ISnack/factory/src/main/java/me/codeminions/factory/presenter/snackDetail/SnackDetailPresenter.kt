@@ -6,7 +6,8 @@ import me.codeminions.factory.data.model.ResponseModel
 import me.codeminions.factory.data.model.SnackInfoModel
 import me.codeminions.factory.data.model.snackModel.SnackModel
 
-class SnackDetailPresenter(val view: SnackDetailContract.SnackDetailView) : SnackDetailContract.SnackDetailPresenter {
+class SnackDetailPresenter(val view: SnackDetailContract.SnackDetailView) :
+        SnackDetailContract.SnackDetailPresenter {
 
     private val model = SnackModel()
 
@@ -33,6 +34,18 @@ class SnackDetailPresenter(val view: SnackDetailContract.SnackDetailView) : Snac
             }
             override fun onFail(info: String) {
 
+            }
+        })
+    }
+
+    override fun getMark(snackId: Int) {
+        model.getMarkInfo(snackId, object: ResponseCallBack<IntArray> {
+            override fun onSuccess(info: String, response: IntArray) {
+                view.showMarkInfo(response)
+            }
+
+            override fun onFail(info: String) {
+                view.showTip(info)
             }
         })
     }

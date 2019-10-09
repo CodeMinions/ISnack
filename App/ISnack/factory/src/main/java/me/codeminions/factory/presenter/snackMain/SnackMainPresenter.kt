@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.core.content.FileProvider
 import java.io.File
 
-class SnackMainPresenter(var view: SnackMainContract.SnackMainView<SnackMainContract.SnackMainPresenter>) : SnackMainContract.SnackMainPresenter {
+class SnackMainPresenter(var view: SnackMainContract.SnackMainView<SnackMainContract.SnackMainPresenter>) :
+        SnackMainContract.SnackMainPresenter {
 
     init {
         view.setPresenter(this)
@@ -13,7 +14,7 @@ class SnackMainPresenter(var view: SnackMainContract.SnackMainView<SnackMainCont
     override fun startPhoto(context: Context) {
         val file = File(context.externalCacheDir, "cache_image.jpg")
 
-        if (file.exists()){
+        if (file.exists()) {
             file.delete()
         }
         file.createNewFile()
@@ -22,6 +23,8 @@ class SnackMainPresenter(var view: SnackMainContract.SnackMainView<SnackMainCont
 
         view.startPhoto(uri)
     }
+
+
 
     override fun jumpToMe(context: Context) {
         view.jumpToMe(context)

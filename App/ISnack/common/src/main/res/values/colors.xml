@@ -16,7 +16,10 @@
 
     <color name="colorCardBackground">#FFFFFFFF</color>
 
-    <color name="blue_01">#82c2f7</color>
+    <color name="blue_02">#82c2f7</color>
+    <color name="blue_03">#75BDF8</color>
+    <color name="blue_01">#A0CDF3</color>
+    <color name="blue_good">#3e8fce</color>
     <color name="red_01">#f78282</color>
     <color name="red_02">#f782f5</color>
     <color name="yellow_01">#D5FDEF75</color>

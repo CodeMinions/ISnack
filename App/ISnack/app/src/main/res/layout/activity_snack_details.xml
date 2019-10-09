@@ -16,9 +16,12 @@
         <variable
             name="imgUrl"
             type="String" />
+        <variable
+            name="stars"
+            type="int[]" />
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_gradient_blue_dark"
@@ -63,6 +66,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:layout_marginTop="@dimen/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -234,7 +238,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="7dp"
                                 android:layout_marginTop="3dp"
-                                android:progress="25"
+                                android:progress="@{stars[4]}"
+                                tools:progress="25"
                                 android:progressDrawable="@drawable/bg_progressbar" />
 
                             <ProgressBar
@@ -242,7 +247,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="7dp"
                                 android:layout_marginTop="3dp"
-                                android:progress="75"
+                                android:progress="@{stars[3]}"
+                                tools:progress="75"
                                 android:progressDrawable="@drawable/bg_progressbar" />
 
                             <ProgressBar
@@ -250,7 +256,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="7dp"
                                 android:layout_marginTop="3dp"
-                                android:progress="65"
+                                android:progress="@{stars[2]}"
+                                tools:progress="65"
                                 android:progressDrawable="@drawable/bg_progressbar" />
 
                             <ProgressBar
@@ -258,7 +265,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="7dp"
                                 android:layout_marginTop="3dp"
-                                android:progress="15"
+                                android:progress="@{stars[1]}"
+                                tools:progress="15"
                                 android:progressDrawable="@drawable/bg_progressbar" />
 
                             <ProgressBar
@@ -266,7 +274,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="7dp"
                                 android:layout_marginTop="3dp"
-                                android:progress="4"
+                                android:progress="@{stars[0]}"
+                                tools:progress="4"
                                 android:progressDrawable="@drawable/bg_progressbar" />
 
                         </LinearLayout>
@@ -295,6 +304,7 @@
 
                 </LinearLayout>
 
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -302,24 +312,12 @@
                     android:backgroundTint="#20000000"
                     app:cardCornerRadius="20dp">
 
-                    <!--<LinearLayout-->
-                    <!--android:paddingTop="10dp"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:orientation="vertical">-->
-                    <!--<include layout="@layout/item_snack_comment2" />-->
-                    <!--<View-->
-                    <!--android:background="@color/backgroundGradient1"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="1dp"-->
-                    <!--android:layout_margin="10dp" />-->
-                    <!--<include layout="@layout/item_snack_comment" />-->
-                    <!--</LinearLayout>-->
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:layout_marginBottom="20dp"
                         android:paddingTop="10dp">
 
                     </androidx.recyclerview.widget.RecyclerView>
@@ -329,5 +327,21 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:src="@drawable/ic_edit"
+            android:backgroundTint="@color/colorStarYellow"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/id_fragment_star"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

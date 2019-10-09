@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".mePage.MeActivity"></activity>
         <activity android:name=".snackDetails.SnackDetailActivity" ></activity>
+        <activity android:name=".editListPage.EditListActivity" ></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

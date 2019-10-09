@@ -7,7 +7,6 @@ import me.codeminions.factory.data.model.ResponseCallBack
 import me.codeminions.factory.data.model.ResponseModel
 import me.codeminions.factory.data.model.SnackInfoModel
 import me.codeminions.factory.data.model.snackInfoUnpack
-import me.codeminions.factory.data.netData.Constant
 import me.codeminions.factory.net.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
@@ -87,6 +86,26 @@ class SnackModel : ISnackModel {
                 }
             }
             override fun onFailure(call: Call<ResponseModel<List<Comment>>>, t: Throwable) {
+                callback.onFail("Server Error : ${t.message}")
+            }
+        })
+    }
+
+    override fun getMarkInfo(snackId: Int, callback: ResponseCallBack<IntArray>) {
+        RetrofitService.getApiService().getMarkInfo(snackId).enqueue(object: Callback<ResponseModel<IntArray>> {
+            override fun onResponse(call: Call<ResponseModel<IntArray>>,
+                                    response: Response<ResponseModel<IntArray>>) {
+                if(response.isSuccessful) {
+                    val responseModel = response.body() as ResponseModel<IntArray>
+                    if(responseModel.code != 1)
+                        callback.onFail(responseModel.message)
+                    else
+                        callback.onSuccess("GET info", response = responseModel.result!!)
+                } else {
+                    callback.onFail(response.message())
+                }
+            }
+            override fun onFailure(call: Call<ResponseModel<IntArray>>, t: Throwable) {
                 callback.onFail("Server Error : ${t.message}")
             }
         })

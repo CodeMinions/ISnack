@@ -21,6 +21,9 @@ public class ResponseModel<M> implements Serializable {
     // 请求参数错误-已存在名称
     public static final int ERROR_PARAMETERS_EXIST_NAME = 4003;
 
+    // 请求参数错误-不存在评分信息
+    public static final int ERROR_PARAMETERS_NOT_EXIST = 4004;
+
     // 服务器错误
     public static final int ERROR_SERVICE = 5001;
 
@@ -107,6 +110,10 @@ public class ResponseModel<M> implements Serializable {
 
     public static <M> ResponseModel<M> buildParameterError() {
         return new ResponseModel<M>(ERROR_PARAMETERS, "Parameters Error.");
+    }
+
+    public static <M> ResponseModel<M> buildNotInfo() {
+        return new ResponseModel<M>(ERROR_PARAMETERS_NOT_EXIST, "No rating information.");
     }
 
     public static <M> ResponseModel<M> buildHaveAccountError() {

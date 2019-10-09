@@ -20,6 +20,8 @@ interface SnackDetailContract {
         fun loadMoreSuccess(list: List<SnackInfoModel>)
 
         fun initInfoTable(list: List<SnackInfoModel>)
+
+        fun showMarkInfo(data: IntArray)
     }
 
     interface SnackDetailPresenter : BaseContract.BasePresenter {
@@ -27,5 +29,7 @@ interface SnackDetailContract {
         fun getSnackMore(snackID: Int)
 
         fun getComment(snackId: Int)
+
+        fun getMark(snackId: Int)
     }
 }
