@@ -23,5 +23,8 @@
     <select id="getSnackInfoById" parameterType="int" resultMap="snackInfo">
         SELECT * FROM t_snack_info WHERE id = #{id};
     </select>
+    <!--    <select id="getSnackListByUser" parameterType="int" resultMap="snackInfo">-->
+    <!--        SELECT * FROM t_snack_list WHERE id = #{id};-->
+    <!--    </select>-->
 
 </mapper>

@@ -4,6 +4,8 @@ import com.google.gson.annotations.Expose;
 import me.codeminions.bean.db.Snack;
 import me.codeminions.bean.db.User;
 
+
+import java.util.Collections;
 import java.util.List;
 
 // 单条零食清单的bean
@@ -19,6 +21,13 @@ public class SnackListModel {
     private String content;
     @Expose
     private String time;
+
+    public static boolean check(SnackListModel model){
+        return model != null
+//                && !(model.getUser().getUserID() == 0)
+                && !model.getTitle().isEmpty()
+                && !model.getContent().isEmpty();
+    }
 
     public SnackListModel(User user, String title, List<Snack> list, String content, String time) {
         this.user = user;

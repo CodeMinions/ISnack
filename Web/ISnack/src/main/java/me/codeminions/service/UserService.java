@@ -3,10 +3,7 @@ package me.codeminions.service;
 import me.codeminions.bean.api.ChangeModel;
 import me.codeminions.bean.api.SnackListModel;
 import me.codeminions.bean.api.base.ResponseModel;
-import me.codeminions.bean.db.Message;
-import me.codeminions.bean.db.SnackList;
-import me.codeminions.bean.db.User;
-import me.codeminions.bean.db.UserAttent;
+import me.codeminions.bean.db.*;
 import me.codeminions.bean.mapper.MessageMapper;
 import me.codeminions.bean.mapper.SnackListMapper;
 import me.codeminions.bean.mapper.UserAttentMapper;
@@ -16,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -123,31 +121,40 @@ public class UserService {
         return ResponseModel.buildOk();
     }
 
-//    @POST
-//    @Path("/setSnackList")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public ResponseModel<SnackList> setSnackList(SnackListModel model) {
-//        logger.info(model.toString());
-//        if (!SnackListModel.check(model))    //参数异常
-//        {
-//            return ResponseModel.buildParameterError();
-//        }
-//
-//        //setSnackList
-//        SnackListMapper snackListMapper = sqlSession.getMapper(SnackListMapper.class);
-//        SnackList snackList = new SnackList(model.getUser_id(),model.getTitle(), model.getContent());
-//        snackListMapper.setSnackList(snackList);
-//        sqlSession.commit();
-//
-//        return ResponseModel.buildOk(snackList);
-//    }
+    @POST
+    @Path("/setSnackList")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseModel<List<SnackList>> setSnackList(SnackListModel model) {
+        logger.info(model.toString());
+        if (!SnackListModel.check(model))    //参数异常
+        {
+            return ResponseModel.buildParameterError();
+        }
+
+        //setSnackList
+        SnackListMapper snackListMapper = sqlSession.getMapper(SnackListMapper.class);
+        int list_id = snackListMapper.getListIdMax()+1;
+        List<Snack> snacks = model.getList();
+        SnackList snackList ;
+        List<SnackList> result = new ArrayList<>();
+
+        for (Snack list: snacks){
+
+            snackList = new SnackList(list_id,model.getUser().getUserID(),list.getSnackID(),model.getTitle(),model.getContent(),model.getTime());
+            snackListMapper.setSnackList(snackList);
+            sqlSession.commit();
+            result.add(snackList);
+        }
+        return ResponseModel.buildOk(result);
+    }
 
     @GET
     @Path("/getUserAttent")
     public ResponseModel<List<UserAttent>> getUserAttent() {
         UserAttentMapper userAttentMapper = sqlSession.getMapper(UserAttentMapper.class);
         List<UserAttent> userAttents = userAttentMapper.getUserAttent();
+
         return ResponseModel.buildOk(userAttents);
     }
 }
