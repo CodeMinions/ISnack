@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,171 +13,295 @@
 
     </data>
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/root_register"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackgroundBlack"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:context="me.codeminions.isnack.mePage.accountPage.AccountRegisterFragment">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:onClick="@{handler::onClickPortrait}"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/img_portrait"
-            android:src="@color/colorWPrimaryDark" />
-
-        <EditText
-            android:id="@+id/edit_register_userName"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:hint="@string/hint_register_act_name"
-            android:text="猎户星座"
-            android:inputType="text" />
-
-        <FrameLayout
-            android:layout_width="200dp"
-            android:layout_height="115dp"
-            android:layout_marginTop="35dp">
-
-            <EditText
-                android:id="@+id/edit_register_pwd1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:hint="@string/hint_log_act_pwd1"
-                android:text="12345"
-                android:inputType="textPassword" />
-
-            <ImageView
-                android:id="@+id/btn_register_visible1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|top"
-                android:layout_margin="5dp"
-                android:src="@drawable/ic_visible"
-                android:tint="@color/pwd_edit" />
-
-            <EditText
-                android:id="@+id/edit_register_pwd2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:text="12345"
-                android:hint="@string/hint_log_act_pwd2"
-                android:inputType="textPassword" />
-
-            <ImageView
-                android:id="@+id/btn_register_visible2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:layout_margin="7dp"
-                android:src="@drawable/ic_visible"
-                android:tint="@color/pwd_edit" />
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:gravity="center_vertical"
-            tools:ignore="SmallSp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:text="@string/txt_register_act_birth"
-                android:textColor="@color/textColorSecondary"
-                android:textSize="15sp" />
-
-            <EditText
-                android:id="@+id/ed_res_year"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:gravity="center"
-                android:hint="年"
-                android:text="2000"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/ed_res_mou"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:gravity="center"
-                android:hint="月"
-                android:text="9"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:gravity="center_vertical"
-            tools:ignore="SmallSp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:text="@string/txt_register_act_sex"
-                android:textColor="@color/textColorSecondary"
-                android:textSize="15sp" />
-
-            <Button
-                android:id="@+id/btn_res_changeMale"
-                android:layout_width="45dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="18dp"
-                android:backgroundTint="@color/sex_selector"
-                android:text="男"
-                android:onClick="@{handler::onClickMale}"
-                android:textSize="8sp" />
-
-            <Button
-                android:id="@+id/btn_res_changeFamale"
-                android:layout_width="45dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="13dp"
-                android:backgroundTint="@color/sex_selector"
-                android:onClick="@{handler::onClickFamale}"
-                android:text="女"
-                android:textSize="8sp" />
-
-        </LinearLayout>
-
-        <FrameLayout
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp">
+            android:background="@drawable/bg_gradient_black"
+            android:paddingTop="40dp"
+            android:paddingBottom="28dp"
+            app:titleTextAppearance="@style/LongText"
+            app:title="注册" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#50FAD0C7"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:context="me.codeminions.isnack.mePage.accountPage.AccountRegisterFragment">
 
-            <ProgressBar
-                android:id="@+id/load"
-                android:layout_width="172dp"
-                android:layout_height="44dp"
-                android:layout_gravity="center"
-                android:visibility="visible" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_portrait"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="60dp"
+                android:onClick="@{handler::onClickPortrait}"
+                android:src="#c0ffffff" />
 
-            <Button
-                android:id="@+id/btn_register_r"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:background="@drawable/bg_round_15"
-                android:backgroundTint="@color/colorWPrimaryDark"
-                android:text="@string/btn_log_act_register"
-                android:onClick="@{handler::onClickRegister}"
-                android:visibility="visible" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_round_5"
+                android:backgroundTint="#c0ffffff"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-        </FrameLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-    </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="8dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_account"
+                        android:tint="@color/portraitAccount" />
+
+                    <EditText
+                        android:id="@+id/edit_register_userName"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="20dp"
+                        android:background="@null"
+                        android:hint="@string/hint_register_act_name"
+                        android:inputType="text"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/textPrimary"
+                        android:textColorHint="@color/textSecond"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#808080" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="8dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_key"
+                        android:tint="@color/portraitAccount" />
+
+                    <EditText
+                        android:id="@+id/edit_register_pwd1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/hint_log_act_pwd1"
+                        android:inputType="textPassword"
+                        android:layout_marginStart="20dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/textPrimary"
+                        android:textColorHint="@color/textSecond"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/btn_register_visible1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|top"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_visible"
+                        android:tint="@color/pwd_edit" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#808080" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="8dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_key"
+                        android:tint="@color/portraitAccount" />
+
+                    <EditText
+                        android:id="@+id/edit_register_pwd2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/hint_log_act_pwd2"
+                        android:inputType="textPassword"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:layout_marginStart="20dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/textPrimary"
+                        android:textColorHint="@color/textSecond"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/btn_register_visible2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|bottom"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_visible"
+                        android:tint="@color/pwd_edit" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#808080" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    tools:ignore="SmallSp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/ic_brith"
+                        android:tint="@color/portraitAccount" />
+
+                    <EditText
+                        android:id="@+id/ed_res_year"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:gravity="center"
+                        android:hint="年份"
+                        android:background="@null"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/ed_res_mou"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:gravity="center"
+                        android:hint="月份"
+                        android:background="@null"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#808080" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    tools:ignore="SmallSp">
+
+                    <ImageView
+                        android:layout_margin="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center"
+                        android:tint="@color/portraitAccount"
+                        android:src="@drawable/ic_sex" />
+
+                    <Button
+                        android:id="@+id/btn_res_changeMale"
+                        android:layout_width="45dp"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="18dp"
+                        android:background="@drawable/bg_round_5"
+                        android:backgroundTint="@color/sex_selector"
+                        android:onClick="@{handler::onClickMale}"
+                        android:text="男"
+                        android:textSize="8sp" />
+
+                    <Button
+                        android:id="@+id/btn_res_changeFamale"
+                        android:layout_width="45dp"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="13dp"
+                        android:background="@drawable/bg_round_5"
+                        android:backgroundTint="@color/sex_selector"
+                        android:onClick="@{handler::onClickFamale}"
+                        android:text="女"
+                        android:textSize="8sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp">
+
+                <ProgressBar
+                    android:id="@+id/load"
+                    android:layout_width="172dp"
+                    android:layout_height="44dp"
+                    android:layout_gravity="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btn_register_r"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_round_15"
+                    android:backgroundTint="#F2F3F7"
+                    android:onClick="@{handler::onClickRegister}"
+                    android:text="@string/btn_log_act_register"
+                    android:visibility="visible" />
+
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
 </layout>

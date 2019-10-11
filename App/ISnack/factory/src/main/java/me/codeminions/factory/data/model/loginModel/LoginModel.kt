@@ -51,7 +51,7 @@ class LoginModel : ILoginModel {
 
             SystemClock.sleep(3000)
 
-            val user = User("123", "半截拖鞋")
+            val user = User(123, "半截拖鞋")
 
             val model = reference.get()
 

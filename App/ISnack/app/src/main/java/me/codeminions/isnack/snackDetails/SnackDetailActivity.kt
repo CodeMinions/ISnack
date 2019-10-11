@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_snack_details.*
 import me.codeminions.common.widget.BaseAdapter
 import me.codeminions.common.widget.BindingRecyclerAdapter
@@ -31,6 +32,7 @@ import me.codeminions.factory.presenter.snackDetail.SnackDetailPresenter
 import me.codeminions.isnack.R
 import me.codeminions.isnack.databinding.ActivitySnackDetailsBinding
 import me.codeminions.isnack.databinding.ItemSnackCommentBinding
+import me.codeminions.isnack.starPage.StarActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,6 +46,8 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
     private lateinit var presenter: SnackDetailContract.SnackDetailPresenter
     private var commentList: ArrayList<Comment>? = null
     private lateinit var commentAdapter: BindingRecyclerAdapter<Comment, ItemSnackCommentBinding>
+
+    private lateinit var snack: Snack
 
     companion object {
         fun startAction(context: Context, snack: Snack) {
@@ -62,6 +66,7 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
         Log.i("snackInfo", snack.toString())
 
         binding.snack = snack
+        this.snack = snack
         binding.imgUrl = URL_PIC + snack.img
 
         presenter.getSnackMore(snackID = snack.snackID!!)
@@ -120,6 +125,10 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
         showTip("信息表初始化")
     }
 
+    fun onClickStar(v: View) {
+        StarActivity.startAction(this, snack)
+    }
+
     override fun initInfoTable(list: List<SnackInfoModel>) {
         val f = FrameLayout(this)
         val t1 = TextView(this)
@@ -156,9 +165,21 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
             val text2 = TextView(this)
             val text3 = TextView(this)
 
+            Log.i("元素含量", it.quality)
+            if(it.quality.isNullOrEmpty())
+                continue
             text1.text = it.ingredient
             text2.text = it.quality.split("/")[0]
-            text3.text = it.day
+//            text3.text = it.day
+            text3.text = it.quality.split("-")[1] + "%"
+
+            if(it.quality.split("-")[1].toFloat() > 40){
+                // 弹窗提示
+                Snackbar.make(this.findViewById(android.R.id.content), "${it.ingredient} 含量超过日摄入40%!!", Snackbar.LENGTH_INDEFINITE)
+                .setAction("点我查看详情") {
+                    // 元素含量对身体的影响
+                }.show()
+            }
 
             frameLayout.addView(text1)
             frameLayout.addView(text2)

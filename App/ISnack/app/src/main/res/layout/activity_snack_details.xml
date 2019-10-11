@@ -329,6 +329,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:onClick="@{handler.onClickStar}"
             android:src="@drawable/ic_edit"
             android:backgroundTint="@color/colorStarYellow"
             android:layout_gravity="end|bottom"

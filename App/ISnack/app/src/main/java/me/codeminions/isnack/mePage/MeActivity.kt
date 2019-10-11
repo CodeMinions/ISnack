@@ -2,9 +2,16 @@ package me.codeminions.isnack.mePage
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
+import android.transition.Transition
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.ViewCompat.setLayerType
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.animation.GlideAnimation
+import com.bumptech.glide.request.target.SimpleTarget
+import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.activity_homepage.*
 import kotlinx.android.synthetic.main.activity_snack_details.*
 import kotlinx.android.synthetic.main.item_snack_list_show.*
@@ -84,13 +91,17 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
         RetrofitService.getApiService().getSnackListByUser(currentUser.userID!!.toInt()).enqueue(object : Callback<ResponseModel<List<SnackListModel>>> {
             override fun onResponse(call: Call<ResponseModel<List<SnackListModel>>>, response: Response<ResponseModel<List<SnackListModel>>>) {
                 if (response.isSuccessful) {
-                    val list = response.body()?.result as List<SnackListModel>
-                    refreshOtherList(list)
+                    if(response.body()?.code == 1) {
+                        val list = response.body()?.result as List<SnackListModel>
+                        refreshOtherList(list)
+                    }else{
+                        showTips(response.body()?.message!!)
+                    }
                 }
             }
 
             override fun onFailure(call: Call<ResponseModel<List<SnackListModel>>>, t: Throwable) {
-
+                showTips("ServerError : ${t.message}")
             }
         })
     }
@@ -133,9 +144,8 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
 
         user_recycler_comment.layoutManager = LinearLayoutManager(this)
         commentAdapter = object : BindingRecyclerAdapter<Comment, ItemMyPostBinding>() {
-            override fun getItemViewType(position: Int): Int {
-                return R.layout.item_my_post
-            }
+            override fun getItemViewType(position: Int): Int = R.layout.item_my_post
+
             override fun onBindViewHolder(bing: ItemMyPostBinding, data: Comment) {
                 bing.comment = data
                 // 获取账号对应信息
@@ -154,6 +164,10 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
             }
         }
         user_recycler_comment.adapter = commentAdapter
+    }
+
+    fun showTips(info: String) {
+        Toast.makeText(this, info, Toast.LENGTH_SHORT).show()
     }
 
     fun refreshList(list: List<Comment>) {
@@ -199,11 +213,21 @@ class MeActivity : DataBindingActivity<ActivityHomepageBinding>(),
         binding.user = user
         currentUser = user!!
 
-        binding.imgResUrl = URL_PIC + user.portrait
+//        binding.imgResUrl = URL_PIC + user.portrait
 
-//        Glide.with(this)
-//                .load(URL_PIC + user?.portrait)
-//                .into(me_user_portrait)
+        val simpleTarget = object: SimpleTarget<Drawable>() {
+            override fun onResourceReady(resource: Drawable?, glideAnimation: GlideAnimation<in Drawable>?) {
+                app_bar.background = resource
+            }
+        }
+
+
+        Glide.with(this)
+                .load(URL_PIC + user.portrait)
+                .error(R.drawable.bg_oval)
+                // 设置高斯模糊
+                .bitmapTransform(BlurTransformation(this, 20, 3))
+                .into(simpleTarget)
     }
 
     fun onClickBack(v: View) {

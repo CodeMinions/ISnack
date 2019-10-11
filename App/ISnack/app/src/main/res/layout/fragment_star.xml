@@ -10,6 +10,11 @@
         <variable
             name="imgUrl"
             type="String" />
+
+        <import type="me.codeminions.isnack.starPage.StarActivity" />
+        <variable
+            name="handle"
+            type="StarActivity" />
     </data>
 
     <LinearLayout
@@ -23,6 +28,7 @@
             android:layout_height="@dimen/actionBarSize">
 
             <ImageView
+                android:onClick="@{handle.onClickBack}"
                 android:tint="#ffffff"
                 android:src="@drawable/ic_clear"
                 android:layout_width="wrap_content"
@@ -47,6 +53,7 @@
 
             <Button
                 android:text="发布"
+                android:onClick="@{handle::onClickSend}"
                 android:layout_gravity="end"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/bg_round_10"
@@ -68,6 +75,7 @@
                 android:layout_height="wrap_content" />
 
             <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/star_rating"
                 app:mrb_fillBackgroundStars="true"
                 android:layout_marginTop="30dp"
                 android:layout_gravity="center_horizontal"
@@ -76,6 +84,7 @@
         </FrameLayout>
 
         <EditText
+            android:id="@+id/star_editor"
             android:background="@drawable/bg_frame_1"
             android:padding="20dp"
             android:layout_marginTop="30dp"

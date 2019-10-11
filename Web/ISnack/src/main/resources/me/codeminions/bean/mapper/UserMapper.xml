@@ -21,6 +21,10 @@
         SELECT id, name, pwd, sex, birth, portrait FROM t_user WHERE id = #{id};
     </select>
 
+    <select id="getAllUserId" resultType="int">
+        SELECT id FROM t_user
+    </select>
+
     <select id="getUserByName" parameterType="String" resultMap="user">
         SELECT id, name, pwd, sex, birth, portrait FROM t_user WHERE name = #{name};
     </select>

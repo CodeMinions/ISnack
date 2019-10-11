@@ -56,6 +56,18 @@ fun getLoginInfo(context: Context): User? {
 }
 
 /**
+ * 获取本地的用户ID
+ */
+fun getUserId(context: Context): String {
+    val pref = context.getSharedPreferences(FILE_NAME, MODE_PRIVATE)
+
+    if (!getLoginStatus(context))
+        return ""
+
+    return pref.getString(KEY_ID, "")!!
+}
+
+/**
  * 用户退出登录
  */
 fun setLoginOut(context: Context) {

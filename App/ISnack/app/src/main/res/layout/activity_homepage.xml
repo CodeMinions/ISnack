@@ -39,6 +39,7 @@
                 tools:title="猎户星座">
 
                 <FrameLayout
+                    android:id="@+id/frame_background"
                     android:layout_width="match_parent"
                     android:layout_height="230dp"
                     android:layout_marginTop="@dimen/actionBarSize"

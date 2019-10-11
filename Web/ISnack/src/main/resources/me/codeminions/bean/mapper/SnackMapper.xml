@@ -18,6 +18,10 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM t_snack WHERE id = #{id}
     </select>
 
+    <select id="findSnackByName" parameterType="String" resultMap="snack">
+        SELECT * FROM t_snack WHERE name LIKE concat('%', #{name}, '%');
+    </select>
+
     <select id="getSnackByName" parameterType="String" resultMap="snack">
         SELECT * FROM t_snack WHERE name = #{name};
     </select>

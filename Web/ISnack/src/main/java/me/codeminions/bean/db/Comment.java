@@ -16,13 +16,13 @@ public class Comment {    //对应表t_comment
     @Expose
     private int snack_id;
     @Expose
-    private int star;
+    private float star;
     @Expose
     private int likeCount;
     @Expose
     private String time;
 
-    public Comment(int send_id, int snack_id, String comment, int star) {
+    public Comment(int send_id, int snack_id, String comment, float star) {
         this();
         this.comment = comment;
         this.send_id = send_id;
@@ -70,11 +70,11 @@ public class Comment {    //对应表t_comment
         this.snack_id = snack_id;
     }
 
-    public int getStar() {
+    public float getStar() {
         return star;
     }
 
-    public void setStar(int star) {
+    public void setStar(float star) {
         this.star = star;
     }
 

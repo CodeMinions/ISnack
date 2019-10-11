@@ -37,6 +37,7 @@ class AccountRegisterFragment : PresenterFragment<FragmentRegisterBinding>(),
 
     override fun initWidget(root: View) {
         super.initWidget(root)
+        dataBinding.rootRegister.setBackgroundResource(R.drawable.v2_80b9172a683e901b7a04a77a0e5d7455_r)
         dataBinding.handler = this
     }
 
@@ -131,7 +132,7 @@ class AccountRegisterFragment : PresenterFragment<FragmentRegisterBinding>(),
     }
 
     override fun onRegisterSuccess(user: User) {
-        saveAccountData(context!!, user.userID!!, user.name!!, "")
+        saveAccountData(context!!, user.userID.toString(), user.name!!, "")
         trigger.onTrigger()
     }
 

@@ -3,10 +3,7 @@ package me.codeminions.factory.data.model.snackModel
 import me.codeminions.factory.data.bean.Comment
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.data.bean.SnackInfo
-import me.codeminions.factory.data.model.ResponseCallBack
-import me.codeminions.factory.data.model.ResponseModel
-import me.codeminions.factory.data.model.SnackInfoModel
-import me.codeminions.factory.data.model.snackInfoUnpack
+import me.codeminions.factory.data.model.*
 import me.codeminions.factory.net.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
@@ -110,6 +107,27 @@ class SnackModel : ISnackModel {
             }
         })
     }
+
+    override fun sendSnackList(model: SnackListModel, callback: ResponseCallBack<String>) {
+        RetrofitService.getApiService().sendSnackList(model).enqueue(object: Callback<ResponseModel<String>> {
+            override fun onResponse(call: Call<ResponseModel<String>>,
+                                    response: Response<ResponseModel<String>>) {
+                if(response.isSuccessful) {
+                    val responseModel = response.body() as ResponseModel<String>
+                    if(responseModel.code != 1)
+                        callback.onFail(responseModel.message)
+                    else
+                        callback.onSuccess("ok", responseModel.message)
+                } else {
+                    callback.onFail(response.message())
+                }
+            }
+            override fun onFailure(call: Call<ResponseModel<String>>, t: Throwable) {
+                callback.onFail("Server Error : ${t.message}")
+            }
+        })
+    }
+
 
     override fun loadByTag(tag: String, listener: ResponseCallBack<Snack>) {
 

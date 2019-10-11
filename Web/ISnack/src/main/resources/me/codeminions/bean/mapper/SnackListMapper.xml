@@ -27,4 +27,8 @@
         SELECT * FROM t_snack_list WHERE user_id = #{id}
     </select>
 
+    <select id="getAllSnackList" resultMap="snackList">
+        SELECT * FROM t_snack_list;
+    </select>
+
 </mapper>

@@ -30,6 +30,7 @@ class AccountLoginFragment : PresenterFragment<FragmentLoginBinding>(),
 
     override fun initWidget(root: View) {
         super.initWidget(root)
+        dataBinding.rootLogin.setBackgroundResource(R.drawable.v2_80b9172a683e901b7a04a77a0e5d7455_r)
         dataBinding.handler = this
     }
 
@@ -45,7 +46,7 @@ class AccountLoginFragment : PresenterFragment<FragmentLoginBinding>(),
     }
 
     override fun onLoginSuccess(user: User) {
-        saveAccountData(context!!, user.userID!!, user.name!!, "")
+        saveAccountData(context!!, user.userID.toString(), user.name!!, "")
         saveLocalJson(context!!, user)
         trigger.onTrigger()
     }

@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="me.codeminions.isnack.MainActivity" />
 
         <variable
             name="handler"
             type="MainActivity" />
+
         <variable
             name="position"
             type="int" />
@@ -22,9 +24,9 @@
         tools:targetApi="O">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:background="@color/colorBackground"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,6 +42,7 @@
 
 
                 <EditText
+                    android:id="@+id/editor_main"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -52,11 +55,11 @@
             </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
-                app:tabIndicatorColor="@color/colorPrimaryLight"
                 android:id="@+id/tab_main"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/colorAccentBlue"
+                app:tabIndicatorColor="@color/colorPrimaryLight"
                 tools:targetApi="p">
 
             </com.google.android.material.tabs.TabLayout>
@@ -77,13 +80,44 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="30dp"
             android:backgroundTint="@color/colorAccentBlue"
-            android:src="@drawable/ic_add"
             android:onClick="@{(position == 1)?(handler::onClickPhoto):(handler::onClickEdit)}"
-
-            app:borderWidth="0.0dip"
             android:scaleType="fitCenter"
 
+            android:src="@drawable/ic_add"
+            app:borderWidth="0.0dip"
+
             app:fabSize="normal" />
+
+        <FrameLayout
+            android:id="@+id/frame_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/actionBarSize"
+            android:elevation="6dp"
+            android:background="@color/colorWPrimaryDark"
+            android:visibility="invisible">
+
+            <ProgressBar
+                android:id="@+id/progress_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:visibility="invisible">
+
+            </androidx.recyclerview.widget.RecyclerView>
+            <Button
+                android:id="@+id/btn_back"
+                android:text="返回"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="100dp"
+                android:layout_height="35dp" />
+        </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -14,7 +14,7 @@ public class SnackMark {     //对应表t_snack_mark
     @Expose
     private int snackID;
     @Expose
-    private int mark;
+    private float mark;
     @Expose
     private String time;
 
@@ -23,7 +23,7 @@ public class SnackMark {     //对应表t_snack_mark
         this.time = df.format(new Date());
     }
 
-    public SnackMark(int userID, int snackID, int mark) {
+    public SnackMark(int userID, int snackID, float mark) {
         this.userID = userID;
         this.snackID = snackID;
         this.mark = mark;
@@ -55,7 +55,7 @@ public class SnackMark {     //对应表t_snack_mark
         this.snackID = snackID;
     }
 
-    public int getMark() {
+    public float getMark() {
         return mark;
     }
 

@@ -8,11 +8,15 @@
     <color name="colorBackground">#EEFFFA</color>
     <color name="colorBackgroundBlack">#525252</color>
 
-    <color name="colorAccent">#D81B60</color>
+    <!--<color name="colorAccent">#D81B60</color>-->
+    <color name="colorAccent">#DF662B</color>
     <color name="colorAccentBlue">#0abab5</color>
 
     <color name="colorStarYellow">#FFD026</color>
     <color name="colorStarYellowLight">#FFF4D3</color>
+
+    <color name="colorMyThemeColor">#DF662B</color>
+    <color name="colorMyThemeColorDark">#E37E2F</color>
 
     <color name="colorCardBackground">#FFFFFFFF</color>
 

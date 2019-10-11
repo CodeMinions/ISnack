@@ -20,4 +20,5 @@ public interface UserMapper {
 
     public void setPortraitById(@Param("id") int userId, @Param("uri")String image);
 
+    public List<Integer> getAllUserId();
 }

@@ -1,19 +1,14 @@
-package me.codeminions.bean.api;
+package me.codeminions.factory.data.model;
 
-import com.google.gson.annotations.Expose;
-import me.codeminions.bean.db.Comment;
+import java.io.Serializable;
 
-public class CommentModel {
-    @Expose
+public class CommentModel implements Serializable {
     private int send_id;
 
-    @Expose
     private int snack_id;
 
-    @Expose
     private String content;
 
-    @Expose
     private float star;
 
     public static boolean check(CommentModel model) {
@@ -27,7 +22,7 @@ public class CommentModel {
     public CommentModel() {
     }
 
-    public CommentModel(int send_id, int snack_id, String content, int star) {
+    public CommentModel(int send_id, int snack_id, String content, float star) {
         this.send_id = send_id;
         this.snack_id = snack_id;
         this.content = content;

@@ -17,6 +17,12 @@ interface EditListConstract {
          * 刷新零食列表
          */
         public fun refreshSnackList(list: ArrayList<Snack>)
+
+        fun getListContent() : String
+
+        fun sendSuccess()
+
+        fun sendFail(info: String)
     }
 
     interface EditListPresenter : BaseContract.BasePresenter {
@@ -24,5 +30,11 @@ interface EditListConstract {
          * 向后台获取零食列表
          */
         fun getSnackList()
+
+        /**
+         * 发送用户清单
+         */
+        fun sendSnackList(userId: Int, title: String,
+                          snackList: List<Snack>, content: String)
     }
 }

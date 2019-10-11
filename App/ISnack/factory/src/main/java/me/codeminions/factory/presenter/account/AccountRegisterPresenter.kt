@@ -40,7 +40,7 @@ class AccountRegisterPresenter(val view: AccountRegisterContract.AccountRegister
 
                 view.hideRegistering()
 
-                postPic(response.userID!!, pic = port)
+                postPic(response.userID.toString(), pic = port)
             }
 
             override fun onFail(info: String) {

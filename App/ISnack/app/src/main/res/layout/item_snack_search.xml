@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="imgUrl"
+            type="String" />
+        <variable
+            name="snack"
+            type="me.codeminions.factory.data.bean.Snack" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="50dp"
+        tools:targetApi="O">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            tools:src="@drawable/default_snack_pic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="60dp"
+            android:text="@{snack.name}"
+            tools:text="士力架 巧克力" />
+
+        <Button
+            android:id="@+id/btn_jump_search"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_round_5"
+            android:layout_gravity="center_vertical|end"
+            android:backgroundTint="@color/colorWPrimaryDark"
+            android:text="点我查看"
+            android:textColor="#808080"
+            android:textSize="8sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="30dp"
+            android:background="#808080" />
+    </FrameLayout>
+</layout>

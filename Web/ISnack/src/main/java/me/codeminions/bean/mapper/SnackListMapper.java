@@ -10,4 +10,6 @@ public interface SnackListMapper {
     public void setSnackList(SnackList snackList);     //发送零食清单
 
     public List<SnackList> getSnackListByUser(int id);      //获取已发送的清单
+
+    public List<SnackList> getAllSnackList();
 }

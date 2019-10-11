@@ -78,6 +78,7 @@
                 android:padding="20dp">
 
                 <EditText
+                    android:id="@+id/edit_list_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
@@ -94,6 +95,7 @@
                 android:layout_marginTop="255dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/bg_round_5"
+                android:onClick="onClickSendList"
                 android:text="发送我的清单"
                 android:textColor="#ffffff" />
         </FrameLayout>
