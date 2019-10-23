@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="handler"
+            type="me.codeminions.isnack.snackDetails.SnackDetailActivity" />
+
+        <variable
+            name="snack"
+            type="me.codeminions.factory.data.bean.Snack" />
+
+        <variable
+            name="imgUrl"
+            type="String" />
+        <variable
+            name="stars"
+            type="int[]" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient_blue_dark"
+        android:orientation="vertical"
+        tools:context=".snackDetails.SnackDetailActivity"
+        tools:targetApi="O">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/actionBarSize"
+            android:background="@null">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:src="@drawable/ic_back"
+                    android:tint="#ffffff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="零食"
+                    android:textColor="#ffffff"
+                    android:textSize="19sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/ic_shop"
+                    android:tint="#ffffff" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_marginTop="@dimen/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                    <ImageView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        app:imageFromUrl="@{imgUrl}"
+                        tools:src="@drawable/default_snack_pic" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|start"
+                            android:text="@{snack.name}"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            tools:text="士力架（SNICKERS）" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|start"
+                            android:text="@{@string/txt_origin + snack.origin}"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            tools:text="产地： 中国" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginBottom="25dp"
+                            android:text="@{@string/txt_shelf  +  snack.shelf}"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            tools:text="一般可存放时间： 3个月" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            tools:text="热量: 384 KJ" />
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="20dp"
+                    android:backgroundTint="#20000000"
+                    app:cardCornerRadius="20dp">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="240dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20dp"
+                            android:gravity="center"
+                            android:text="@{String.valueOf(snack.mark)}"
+                            android:textColor="#ffffff"
+                            android:textSize="40sp"
+                            tools:text="7.2" />
+
+                        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                            android:layout_width="60dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="bottom"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:progressTint="@color/colorStarYellow"
+                            android:rating="@{snack.mark/2}"
+                            android:stepSize="0.1"
+                            tools:rating="3.6" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="205dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="20dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center_vertical"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="5"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="4"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="3"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="2"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="1dp"
+                                android:isIndicator="true"
+                                android:numStars="1"
+                                android:progressTint="#50ffffff"
+                                android:rating="5" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|center_vertical"
+                            android:orientation="vertical">
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="@{stars[4]}"
+                                tools:progress="25"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="@{stars[3]}"
+                                tools:progress="75"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="@{stars[2]}"
+                                tools:progress="65"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="@{stars[1]}"
+                                tools:progress="15"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:layout_marginTop="3dp"
+                                android:progress="@{stars[0]}"
+                                tools:progress="4"
+                                android:progressDrawable="@drawable/bg_progressbar" />
+
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="#50ffffff"
+                        tools:text="122062人评分" />
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/list_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="30dp"
+                    tools:background="#80ffffff"
+                    tools:layout_height="130dp">
+
+                </LinearLayout>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:backgroundTint="#20000000"
+                    app:cardCornerRadius="20dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="20dp"
+                        android:paddingTop="10dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:onClick="@{handler.onClickStar}"
+            android:src="@drawable/ic_edit"
+            android:backgroundTint="@color/colorStarYellow"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/id_fragment_star"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -5,8 +5,10 @@
 
     </style>
 
-
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="LongText" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:textColor">#ffffff</item>
+    </style>
 
 </resources>

@@ -27,6 +27,15 @@
     </environments>
 
     <mappers>
+        <mapper resource="me/codeminions/bean/mapper/AccountMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/UserMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/CommentMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/MarkMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/SnackInfoMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/SnackMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/SnackListMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/UserAttentMapper.xml"/>
+        <mapper resource="me/codeminions/bean/mapper/MessageMapper.xml"/>
 
     </mappers>
 

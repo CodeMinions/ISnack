@@ -1,15 +1,35 @@
 package me.codeminions.bean.db;
 
+import com.google.gson.annotations.Expose;
+
 public class SnackInfo {         //对应表t_snack_info
 
+    @Expose
     private int infoID;
-    private int snack_id;
+    @Expose
     private String salt;
+    @Expose
     private String sugar;
+    @Expose
     private String carbon_water;
+    @Expose
     private String heat_quantity;
+    @Expose
     private String protein;
+    @Expose
     private String fat;
+
+    @Expose
+    private String dietary_fiber;
+
+    @Expose
+    private String Na;
+
+    @Expose
+    private String vitaminD;
+
+    @Expose
+    private String Ca;
 
 
     public String getSalt() {
@@ -68,11 +88,35 @@ public class SnackInfo {         //对应表t_snack_info
         this.infoID = infoID;
     }
 
-    public int getSnack_id() {
-        return snack_id;
+    public String getDietary_fiber() {
+        return dietary_fiber;
     }
 
-    public void setSnack_id(int snack_id) {
-        this.snack_id = snack_id;
+    public void setDietary_fiber(String dietary_fiber) {
+        this.dietary_fiber = dietary_fiber;
+    }
+
+    public String getNa() {
+        return Na;
+    }
+
+    public void setNa(String na) {
+        Na = na;
+    }
+
+    public String getVitaminD() {
+        return vitaminD;
+    }
+
+    public void setVitaminD(String vitaminD) {
+        this.vitaminD = vitaminD;
+    }
+
+    public String getCa() {
+        return Ca;
+    }
+
+    public void setCa(String ca) {
+        Ca = ca;
     }
 }

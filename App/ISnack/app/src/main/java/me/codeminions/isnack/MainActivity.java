@@ -7,25 +7,47 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import butterknife.BindView;
 import me.codeminions.common.app.DataBindingActivity;
 import me.codeminions.common.widget.BaseViewPagerAdapter;
+import me.codeminions.common.widget.BindingRecyclerAdapter;
+import me.codeminions.factory.data.bean.Snack;
+import me.codeminions.factory.data.model.ResponseModel;
+import me.codeminions.factory.net.RetrofitService;
 import me.codeminions.factory.presenter.snackMain.SnackMainContract;
 import me.codeminions.factory.presenter.snackMain.SnackMainPresenter;
+import me.codeminions.isnack.commentPager.CommentFragment;
 import me.codeminions.isnack.databinding.ActivityMainBinding;
+import me.codeminions.isnack.databinding.ItemSnackSearchBinding;
+import me.codeminions.isnack.editListPage.EditListActivity;
 import me.codeminions.isnack.firstPage.FirstFragment;
 import me.codeminions.isnack.mePage.MeActivity;
 import me.codeminions.isnack.photoResult.PhotoResultFragment;
+import me.codeminions.isnack.recommendPage.RecommendFragment;
+import me.codeminions.isnack.snackDetails.SnackDetailActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static me.codeminions.factory.net.RetrofitServiceKt.URL_PIC;
 
 public class MainActivity extends DataBindingActivity<ActivityMainBinding>
         implements SnackMainContract.SnackMainView<SnackMainContract.SnackMainPresenter>,
@@ -53,8 +75,8 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
 
 
     FirstFragment firstFragment;
-    FirstFragment firstFragment1;
-    FirstFragment firstFragment2;
+    RecommendFragment recommendFragment;
+    CommentFragment commentFragment;
 
     @Override
     public int getLayoutResId() {
@@ -69,25 +91,114 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
         binding.setHandler(this);
 
         firstFragment = new FirstFragment();
-        firstFragment1 = new FirstFragment();
-        firstFragment2 = new FirstFragment();
+        recommendFragment = new RecommendFragment();
+        commentFragment = new CommentFragment();
 
         viewPager.setAdapter(
                 new BaseViewPagerAdapter(
-                        new String[]{"个人", "主页", "分类"},
+                        new String[]{"推荐", "主页", "关注社区"},
                         getSupportFragmentManager(),
-                        firstFragment, firstFragment1, firstFragment2) {
+                        recommendFragment, firstFragment, commentFragment) {
                 });
 
         viewPager.addOnPageChangeListener(this);
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.setOffscreenPageLimit(2);
 
         viewPager.setCurrentItem(1);
+        binding.setPosition(1);
+
+        // 设置回车键监听
+        // getText必须在监听事件中获得，否则获取不到
+        binding.editorMain.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEND
+                    || actionId == EditorInfo.IME_ACTION_DONE
+                    || (event != null
+                    && KeyEvent.KEYCODE_ENTER == event.getKeyCode()
+                    && KeyEvent.ACTION_DOWN == event.getAction())) {
+
+                String searchContent = binding.editorMain.getText().toString();
+                if (!searchContent.isEmpty()) {
+                    binding.editorMain.setText(searchContent.trim());
+                    startSearch(searchContent);
+                }
+            }
+            return false;
+        });
+    }
+
+    public void startSearch(String content) {
+        // 显示搜索页面
+        binding.frameSearch.setVisibility(View.VISIBLE);
+        binding.vpMain.setVisibility(View.GONE);
+
+        binding.btnBack.setOnClickListener(v -> {
+            binding.frameSearch.setVisibility(View.GONE);
+            binding.vpMain.setVisibility(View.VISIBLE);
+        });
+        // 发送请求
+        RetrofitService.Companion.getApiService().searchSnack(content)
+                .enqueue(new Callback<ResponseModel<List<Snack>>>() {
+                    @Override
+                    public void onResponse(Call<ResponseModel<List<Snack>>> call,
+                                           Response<ResponseModel<List<Snack>>> response) {
+                        if (response.isSuccessful()) {
+                            ResponseModel<List<Snack>> model = response.body();
+                            if (model.getCode() == 1) {
+                                initRecyclerList(model.getResult());
+                            } else {
+                                showTip(model.getMessage());
+                                binding.progressSearch.setVisibility(View.INVISIBLE);
+                                binding.recyclerSearch.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            showTip(response.message());
+                            binding.progressSearch.setVisibility(View.INVISIBLE);
+                            binding.recyclerSearch.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseModel<List<Snack>>> call, Throwable t) {
+                        showTip(t.getMessage());
+                    }
+                });
+    }
+
+    void initRecyclerList(List<Snack> list) {
+        binding.recyclerSearch.setLayoutManager(new LinearLayoutManager(this));
+        BindingRecyclerAdapter<Snack, ItemSnackSearchBinding> adapter = new BindingRecyclerAdapter<Snack, ItemSnackSearchBinding>() {
+            @Override
+            public void onBindViewHolder(@NotNull ItemSnackSearchBinding bing, Snack snack) {
+                bing.setSnack(snack);
+                bing.setImgUrl(URL_PIC + snack.getImg());
+                bing.btnJumpSearch.setOnClickListener(v -> {
+                    // 跳转并隐藏搜索页
+                    SnackDetailActivity.Companion.startAction(MainActivity.this, snack);
+                    binding.frameSearch.setVisibility(View.INVISIBLE);
+                });
+            }
+
+            @Override
+            public int getItemViewType(int position) {
+                return R.layout.item_snack_search;
+            }
+        };
+        adapter.setList(list);
+        binding.recyclerSearch.setAdapter(adapter);
+
+        binding.progressSearch.setVisibility(View.INVISIBLE);
+        binding.recyclerSearch.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void initData() {
 
+    }
+
+    @Override
+    public void showTip(String info) {
+        Toast.makeText(MainActivity.this, info, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -128,17 +239,31 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
         presenter.startPhoto(this);
     }
 
+    public void onClickEdit(View v) {
+        // 启动编辑页
+        EditListActivity.Companion.startAction(this);
+    }
+
     @Override
     public void showButton(int position) {
-        float translationY;
-        float rotation;
+        float translationY = 0;
+        float rotation = 0;
 
-        if(position == 1) {
-            translationY = 0;
-            rotation = -360;
-        }else {
-            translationY = 300;
-            rotation = 360;
+        switch (position) {
+            case 0:
+                translationY = 300;
+                rotation = 360;
+                break;
+            case 1:
+                translationY = 0;
+                rotation = -360;
+                btnPhoto.setImageResource(R.drawable.ic_dashboard_black_24dp);
+                break;
+            case 2:
+                translationY = 0;
+                rotation = 0;
+                btnPhoto.setImageResource(R.drawable.ic_add);
+                break;
         }
 
         btnPhoto.animate()
@@ -187,6 +312,7 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
     @Override
     public void onPageSelected(int position) {
         showButton(position);
+        binding.setPosition(position);
     }
 
     @Override

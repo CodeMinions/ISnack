@@ -33,14 +33,14 @@ class SnackPhotoPresenter(val view: SnackPhotoContract.SnackPhotoView<SnackPhoto
                         handler.post {
                             view.getPicResult(response)
                             view.showProgress(false)
-                            view.showTips(info)
+                            view.showTip(info)
                         }
                     }
 
                     override fun onFail(info: String) {
                         handler.post {
                             view.showProgress(false)
-                            view.showTips("怎么认不出来呢 ×_× :   $info")
+                            view.showTip("怎么认不出来呢 ×_× :   $info")
                         }
                     }
                 })

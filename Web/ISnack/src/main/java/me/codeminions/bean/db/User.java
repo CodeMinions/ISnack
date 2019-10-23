@@ -1,14 +1,41 @@
 package me.codeminions.bean.db;
 
+import com.google.gson.annotations.Expose;
+
 public class User {       //对应表t_user
 
+    @Expose
     private int userID;
+    @Expose
     private String name;
-    private String passward;
+    @Expose
+    private String pwd;
+    @Expose
     private String sex;
+    @Expose
     private String birth;
+    @Expose
     private String portrait;
+    private Account account;
 
+    public User() {
+    }
+
+    public User(int userID, String name, String pwd, String sex, String birth, String portrait) {
+        this.userID = userID;
+        this.name = name;
+        this.pwd = pwd;
+        this.sex = sex;
+        this.birth = birth;
+        this.portrait = portrait;
+    }
+
+    public User(String name, String pwd, String sex, String birth) {
+        this.name = name;
+        this.pwd = pwd;
+        this.sex = sex;
+        this.birth = birth;
+    }
 
     public int getUserID() {
         return userID;
@@ -26,12 +53,12 @@ public class User {       //对应表t_user
         this.name = name;
     }
 
-    public String getPassward() {
-        return passward;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setPassward(String passward) {
-        this.passward = passward;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     public String getSex() {
@@ -56,5 +83,13 @@ public class User {       //对应表t_user
 
     public void setPortrait(String portrait) {
         this.portrait = portrait;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

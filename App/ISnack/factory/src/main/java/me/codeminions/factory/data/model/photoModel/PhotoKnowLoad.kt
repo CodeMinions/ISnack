@@ -1,6 +1,5 @@
 package me.codeminions.factory.data.model.photoModel
 
-import android.util.Log
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.data.model.ResponseModel
 import me.codeminions.factory.net.ApiService
@@ -27,7 +26,6 @@ class PhotoKnowLoad {
 
             override fun onFailure(call: Call<ResponseModel<Snack>>, t: Throwable) {
                 requestResult.onError("ServerError : ${t.message}")
-                Log.i("ffresult", t.message)
             }
         })
     }

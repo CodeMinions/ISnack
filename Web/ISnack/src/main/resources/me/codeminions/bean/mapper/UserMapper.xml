@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.codeminions.bean.mapper.UserMapper">
+    <resultMap id="user" type="me.codeminions.bean.db.User">
+        <id column="id" property="userID" />
+        <result column="name" property="name" />
+        <result column="pwd" property="pwd" />
+        <result column="sex" property="sex" />
+        <result column="birth" property="birth" />
+        <result column="portrait" property="portrait" />
+
+        <association property="account" column="id"
+                     select="me.codeminions.bean.mapper.AccountMapper.getAccount" />
+
+    </resultMap>
+
+    <select id="getUserById" parameterType="int" resultMap="user">
+        SELECT id, name, pwd, sex, birth, portrait FROM t_user WHERE id = #{id};
+    </select>
+
+    <select id="getAllUserId" resultType="int">
+        SELECT id FROM t_user
+    </select>
+
+    <select id="getUserByName" parameterType="String" resultMap="user">
+        SELECT id, name, pwd, sex, birth, portrait FROM t_user WHERE name = #{name};
+    </select>
+
+    <select id="findUserByName" parameterType="String" resultMap="user">
+        SELECT id, name, pwd, sex, birth, portrait FROM t_user WHERE name LIKE '%${name}%';
+    </select>
+
+    <insert id="addUser" parameterType="me.codeminions.bean.db.User" >
+        INSERT INTO t_user(name, pwd, sex, birth) VALUES(#{name}, #{pwd}, #{sex}, #{birth});
+    </insert>
+
+    <delete id="deleteUserById" parameterType="long">
+        DELETE FROM t_user WHERE id = #{id};
+    </delete>
+
+    <update id="setNameById" parameterType="map">
+        UPDATE t_user SET name = #{name} WHERE id = #{id};
+    </update>
+
+    <update id="setPortraitById" parameterType="map">
+        UPDATE t_user SET portrait = #{uri} WHERE id = #{id} ;
+    </update>
+</mapper>

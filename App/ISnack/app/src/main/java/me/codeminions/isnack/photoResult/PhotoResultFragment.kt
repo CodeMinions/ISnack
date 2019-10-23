@@ -59,7 +59,7 @@ class PhotoResultFragment : DialogFragment(), SnackPhotoContract.SnackPhotoView<
         return SnackPhotoPresenter(this)
     }
 
-    override fun showTips(info: String) {
+    override fun showTip(info: String) {
         Toast.makeText(context, info, Toast.LENGTH_SHORT).show()
     }
 

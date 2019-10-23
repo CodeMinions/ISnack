@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".mePage.MeActivity"></activity>
+        <activity android:name=".mePage.MeActivity"
+            android:hardwareAccelerated="false"></activity>
+        <activity android:name=".snackDetails.SnackDetailActivity" ></activity>
+        <activity android:name=".editListPage.EditListActivity" ></activity>
+        <activity android:name=".starPage.StarActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

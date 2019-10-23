@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="textColorAccent">#2C2C2C</color>
-    <color name="textColorSecondary">#9C9C9C</color>
+    <color name="textColorSecondary">#809C9C9C</color>
+
+    <color name="backgroundGradient1">#575D7C</color>
+    <color name="backgroundGradient2">#34394B</color>
+
+    <!--字体颜色-->
+    <color name="textPrimary">#4e5864</color>
+    <color name="textSecond">#8d9ca9</color>
+    <color name="textAccent">#1572fc</color>
+    <color name="textLight">#ffffff</color>
+    <color name="textDark">#202020</color>
+
+    <color name="portraitAccount2">#808080</color>
+    <color name="portraitAccount">#1DBAF8</color>
 </resources>

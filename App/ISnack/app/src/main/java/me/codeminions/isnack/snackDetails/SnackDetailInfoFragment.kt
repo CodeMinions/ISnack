@@ -18,6 +18,6 @@ class SnackDetailInfoFragment : DataBindingFragment<FragmentSnackInfoBinding>() 
         snack = arguments?.get("data") as Snack
 
         dataBinding.snack = snack
-        dataBinding.imgResId = Constant.imgs[snack!!.tag]
+//        dataBinding.imgResId = Constant.imgs[snack!!.tag]
     }
 }

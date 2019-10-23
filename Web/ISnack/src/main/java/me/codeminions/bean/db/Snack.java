@@ -2,13 +2,10 @@ package me.codeminions.bean.db;
 
 import com.google.gson.annotations.Expose;
 
-/**
- * 访问路径 localhost:8080/isnack/api/
- */
 public class Snack {       //对应表t_snack
 
     @Expose
-    private String snackID;
+    private int snackID;
     @Expose
     private String name;
     @Expose
@@ -64,11 +61,11 @@ public class Snack {       //对应表t_snack
         this.img = img;
     }
 
-    public String getSnackID() {
+    public int getSnackID() {
         return snackID;
     }
 
-    public void setSnackID(String snackID) {
+    public void setSnackID(int snackID) {
         this.snackID = snackID;
     }
 }

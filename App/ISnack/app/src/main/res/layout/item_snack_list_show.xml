@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="model"
+            type="me.codeminions.factory.data.model.SnackListModel" />
+
+        <variable
+            name="imgUrl"
+            type="String" />
+
+        <variable
+            name="isShow"
+            type="boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_01">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:padding="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="@{model.title}"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:text="标题" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginEnd="50dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginHorizontal="15dp"
+                        app:imageFromUrl="@{imgUrl}"
+                        tools:src="@drawable/default_portrait" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:text="@{model.user.name}"
+                        tools:text="用户" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="@{model.time}"
+                        tools:text="2019-10-8" />
+                </FrameLayout>
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end|center_vertical"
+                android:id="@+id/btn_item_snack_list"
+                android:src="@drawable/ic_right"
+                android:tint="@color/colorWPrimaryDark" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:backgroundTint="@color/blue_01"
+            android:visibility="@{isShow ? View.VISIBLE: View.GONE}"
+            app:cardCornerRadius="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@{model.content}"
+                tools:text="  我身在物资匮乏的美帝，没好吃的东西，我都打死不吃士力架snickers，甜得令人发指还不健康，你在美食之国天朝居然还相信老美编的广告语。哼………哼………气死我了" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="@color/blue_good"
+            android:visibility="@{isShow ? View.VISIBLE: View.GONE}"
+            app:cardCornerRadius="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_show_snack_it"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</layout>
