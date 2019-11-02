@@ -1,7 +1,7 @@
 package me.codeminions.factory.presenter.account
 
 import me.codeminions.factory.data.bean.User
-import me.codeminions.factory.data.model.ResponseCallBack
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack
 import me.codeminions.factory.data.model.loginModel.LoginModel
 
 class AccountLoginPresenter(val view: AccountLoginContract.AccountLoginView) : AccountLoginContract.AccountLoginPresenter {
@@ -15,7 +15,7 @@ class AccountLoginPresenter(val view: AccountLoginContract.AccountLoginView) : A
     override fun login(userName: String, userPwd: String) {
         view.showLogining()
         if(userName.isNotEmpty() && userPwd.isNotEmpty()) {
-            val loginModel = me.codeminions.factory.data.model.LoginModel(userName, userPwd)
+            val loginModel = me.codeminions.factory.data.model.baseModel.LoginModel(userName, userPwd)
             model.login(loginModel, object : ResponseCallBack<User> {
                 override fun onSuccess(info: String, response: User) {
                     view.onLoginSuccess(response)

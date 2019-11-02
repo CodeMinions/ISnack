@@ -3,7 +3,6 @@ package me.codeminions.factory.presenter.account
 import android.graphics.Bitmap
 import me.codeminions.common.mvp.BaseContract
 import me.codeminions.factory.data.bean.User
-import me.codeminions.factory.data.model.RegisterModel
 
 interface AccountRegisterContract {
     interface AccountRegisterView: BaseContract.BaseView<AccountRegisterPresenter> {

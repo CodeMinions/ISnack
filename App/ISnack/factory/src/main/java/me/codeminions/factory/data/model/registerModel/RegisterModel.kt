@@ -1,9 +1,9 @@
 package me.codeminions.factory.data.model.registerModel
 
 import me.codeminions.factory.data.bean.User
-import me.codeminions.factory.data.model.RegisterModel
-import me.codeminions.factory.data.model.ResponseCallBack
-import me.codeminions.factory.data.model.ResponseModel
+import me.codeminions.factory.data.model.baseModel.RegisterModel
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack
+import me.codeminions.factory.data.model.baseModel.ResponseModel
 import me.codeminions.factory.net.RetrofitService
 import okhttp3.MultipartBody
 import retrofit2.Call

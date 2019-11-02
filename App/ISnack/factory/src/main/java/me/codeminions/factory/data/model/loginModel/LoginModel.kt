@@ -5,8 +5,8 @@ import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
 import me.codeminions.factory.data.bean.User
-import me.codeminions.factory.data.model.ResponseCallBack
-import me.codeminions.factory.data.model.ResponseModel
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack
+import me.codeminions.factory.data.model.baseModel.ResponseModel
 import me.codeminions.factory.net.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,7 +19,7 @@ class LoginModel : ILoginModel {
 
     private lateinit var callback: ResponseCallBack<User>
 
-    override fun login(model: me.codeminions.factory.data.model.LoginModel, callback: ResponseCallBack<User>) {
+    override fun login(model: me.codeminions.factory.data.model.baseModel.LoginModel, callback: ResponseCallBack<User>) {
         this.callback = callback
 //        val task = MyTask(this)
 //        task.execute()

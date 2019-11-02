@@ -1,6 +1,6 @@
 package me.codeminions.factory.net
 
-import me.codeminions.factory.data.model.ResponseModel
+import me.codeminions.factory.data.model.baseModel.ResponseModel
 
 interface RequestResult<T> {
 

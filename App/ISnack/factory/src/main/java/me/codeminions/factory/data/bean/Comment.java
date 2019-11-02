@@ -1,6 +1,8 @@
 package me.codeminions.factory.data.bean;
 
-public class Comment {    //对应表t_comment
+import java.io.Serializable;
+
+public class Comment implements Serializable {    //对应表t_comment
 
     private int commentID;
     private String comment;

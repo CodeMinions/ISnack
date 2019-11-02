@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.presenter.snackPhoto.SnackPhotoContract
 import me.codeminions.factory.presenter.snackPhoto.SnackPhotoPresenter
+import me.codeminions.isnack.MyApplication
 import me.codeminions.isnack.R
 import me.codeminions.isnack.databinding.FragmentPhotoResultBinding
 
@@ -60,7 +61,7 @@ class PhotoResultFragment : DialogFragment(), SnackPhotoContract.SnackPhotoView<
     }
 
     override fun showTip(info: String) {
-        Toast.makeText(context, info, Toast.LENGTH_SHORT).show()
+        Toast.makeText(MyApplication.context, info, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

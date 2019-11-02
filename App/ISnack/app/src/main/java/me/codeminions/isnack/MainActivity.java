@@ -26,12 +26,11 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import butterknife.BindView;
-import me.codeminions.common.app.DataBindingActivity;
+import me.codeminions.common.mvp.BaseContract;
 import me.codeminions.common.widget.BaseViewPagerAdapter;
 import me.codeminions.common.widget.BindingRecyclerAdapter;
+import me.codeminions.factory.PresenterActivity;
 import me.codeminions.factory.data.bean.Snack;
-import me.codeminions.factory.data.model.ResponseModel;
-import me.codeminions.factory.net.RetrofitService;
 import me.codeminions.factory.presenter.snackMain.SnackMainContract;
 import me.codeminions.factory.presenter.snackMain.SnackMainPresenter;
 import me.codeminions.isnack.commentPager.CommentFragment;
@@ -43,13 +42,10 @@ import me.codeminions.isnack.mePage.MeActivity;
 import me.codeminions.isnack.photoResult.PhotoResultFragment;
 import me.codeminions.isnack.recommendPage.RecommendFragment;
 import me.codeminions.isnack.snackDetails.SnackDetailActivity;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static me.codeminions.factory.net.RetrofitServiceKt.URL_PIC;
 
-public class MainActivity extends DataBindingActivity<ActivityMainBinding>
+public class MainActivity extends PresenterActivity<ActivityMainBinding>
         implements SnackMainContract.SnackMainView<SnackMainContract.SnackMainPresenter>,
         ViewPager.OnPageChangeListener {
 
@@ -60,7 +56,9 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
         this.presenter = presenter;
     }
 
-    SnackMainContract.SnackMainPresenter initPresenter() {
+    @Override
+    @NotNull
+    public BaseContract.BasePresenter initPresenter() {
         return new SnackMainPresenter(MainActivity.this);
     }
 
@@ -127,6 +125,15 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("resunme", "刷新");
+
+//        initWidget();
+//        initData();
+    }
+
     public void startSearch(String content) {
         // 显示搜索页面
         binding.frameSearch.setVisibility(View.VISIBLE);
@@ -136,36 +143,19 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
             binding.frameSearch.setVisibility(View.GONE);
             binding.vpMain.setVisibility(View.VISIBLE);
         });
-        // 发送请求
-        RetrofitService.Companion.getApiService().searchSnack(content)
-                .enqueue(new Callback<ResponseModel<List<Snack>>>() {
-                    @Override
-                    public void onResponse(Call<ResponseModel<List<Snack>>> call,
-                                           Response<ResponseModel<List<Snack>>> response) {
-                        if (response.isSuccessful()) {
-                            ResponseModel<List<Snack>> model = response.body();
-                            if (model.getCode() == 1) {
-                                initRecyclerList(model.getResult());
-                            } else {
-                                showTip(model.getMessage());
-                                binding.progressSearch.setVisibility(View.INVISIBLE);
-                                binding.recyclerSearch.setVisibility(View.VISIBLE);
-                            }
-                        } else {
-                            showTip(response.message());
-                            binding.progressSearch.setVisibility(View.INVISIBLE);
-                            binding.recyclerSearch.setVisibility(View.VISIBLE);
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseModel<List<Snack>>> call, Throwable t) {
-                        showTip(t.getMessage());
-                    }
-                });
+        // 请求查找
+        presenter.searchSnack(content);
     }
 
-    void initRecyclerList(List<Snack> list) {
+    @Override
+    public void hintProgress() {
+        binding.progressSearch.setVisibility(View.INVISIBLE);
+        binding.recyclerSearch.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void initSearchList(List<Snack> list) {
         binding.recyclerSearch.setLayoutManager(new LinearLayoutManager(this));
         BindingRecyclerAdapter<Snack, ItemSnackSearchBinding> adapter = new BindingRecyclerAdapter<Snack, ItemSnackSearchBinding>() {
             @Override
@@ -176,6 +166,8 @@ public class MainActivity extends DataBindingActivity<ActivityMainBinding>
                     // 跳转并隐藏搜索页
                     SnackDetailActivity.Companion.startAction(MainActivity.this, snack);
                     binding.frameSearch.setVisibility(View.INVISIBLE);
+                    binding.vpMain.setVisibility(View.VISIBLE);
+                    binding.editorMain.setText("");
                 });
             }
 

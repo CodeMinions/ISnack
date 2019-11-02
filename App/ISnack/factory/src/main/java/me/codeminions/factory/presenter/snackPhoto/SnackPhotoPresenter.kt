@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import me.codeminions.factory.data.bean.Snack
-import me.codeminions.factory.data.model.ResponseCallBack
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack
 import me.codeminions.factory.data.model.photoModel.PhotoModel
 import okhttp3.MediaType
 import okhttp3.MultipartBody

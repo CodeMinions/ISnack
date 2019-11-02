@@ -1,9 +1,8 @@
 package me.codeminions.factory.data.model.snackModel
 
-import me.codeminions.factory.data.bean.Comment
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.data.bean.SnackInfo
-import me.codeminions.factory.data.model.*
+import me.codeminions.factory.data.model.baseModel.*
 import me.codeminions.factory.net.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,10 +12,10 @@ class SnackModel : ISnackModel {
 
     override fun loadAll(callBack: ResponseCallBack<List<Snack>>) {
 
-        RetrofitService.getApiService().getAllSnack().enqueue(object: Callback<ResponseModel<List<Snack>>> {
+        RetrofitService.getApiService().getAllSnack().enqueue(object : Callback<ResponseModel<List<Snack>>> {
             override fun onResponse(call: Call<ResponseModel<List<Snack>>>,
                                     response: Response<ResponseModel<List<Snack>>>) {
-                if(response.isSuccessful) {
+                if (response.isSuccessful) {
                     val responseModel = response.body() as ResponseModel<List<Snack>>
 
                     callBack.onSuccess("Get All Data", response = responseModel.result!!)
@@ -33,10 +32,10 @@ class SnackModel : ISnackModel {
 
     override fun loadRecommend(callback: ResponseCallBack<List<Snack>>) {
 
-        RetrofitService.getApiService().getRecommend().enqueue(object: Callback<ResponseModel<List<Snack>>> {
+        RetrofitService.getApiService().getRecommend().enqueue(object : Callback<ResponseModel<List<Snack>>> {
             override fun onResponse(call: Call<ResponseModel<List<Snack>>>,
                                     response: Response<ResponseModel<List<Snack>>>) {
-                if(response.isSuccessful) {
+                if (response.isSuccessful) {
                     val responseModel = response.body() as ResponseModel<List<Snack>>
 
                     callback.onSuccess("Get All Data", response = responseModel.result!!)
@@ -52,13 +51,15 @@ class SnackModel : ISnackModel {
     }
 
     override fun getSnackInfoById(id: Int, callback: ResponseCallBack<List<SnackInfoModel>>) {
-        RetrofitService.getApiService().getSnackInfoById(id).enqueue(object: Callback<ResponseModel<SnackInfo>> {
+        RetrofitService.getApiService().getSnackInfoById(id).enqueue(object : Callback<ResponseModel<SnackInfo>> {
             override fun onResponse(call: Call<ResponseModel<SnackInfo>>,
                                     response: Response<ResponseModel<SnackInfo>>) {
-                if(response.isSuccessful) {
+                if (response.isSuccessful) {
                     val responseModel = response.body() as ResponseModel<SnackInfo>
-
-                    callback.onSuccess("Get All Data", response = snackInfoUnpack(responseModel.result!!))
+                    if (responseModel.code != 1)
+                        callback.onFail(responseModel.message)
+                    else
+                        callback.onSuccess("Get All Data", response = snackInfoUnpack(responseModel.result!!))
                 } else {
                     callback.onFail(response.message())
                 }
@@ -70,31 +71,13 @@ class SnackModel : ISnackModel {
         })
     }
 
-    override fun getCommentById(id: Int, callback: ResponseCallBack<List<Comment>>) {
-        RetrofitService.getApiService().getCommentBySnack(id).enqueue(object: Callback<ResponseModel<List<Comment>>> {
-            override fun onResponse(call: Call<ResponseModel<List<Comment>>>,
-                                    response: Response<ResponseModel<List<Comment>>>) {
-                if(response.isSuccessful) {
-                    val responseModel = response.body() as ResponseModel<List<Comment>>
-
-                    callback.onSuccess("Get All Data", response = responseModel.result!!)
-                } else {
-                    callback.onFail(response.message())
-                }
-            }
-            override fun onFailure(call: Call<ResponseModel<List<Comment>>>, t: Throwable) {
-                callback.onFail("Server Error : ${t.message}")
-            }
-        })
-    }
-
     override fun getMarkInfo(snackId: Int, callback: ResponseCallBack<IntArray>) {
-        RetrofitService.getApiService().getMarkInfo(snackId).enqueue(object: Callback<ResponseModel<IntArray>> {
+        RetrofitService.getApiService().getMarkInfo(snackId).enqueue(object : Callback<ResponseModel<IntArray>> {
             override fun onResponse(call: Call<ResponseModel<IntArray>>,
                                     response: Response<ResponseModel<IntArray>>) {
-                if(response.isSuccessful) {
+                if (response.isSuccessful) {
                     val responseModel = response.body() as ResponseModel<IntArray>
-                    if(responseModel.code != 1)
+                    if (responseModel.code != 1)
                         callback.onFail(responseModel.message)
                     else
                         callback.onSuccess("GET info", response = responseModel.result!!)
@@ -102,6 +85,7 @@ class SnackModel : ISnackModel {
                     callback.onFail(response.message())
                 }
             }
+
             override fun onFailure(call: Call<ResponseModel<IntArray>>, t: Throwable) {
                 callback.onFail("Server Error : ${t.message}")
             }
@@ -109,12 +93,12 @@ class SnackModel : ISnackModel {
     }
 
     override fun sendSnackList(model: SnackListModel, callback: ResponseCallBack<String>) {
-        RetrofitService.getApiService().sendSnackList(model).enqueue(object: Callback<ResponseModel<String>> {
+        RetrofitService.getApiService().sendSnackList(model).enqueue(object : Callback<ResponseModel<String>> {
             override fun onResponse(call: Call<ResponseModel<String>>,
                                     response: Response<ResponseModel<String>>) {
-                if(response.isSuccessful) {
+                if (response.isSuccessful) {
                     val responseModel = response.body() as ResponseModel<String>
-                    if(responseModel.code != 1)
+                    if (responseModel.code != 1)
                         callback.onFail(responseModel.message)
                     else
                         callback.onSuccess("ok", responseModel.message)
@@ -122,6 +106,7 @@ class SnackModel : ISnackModel {
                     callback.onFail(response.message())
                 }
             }
+
             override fun onFailure(call: Call<ResponseModel<String>>, t: Throwable) {
                 callback.onFail("Server Error : ${t.message}")
             }

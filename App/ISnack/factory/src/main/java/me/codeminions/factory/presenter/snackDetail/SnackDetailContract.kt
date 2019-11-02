@@ -2,9 +2,10 @@ package me.codeminions.factory.presenter.snackDetail
 
 import me.codeminions.common.mvp.BaseContract
 import me.codeminions.factory.data.bean.Comment
-import me.codeminions.factory.data.bean.SnackInfo
-import me.codeminions.factory.data.model.ResponseCallBack
-import me.codeminions.factory.data.model.SnackInfoModel
+import me.codeminions.factory.data.bean.User
+import me.codeminions.factory.data.model.baseModel.CommentModel
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack
+import me.codeminions.factory.data.model.baseModel.SnackInfoModel
 
 interface SnackDetailContract {
 
@@ -15,7 +16,7 @@ interface SnackDetailContract {
          */
         fun lookComment()
 
-        fun loadCommentSuccess(list: List<Comment>)
+        fun loadCommentSuccess(list: List<CommentModel>)
 
         fun loadMoreSuccess(list: List<SnackInfoModel>)
 
@@ -25,6 +26,8 @@ interface SnackDetailContract {
     }
 
     interface SnackDetailPresenter : BaseContract.BasePresenter {
+
+        fun getCommentUser(userId: Int, callBack: ResponseCallBack<User>)
 
         fun getSnackMore(snackID: Int)
 

@@ -3,12 +3,9 @@ package me.codeminions.isnack.snackDetails
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -17,15 +14,14 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_snack_details.*
-import me.codeminions.common.widget.BaseAdapter
 import me.codeminions.common.widget.BindingRecyclerAdapter
 import me.codeminions.factory.PresenterActivity
 import me.codeminions.factory.data.bean.Comment
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.data.bean.User
-import me.codeminions.factory.data.model.ResponseModel
-import me.codeminions.factory.data.model.SnackInfoModel
-import me.codeminions.factory.net.RetrofitService
+import me.codeminions.factory.data.model.baseModel.CommentModel
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack
+import me.codeminions.factory.data.model.baseModel.SnackInfoModel
 import me.codeminions.factory.net.URL_PIC
 import me.codeminions.factory.presenter.snackDetail.SnackDetailContract
 import me.codeminions.factory.presenter.snackDetail.SnackDetailPresenter
@@ -33,9 +29,6 @@ import me.codeminions.isnack.R
 import me.codeminions.isnack.databinding.ActivitySnackDetailsBinding
 import me.codeminions.isnack.databinding.ItemSnackCommentBinding
 import me.codeminions.isnack.starPage.StarActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
         SnackDetailContract.SnackDetailView {
@@ -44,8 +37,8 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
     }
 
     private lateinit var presenter: SnackDetailContract.SnackDetailPresenter
-    private var commentList: ArrayList<Comment>? = null
-    private lateinit var commentAdapter: BindingRecyclerAdapter<Comment, ItemSnackCommentBinding>
+    private var commentList: ArrayList<CommentModel>? = null
+    private lateinit var commentAdapter: BindingRecyclerAdapter<CommentModel, ItemSnackCommentBinding>
 
     private lateinit var snack: Snack
 
@@ -75,25 +68,13 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
         presenter.getMark(snackId = snack.snackID!!)
 
         recycler_comment.layoutManager = LinearLayoutManager(this)
-        commentAdapter = object : BindingRecyclerAdapter<Comment, ItemSnackCommentBinding>() {
+        commentAdapter = object : BindingRecyclerAdapter<CommentModel, ItemSnackCommentBinding>() {
             override fun getItemViewType(position: Int): Int {
                 return R.layout.item_snack_comment
             }
-            override fun onBindViewHolder(bing: ItemSnackCommentBinding, data: Comment) {
+            override fun onBindViewHolder(bing: ItemSnackCommentBinding, data: CommentModel) {
                 bing.comment = data
-                // 获取账号对应信息
-                RetrofitService.getApiService().getUserById(data.send_id).enqueue(object: Callback<ResponseModel<User>> {
-                    override fun onResponse(call: Call<ResponseModel<User>>, response: Response<ResponseModel<User>>) {
-                        if(response.isSuccessful) {
-                            val user = response.body()?.result as User
-                            bing.user = user
-                            bing.imgUrl = URL_PIC + user.portrait
-                        }
-                    }
-                    override fun onFailure(call: Call<ResponseModel<User>>, t: Throwable) {
-
-                    }
-                })
+                bing.imgUrl = URL_PIC + data.send.portrait
             }
         }
         recycler_comment.adapter = commentAdapter
@@ -110,13 +91,13 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
 
     }
 
-    override fun loadCommentSuccess(list: List<Comment>) {
+    override fun loadCommentSuccess(list: List<CommentModel>) {
         if(commentList != null) {
             commentList!!.addAll(list)
         } else {
-            commentList = list as ArrayList<Comment>
+            commentList = list as ArrayList<CommentModel>
         }
-        commentAdapter.list = commentList as ArrayList<Comment>
+        commentAdapter.list = commentList as ArrayList<CommentModel>
         commentAdapter.notifyDataSetChanged()
     }
 
@@ -129,6 +110,10 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
         StarActivity.startAction(this, snack)
     }
 
+    fun onClickBack(v: View) {
+        finish()
+    }
+
     override fun initInfoTable(list: List<SnackInfoModel>) {
         val f = FrameLayout(this)
         val t1 = TextView(this)
@@ -136,7 +121,7 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
         val t3 = TextView(this)
 
         t1.text = "营养成分"
-        t2.text = "每 ${list[0].quality.split("/")[1]}"
+        t2.text = "每 ${list[0].quality.split("/")[1].split("-")[0]}"
         t3.text = "人均每天"
 
         f.addView(t1)
@@ -181,6 +166,10 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
                 }.show()
             }
 
+            // 能量转换
+            if(it.ingredient == "能量")
+                binding.powerTran.text = "每 ${list[0].quality.split("/")[1].split("-")[0]} = ${String.format("%.2f", getNum(it.quality.split("/")[0])/837f)}碗米饭"
+
             frameLayout.addView(text1)
             frameLayout.addView(text2)
             frameLayout.addView(text3)
@@ -206,6 +195,17 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
 
             list_layout.addView(view)
         }
+    }
+
+    private fun getNum(str: String) : Int {
+        if (str.isNullOrEmpty())
+            return 0
+        var s2 = ""
+        for(it in str) {
+            if(it >= 48.toChar() && it <=57.toChar())
+                s2 += it
+        }
+        return s2.toInt()
     }
 
     override fun setPresenter(presenter: SnackDetailContract.SnackDetailPresenter?) {

@@ -39,6 +39,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:onClick="@{handler::onClickBack}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -107,6 +108,7 @@
                             android:layout_gravity="center|start"
                             android:text="@{@string/txt_origin + snack.origin}"
                             android:textColor="#ffffff"
+                            android:maxLines="1"
                             android:textSize="16sp"
                             tools:text="产地： 中国" />
 
@@ -114,9 +116,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|start"
-                            android:layout_marginBottom="25dp"
+                            android:layout_marginBottom="30dp"
                             android:text="@{@string/txt_shelf  +  snack.shelf}"
                             android:textColor="#ffffff"
+                            android:maxLines="1"
                             android:textSize="16sp"
                             tools:text="一般可存放时间： 3个月" />
 
@@ -290,6 +293,16 @@
                         android:textColor="#50ffffff"
                         tools:text="122062人评分" />
                 </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:background="@drawable/bg_round_5"
+                    android:backgroundTint="#20000000"
+                    android:id="@+id/power_tran"
+                    tools:text="每20g = 0.45 碗米饭"
+                    android:paddingHorizontal="15dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:id="@+id/list_layout"

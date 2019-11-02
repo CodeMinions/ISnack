@@ -4,7 +4,7 @@ import me.codeminions.factory.data.bean.Comment
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.data.bean.SnackInfo
 import me.codeminions.factory.data.bean.User
-import me.codeminions.factory.data.model.*
+import me.codeminions.factory.data.model.baseModel.*
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -46,7 +46,7 @@ interface ApiService {
     fun getSnackInfoById(@Query("id")id: Int) : Call<ResponseModel<SnackInfo>>
 
     @GET(value = "snack/getCommentBySnack")
-    fun getCommentBySnack(@Query("id")id: Int) : Call<ResponseModel<List<Comment>>>
+    fun getCommentBySnack(@Query("id")id: Int) : Call<ResponseModel<List<CommentModel>>>
 
     @GET(value = "snack/search")
     fun searchSnack(@Query("name")name: String) : Call<ResponseModel<List<Snack>>>
