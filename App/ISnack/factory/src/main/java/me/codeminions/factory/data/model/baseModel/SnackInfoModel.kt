@@ -1,4 +1,4 @@
-package me.codeminions.factory.data.model
+package me.codeminions.factory.data.model.baseModel
 
 import me.codeminions.factory.data.bean.SnackInfo
 

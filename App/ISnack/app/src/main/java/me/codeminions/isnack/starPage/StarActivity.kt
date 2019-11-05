@@ -4,17 +4,14 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.view.View
-import android.view.ViewDebug
-import android.widget.EditText
 import android.widget.Toast
 import me.codeminions.common.app.DataBindingActivity
 import me.codeminions.factory.data.bean.Snack
-import me.codeminions.factory.data.bean.User
-import me.codeminions.factory.data.model.CommentModel
-import me.codeminions.factory.data.model.ResponseModel
+import me.codeminions.factory.data.model.baseModel.CommentModel
+import me.codeminions.factory.data.model.baseModel.ResponseModel
 import me.codeminions.factory.net.RetrofitService
 import me.codeminions.factory.net.URL_PIC
-import me.codeminions.factory.utils.getUserId
+import me.codeminions.factory.utils.getLoginInfo
 import me.codeminions.isnack.R
 import me.codeminions.isnack.databinding.FragmentStarBinding
 import retrofit2.Call
@@ -46,18 +43,18 @@ class StarActivity : DataBindingActivity<FragmentStarBinding>() {
 
     }
 
-    fun getStar() : Float = binding.starRating.rating
+    private fun getStar() : Float = binding.starRating.rating
 
-    fun getComment(): String = binding.starEditor.text.toString()
+    private fun getComment(): String = binding.starEditor.text.toString()
 
     fun onClickSend(v: View) {
         // 发送评价
 
-        val userId = getUserId(this)
-        if (userId.isEmpty()) {
+        val user = getLoginInfo(this)
+        if (user == null) {
             AlertDialog.Builder(this).setTitle("是不是忘了登录哟").show()
         } else {
-            val model = CommentModel(userId.toInt(), snack.snackID!!, getComment(), getStar())
+            val model = CommentModel(user, snack.snackID!!, getComment(), getStar())
             RetrofitService.getApiService().sendComment(model).enqueue(object: Callback<ResponseModel<String>> {
                 override fun onResponse(call: Call<ResponseModel<String>>, response: Response<ResponseModel<String>>) {
                     if(response.isSuccessful) {

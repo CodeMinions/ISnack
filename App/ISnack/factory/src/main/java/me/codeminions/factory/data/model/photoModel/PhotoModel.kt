@@ -2,8 +2,8 @@ package me.codeminions.factory.data.model.photoModel
 
 import android.util.Log
 import me.codeminions.factory.data.bean.Snack
-import me.codeminions.factory.data.model.ResponseCallBack
-import me.codeminions.factory.data.model.ResponseModel
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack
+import me.codeminions.factory.data.model.baseModel.ResponseModel
 import me.codeminions.factory.net.RequestResult
 import me.codeminions.factory.presenter.snackPhoto.SnackPhotoContract
 import okhttp3.MultipartBody

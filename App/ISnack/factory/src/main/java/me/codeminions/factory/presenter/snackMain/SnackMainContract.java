@@ -6,7 +6,10 @@ import android.net.Uri;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 import me.codeminions.common.mvp.BaseContract;
+import me.codeminions.factory.data.bean.Snack;
 
 public interface SnackMainContract {
 
@@ -50,11 +53,17 @@ public interface SnackMainContract {
 
 
         public void showPhotoResult(Bitmap bitmap);
+
+        void initSearchList(List<Snack> list);
+
+        void hintProgress();
     }
 
     public interface SnackMainPresenter extends BaseContract.BasePresenter {
         public void jumpToMe(Context context);
 
         public void startPhoto(@NotNull Context context);
+
+        void searchSnack(String content);
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.codeminions.factory.data.bean.Snack;
-import me.codeminions.factory.data.model.ResponseCallBack;
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack;
 import me.codeminions.factory.data.model.snackModel.SnackModel;
 
 public class SnackFirstPagePresenter implements SnackFirstPageContract.SnackFirstPagePresenter {

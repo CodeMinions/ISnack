@@ -1,7 +1,7 @@
 package me.codeminions.factory.data.model.photoModel
 
 import me.codeminions.factory.data.bean.Snack
-import me.codeminions.factory.data.model.ResponseModel
+import me.codeminions.factory.data.model.baseModel.ResponseModel
 import me.codeminions.factory.net.ApiService
 import me.codeminions.factory.net.RequestResult
 import me.codeminions.factory.net.RetrofitService

@@ -1,8 +1,8 @@
 package me.codeminions.factory.data.model.registerModel
 
 import me.codeminions.factory.data.bean.User
-import me.codeminions.factory.data.model.RegisterModel
-import me.codeminions.factory.data.model.ResponseCallBack
+import me.codeminions.factory.data.model.baseModel.RegisterModel
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack
 import okhttp3.MultipartBody
 
 interface IRegisterModel {

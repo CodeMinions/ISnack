@@ -7,7 +7,7 @@
         <import type="android.view.View" />
         <variable
             name="model"
-            type="me.codeminions.factory.data.model.SnackListModel" />
+            type="me.codeminions.factory.data.model.baseModel.SnackListModel" />
 
         <variable
             name="imgUrl"
@@ -27,7 +27,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue_01">
+            android:backgroundTint="@color/colorMyThemeColorBG">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -91,14 +91,14 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:backgroundTint="@color/blue_01"
+            android:backgroundTint="@color/colorMyThemeColorBG"
             android:visibility="@{isShow ? View.VISIBLE: View.GONE}"
             app:cardCornerRadius="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="13dp"
                 android:text="@{model.content}"
                 tools:text="  我身在物资匮乏的美帝，没好吃的东西，我都打死不吃士力架snickers，甜得令人发指还不健康，你在美食之国天朝居然还相信老美编的广告语。哼………哼………气死我了" />
         </androidx.cardview.widget.CardView>
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:backgroundTint="@color/blue_good"
+            android:backgroundTint="@color/colorMyThemeColorBG"
             android:visibility="@{isShow ? View.VISIBLE: View.GONE}"
             app:cardCornerRadius="10dp">
 

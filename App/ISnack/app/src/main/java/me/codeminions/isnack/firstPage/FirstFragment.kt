@@ -66,13 +66,6 @@ class FirstFragment :
     }
 
     override fun lookSnack(snack: Snack?) {
-//        val fragment = SnackDetailFragment()
-//        val bundle = Bundle()
-//        bundle.putSerializable("data", snack)
-//
-//        fragment.arguments = bundle
-//        fragment.show(fm, "DialogFragment")
-
         SnackDetailActivity.startAction(context!!, snack!!)
     }
 

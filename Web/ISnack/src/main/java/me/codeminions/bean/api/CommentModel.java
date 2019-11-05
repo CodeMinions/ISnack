@@ -2,10 +2,11 @@ package me.codeminions.bean.api;
 
 import com.google.gson.annotations.Expose;
 import me.codeminions.bean.db.Comment;
+import me.codeminions.bean.db.User;
 
 public class CommentModel {
     @Expose
-    private int send_id;
+    private User send;
 
     @Expose
     private int snack_id;
@@ -19,7 +20,7 @@ public class CommentModel {
     public static boolean check(CommentModel model) {
         return model != null
                 && !model.getContent().isEmpty()
-                && !(model.getSend_id() == 0)
+                && (model.getSend()  != null)
                 && !(model.getSnack_id() == 0);
     }
 
@@ -27,8 +28,14 @@ public class CommentModel {
     public CommentModel() {
     }
 
-    public CommentModel(int send_id, int snack_id, String content, int star) {
-        this.send_id = send_id;
+    public CommentModel(Comment comment) {
+        this.snack_id = comment.getSnack_id();
+        this.content = comment.getComment();
+        this.star = comment.getStar();
+    }
+
+    public CommentModel(User send, int snack_id, String content, int star) {
+        this.send = send;
         this.snack_id = snack_id;
         this.content = content;
         this.star = star;
@@ -37,7 +44,7 @@ public class CommentModel {
     @Override
     public String toString() {
         return "SnackModel{" +
-                "send_id=" + send_id +
+                "send=" + send +
                 ", snack_id=" + snack_id +
                 ", content='" + content + "\'" +
                 ", star=" + star +
@@ -45,12 +52,12 @@ public class CommentModel {
     }
 
 
-    public int getSend_id() {
-        return send_id;
+    public User getSend() {
+        return send;
     }
 
-    public void setSend_id(int send_id) {
-        this.send_id = send_id;
+    public void setSend(User send) {
+        this.send = send;
     }
 
     public int getSnack_id() {

@@ -1,4 +1,4 @@
-package me.codeminions.factory.data.model
+package me.codeminions.factory.data.model.baseModel
 
 import java.io.Serializable
 import java.util.*

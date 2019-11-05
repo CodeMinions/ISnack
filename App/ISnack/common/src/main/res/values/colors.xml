@@ -15,8 +15,12 @@
     <color name="colorStarYellow">#FFD026</color>
     <color name="colorStarYellowLight">#FFF4D3</color>
 
-    <color name="colorMyThemeColor">#DF662B</color>
-    <color name="colorMyThemeColorDark">#E37E2F</color>
+    <color name="colorMyThemeColorDark">#DF662B</color>
+    <color name="colorMyThemeColor">#E37E2F</color>
+    <color name="colorMyThemeColorLight">#FFA748</color>
+    <color name="colorMyThemeColorLightD">#FAAD61</color>
+    <color name="colorMyThemeColorBG">#FDE9B4</color>
+    <color name="colorMyThemeColorBG2">#FCD55D</color>
 
     <color name="colorCardBackground">#FFFFFFFF</color>
 

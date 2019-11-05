@@ -1,4 +1,4 @@
-package me.codeminions.factory.data.model
+package me.codeminions.factory.data.model.baseModel
 
 interface ResponseCallBack<T> {
     fun onSuccess(info :String, response: T)

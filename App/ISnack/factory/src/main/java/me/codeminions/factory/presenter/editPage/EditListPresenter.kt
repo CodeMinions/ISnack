@@ -2,8 +2,8 @@ package me.codeminions.factory.presenter.editPage
 
 import me.codeminions.factory.data.bean.Snack
 import me.codeminions.factory.data.bean.User
-import me.codeminions.factory.data.model.ResponseCallBack
-import me.codeminions.factory.data.model.SnackListModel
+import me.codeminions.factory.data.model.baseModel.ResponseCallBack
+import me.codeminions.factory.data.model.baseModel.SnackListModel
 import me.codeminions.factory.data.model.snackModel.SnackModel
 import java.text.SimpleDateFormat
 import java.util.*

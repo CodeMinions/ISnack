@@ -7,11 +7,7 @@
 
         <variable
             name="comment"
-            type="me.codeminions.factory.data.bean.Comment" />
-
-        <variable
-            name="user"
-            type="me.codeminions.factory.data.bean.User" />
+            type="me.codeminions.factory.data.model.baseModel.CommentModel" />
 
         <variable
             name="imgUrl"
@@ -37,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{user.name}"
+                android:text="@{comment.send.name}"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 tools:text="半截拖鞋" />
@@ -48,7 +44,7 @@
                 android:layout_marginTop="30dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="@{comment.comment}"
+                android:text="@{comment.content}"
                 tools:text="  带着两条士力架和2L水就够你爬一整天的山了
 这玩意就不是充饥用的，比一般充饥的食物屌得多了
 已经近似纯粹的能量了
