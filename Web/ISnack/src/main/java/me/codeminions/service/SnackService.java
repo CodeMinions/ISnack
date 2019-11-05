@@ -89,15 +89,24 @@ public class SnackService {
 
     @GET
     @Path("/getCommentBySnack")
-    public ResponseModel<List<Comment>> getCommentBySnack(@QueryParam("id") @DefaultValue("0") int id) {
+    public ResponseModel<List<CommentModel>> getCommentBySnack(@QueryParam("id") @DefaultValue("0") int id) {
         if (id == 0) {
             return ResponseModel.buildParameterError();
         }
 
+        List<CommentModel> models = new ArrayList<>();
         CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
         List<Comment> comments = commentMapper.getCommentBySnack(id);
 
-        return ResponseModel.buildOk(comments);
+        for (Comment comment : comments) {
+            CommentModel model = new CommentModel(comment);
+            User user = userMapper.getUserById(comment.getSend_id());
+            model.setSend(user);
+            models.add(model);
+        }
+        return ResponseModel.buildOk(models);
     }
 
     @GET
@@ -125,13 +134,13 @@ public class SnackService {
 
         //setComment
         CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
-        Comment comment = new Comment(model.getSend_id(), model.getSnack_id(), model.getContent(), model.getStar());
+        Comment comment = new Comment(model.getSend().getUserID(), model.getSnack_id(), model.getContent(), model.getStar());
         commentMapper.setComment(comment);
         sqlSession.commit();
 
         //setMark
         MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
-        SnackMark mark = new SnackMark(model.getSend_id(), model.getSnack_id(), model.getStar());
+        SnackMark mark = new SnackMark(model.getSend().getUserID(), model.getSnack_id(), model.getStar());
         markMapper.setMark(mark);
         sqlSession.commit();
 
@@ -171,7 +180,7 @@ public class SnackService {
 
         MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
         ArrayList<SnackMark> marks = markMapper.getSnackMark(id);
-        float aver = 0;
+        double aver = 0;
         int[] markCount = new int[6];
         for (SnackMark mark : marks) {
             aver += mark.getMark();
@@ -199,7 +208,7 @@ public class SnackService {
 
         aver /= marks.size();
         DecimalFormat df = new DecimalFormat("0.0");
-        aver = Integer.parseInt(df.format(aver));
+        aver = Double.parseDouble(df.format(aver));
 
         //将平均分存入t_snack表
         SnackMapper snackMapper = sqlSession.getMapper(SnackMapper.class);
