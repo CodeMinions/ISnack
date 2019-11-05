@@ -80,6 +80,14 @@ class SnackDetailActivity : PresenterActivity<ActivitySnackDetailsBinding>(),
         recycler_comment.adapter = commentAdapter
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("resume", "刷新")
+
+//        presenter.getComment(snack.snackID!!)
+    }
+
     override fun showMarkInfo(data: IntArray) {
         for(it in data.indices) {
             data[it] = data[it]*100/data[5]
