@@ -15,7 +15,7 @@
         <result column="time" property="time"/>
     </resultMap>
 
-    <insert id="setComment" parameterType="me.codeminions.bean.db.Comment">
+    <insert id="setComment" parameterType="me.codeminions.bean.db.Comment" flushCache="true">
         INSERT INTO t_comment(content, send_id, snack_id, star,likecount, time) VALUE (#{comment},#{send_id},#{snack_id},#{star},0,#{time});
     </insert>
 

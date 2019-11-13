@@ -13,7 +13,7 @@ PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="time" property="time" />
     </resultMap>
 
-    <insert id="setMark" parameterType="me.codeminions.bean.db.SnackMark">
+    <insert id="setMark" parameterType="me.codeminions.bean.db.SnackMark" flushCache="true">
         INSERT INTO t_snack_mark(user_id, snack_id, mark, time) VALUE (#{userID},#{snackID},#{mark},#{time});
     </insert>
 

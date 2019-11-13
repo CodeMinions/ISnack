@@ -37,6 +37,15 @@ public class User {       //对应表t_user
         this.birth = birth;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID : " + userID +
+                ", name : " + name +
+                ", portrait : " + portrait +
+                "}";
+    }
+
     public int getUserID() {
         return userID;
     }
